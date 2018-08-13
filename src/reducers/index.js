@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
 
-import mock from './mock.reducer'
-
+import recipes from './recipes.reducer';
 
 const reducers = combineReducers({
-  mock,
+  recipes
   
 });
 

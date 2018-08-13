@@ -11,7 +11,7 @@
 // }
 
 
-const BASE_URL = 'http://api.icndb.com'; //CHANGE THIS TO SERVER URL
+const BASE_URL = 'https://private-anon-9d15778814-mealee.apiary-mock.com'; //CHANGE THIS TO SERVER URL
 
 export default store => next => action => {
   if (!action.api) return next(action);
