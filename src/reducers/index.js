@@ -4,7 +4,8 @@ import mock from './mock.reducer'
 
 
 const reducers = combineReducers({
-  mock
+  mock,
+  
 });
 
 export default reducers;
