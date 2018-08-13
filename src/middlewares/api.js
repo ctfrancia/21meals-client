@@ -24,7 +24,7 @@ export default store => next => action => {
   if (body) {
     body = JSON.stringify(body);
     defaultHeaders['Content-type'] = 'application/json';
-  }
+  }  
 
   headers = {
     ...defaultHeaders,
