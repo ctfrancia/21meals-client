@@ -4,10 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Layout, Spin } from 'antd';
 import RecipeCard from '../../components/RecipeCard';
-import TopBar from '../../components/TopBar';
-import BottomBar from '../../components/BottomBar';
 import './Main.css';
-import 'antd/dist/antd.css';
+
 const { Content } = Layout;
 
 
@@ -46,11 +44,10 @@ class Main extends React.Component {
     return (
       <div>
         <Layout>
-          <TopBar />
           <Content>
             {cards}
           </Content>
-          <BottomBar />
+          {/* <BottomBar /> */}
         </Layout>
       </div>
     );

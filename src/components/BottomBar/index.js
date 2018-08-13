@@ -13,7 +13,7 @@ const { Footer } = Layout;
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
-function BottomBar() {
+function BottomBar () {
   return (
     <Footer
       style={{
@@ -31,7 +31,9 @@ function BottomBar() {
           </Link>
         </div>
         <div className="bottom-bar__option">
-          <Icon type="calendar" />
+          <Link to="/planning">
+            <Icon type="calendar" />
+          </Link>
         </div>
         <div className="bottom-bar__option">
           <Link to="/list">

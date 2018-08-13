@@ -1,3 +1,11 @@
 .recipe_card {
   margin: 5.5px;
 }
+
+.ant-card-body {
+  padding: 10px;
+}
+
+.ant-card-meta-title {
+  white-space: normal;
+}

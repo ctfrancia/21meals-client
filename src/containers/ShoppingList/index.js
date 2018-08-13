@@ -8,8 +8,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Layout, List, Icon, Checkbox } from 'antd';
-import TopBar from '../../components/TopBar';
-import BottomBar from '../../components/BottomBar';
 import './ShoppingList.css';
 import 'antd/dist/antd.css';
 const { Content } = Layout;
@@ -32,7 +30,6 @@ export class ShoppingList extends React.Component {
     return (
       <div>
         <Layout>
-          <TopBar />
           <Content>
             <div className="list">
               <div className="list__image">
@@ -100,7 +97,6 @@ export class ShoppingList extends React.Component {
               </div>
             </div>
           </Content>
-          <BottomBar />
         </Layout>
       </div>
     );

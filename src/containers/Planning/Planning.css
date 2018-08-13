@@ -1,0 +1,27 @@
+.planning__image {
+  height: 10rem;
+  width: auto;
+  background-image: url("../../assets/planning.jpg");
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
+}
+
+.planning__image--title h2 {
+  font-size: 1.8rem;
+  font-weight: 200;
+  color: #fafafa;
+  padding: 1rem;
+}
+
+.planning {
+  background-color: black
+}
+
+.day__list {
+  min-height: 250px;
+}
+
+.planning.ant-list-item {
+  min-height: 300px;
+}

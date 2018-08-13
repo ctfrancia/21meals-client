@@ -1,8 +1,7 @@
 .list__image {
-  background-color: red;
   height: 10rem;
   width: auto;
-  /* background-image: url("../../images/shop.jpg"); */
+  background-image: url("../../assets/shop.jpg");
   background-size: cover;
   display: flex;
   align-items: flex-end;
