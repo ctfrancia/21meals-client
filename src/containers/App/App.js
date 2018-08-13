@@ -3,7 +3,8 @@ import logo from '../../assets/logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
 import  {getChuck}  from '../../actions/mocks.actions';
-
+import DatePicker from 'antd/lib/date-picker';  // for js
+import 'antd/lib/date-picker/style/css';        // for css
 class App extends Component {
 
   componentDidMount() {
@@ -19,6 +20,7 @@ class App extends Component {
         <p className="App-intro">
           {this.props.quote}
         </p>
+      <DatePicker />
       </div>
     );
   }
