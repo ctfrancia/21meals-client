@@ -15,7 +15,7 @@ const { Content } = Layout;
 const drinks = [
   '12 bottles of water',
   '6 cans of Coca-cola',
-  '3 bottles of wine',
+  '3 bottles of wine'
 ];
 
 const meat = ['2 Steaks', '6 Chickent thigs'];
@@ -41,7 +41,8 @@ export class ShoppingList extends React.Component {
                 <List
                   header={
                     <div className="list__list--header">
-                      <Icon type="coffee" />Drinks
+                      <Icon type="coffee" />
+                      Drinks
                     </div>
                   }
                   bordered
@@ -55,7 +56,8 @@ export class ShoppingList extends React.Component {
                 <List
                   header={
                     <div className="list__list--header">
-                      <Icon type="coffee" />Meat
+                      <Icon type="coffee" />
+                      Meat
                     </div>
                   }
                   bordered
@@ -69,7 +71,8 @@ export class ShoppingList extends React.Component {
                 <List
                   header={
                     <div className="list__list--header">
-                      <Icon type="coffee" />Drinks
+                      <Icon type="coffee" />
+                      Drinks
                     </div>
                   }
                   bordered
@@ -83,7 +86,8 @@ export class ShoppingList extends React.Component {
                 <List
                   header={
                     <div className="list__list--header">
-                      <Icon type="coffee" />Meat
+                      <Icon type="coffee" />
+                      Meat
                     </div>
                   }
                   bordered
@@ -103,8 +107,6 @@ export class ShoppingList extends React.Component {
   }
 }
 
-ShoppingList.propTypes = {
-};
+ShoppingList.propTypes = {};
 
-
-export default ShoppingList
+export default ShoppingList;

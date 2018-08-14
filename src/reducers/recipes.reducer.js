@@ -1,18 +1,18 @@
 import { recipesConstants } from '../constants/recipes.constants';
-const defaultState = { recipes: [], loading: false };
+const defaultState = { loadingRecipes: true, recipesIndex: [] };
 
 export default (state = defaultState, action) => {
   switch (action.type) {
     case recipesConstants.RECIPES_GET_ALL_REQUEST:
       return {
         ...state,
-        loading: true
+        loadingRecipes: true
       };
-
-    case recipesConstants.RECIPES_GET_ALL_SUCCESS:
+      
+      case recipesConstants.RECIPES_GET_ALL_SUCCESS:
       return {
-        ...state,
-        loading: false
+        recipesIndex: action.data,
+        loadingRecipes: false
       };
 
     default:

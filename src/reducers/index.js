@@ -6,9 +6,9 @@ import plans from './plans.reducer';
 
 const reducers = combineReducers({
   entities,
+  pages: ingredients,
   recipes,
   plans,
-  ingredients,
   
 });
 

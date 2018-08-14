@@ -1,16 +1,16 @@
-import { getAll } from "../../actions/recipes.actions";
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Layout, Spin } from "antd";
-import RecipeCard from "../../components/RecipeCard";
-import "./Main.css";
+import { getAllRecipes } from '../../actions/recipes.actions';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Layout, Spin } from 'antd';
+import RecipeCard from '../../components/RecipeCard';
+import './Main.css';
 
 const { Content } = Layout;
 
 class Main extends React.Component {
   componentDidMount() {
-    this.props.getAll();
+    this.props.getAllRecipes();
   }
   renderCards() {
     if (this.props.loading) {
@@ -42,6 +42,10 @@ class Main extends React.Component {
     }
   }
   render() {
+    if (!this.props.loading) {
+      console.log(this.props.recipes);
+    }
+
     return (
       <div>
         <Layout>
@@ -54,17 +58,19 @@ class Main extends React.Component {
 
 Main.propTypes = {
   recipes: PropTypes.array,
-  getAll: PropTypes.func,
+  getAllRecipes: PropTypes.func,
   loading: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-  loading: state.loading,
-  recipes: state.recipes.recipes
+  loading: state.recipes.loadingRecipes,
+  // recipes: state.recipes.recipesIndex.map(el => {
+  //   state.entities.recipes[el.id];
+  // })
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAll: () => dispatch(getAll())
+  getAllRecipes: () => dispatch(getAllRecipes())
 });
 
 export default connect(

@@ -1,4 +1,4 @@
-const defaultState = {};
+const defaultState = {recipes: {}, ingredients_recipe: {}, allIngredients: {}};
 
 export default ((state = defaultState, action) => {
   if (!action.entities) return state;

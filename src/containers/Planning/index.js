@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Layout } from "antd";
-import { getAll } from "../../actions/plans.actions";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Layout } from 'antd';
+import { getAll } from '../../actions/plans.actions';
 
-import Day from "../../components/Day";
-import "./Planning.css";
+import Day from '../../components/Day';
+import './Planning.css';
 const { Content } = Layout;
 
 class Planning extends Component {
@@ -15,9 +15,9 @@ class Planning extends Component {
   renderPlanning() {
     const plan = this.props.plan;
     if (this.props.loading !== true) {
-      return Object.keys(plan).map((el, i) =>  
+      return Object.keys(plan).map((el, i) => (
         <Day key={i} day={el} plan={plan[el]} />
-      );
+      ));
     }
   }
 
