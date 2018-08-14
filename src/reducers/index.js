@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
-
-import mock from './mock.reducer'
+import newRecipe from './recipe-input.reducer';
+import mock from './mock.reducer';
 
 
 const reducers = combineReducers({
-  mock
+  mock,
+  newRecipe,
 });
 
 export default reducers;

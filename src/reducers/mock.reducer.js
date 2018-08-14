@@ -8,7 +8,7 @@ export default (state = defaultState, action) => {
       ...state,
       quote: action.data.value.joke
     }
-      
+
     default:
       return state;
   }

@@ -1,0 +1,129 @@
+.body {
+  background-color: white;
+}
+
+.main {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* scroll-behavior: none; */
+  /* overflow: hidden; */
+  text-decoration-color: white;
+}
+
+p {
+  color: white;
+}
+
+.header {
+  height: 10vh;
+  width: 100%;
+  background-color: rgb(98, 137, 172);
+}
+
+.main__field {
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(86, 83, 94);
+}
+
+.form__wrapper {
+  height: 80vh;
+  width: 100vw;
+  align-self: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.text__input {
+  border: 2px;
+  border-style: solid;
+  border-color: orange;
+}
+
+.text__input {
+
+  height: 30px;
+  border: 2px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: orange;
+}
+
+.name__field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 70vh;
+  background-color: rgb(86, 83, 94);
+}
+
+button {
+  color: white;
+
+}
+
+.name__field button:hover {
+  border: 2px;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: orange;
+}
+
+.selected-ingredients{
+  width: 100vw;
+  margin: 0px;
+  height: 70%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.slider-wrapper.axis-horizontal {
+  width: 100vw;
+}
+
+.carousel.carousel-slider {
+    position: relative;
+    height: 100%;
+    width: 100vw;
+    margin: 0;
+    overflow: hidden;
+    color: inherit;
+    background-color: rgb(86, 83, 94);
+}
+
+.slider-wrapper {
+  max-width: 100vw;
+  background-color: rgb(86, 83, 94);
+
+}
+
+li.carousel.slide {
+  width: 100vw;
+  height: 100%;
+  background-color: rgb(86, 83, 94);
+}
+
+.slide .selected {
+    width: 100vw;
+    background-color: rgb(86, 83, 94);
+}
+.navigation__buttons {
+  height: 10vh;
+  width: 100%;
+  background-color: rgb(98, 137, 172);
+}
+
+.ant-card.ant-card-bordered.ant-card-hoverable{
+
+}

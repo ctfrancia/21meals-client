@@ -4,23 +4,25 @@ import './App.css';
 import { connect } from 'react-redux';
 import  {getChuck}  from '../../actions/mocks.actions';
 import DatePicker from 'antd/lib/date-picker';  // for js
-import 'antd/lib/date-picker/style/css';        // for css
+import 'antd/lib/date-picker/style/css';
+import RecipeInputPage from '../RecipeInputPage/index'; // for css
 class App extends Component {
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.getQuote();
   }
-  render() {
+  render () {
     return (
       <div className="App">
-        <header className="App-header">
+        {/* <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
           {this.props.quote}
         </p>
-      <DatePicker />
+      <DatePicker /> */}
+        <RecipeInputPage />
       </div>
     );
   }
@@ -32,6 +34,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getQuote: () => dispatch(getChuck())
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
