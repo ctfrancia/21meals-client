@@ -1,19 +1,11 @@
 {
-<<<<<<< HEAD
   "name": "mealeee",
-=======
-  "name": "mealee",
->>>>>>> 0b3320fbdeebb3028fb40893b8d3b0e3133b1f8b
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "antd": "^3.8.1",
     "connected-react-router": "^4.4.1",
-<<<<<<< HEAD
     "normalizr": "^3.2.4",
-=======
-    "history": "^4.7.2",
->>>>>>> 0b3320fbdeebb3028fb40893b8d3b0e3133b1f8b
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
@@ -28,17 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-<<<<<<< HEAD
-=======
   },
-  "devDependencies": {
-    "babel-plugin-import": "^1.8.0",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-promise": "^3.8.0",
-    "eslint-plugin-react": "^7.10.0",
-    "eslint-plugin-standard": "^3.1.0"
->>>>>>> 0b3320fbdeebb3028fb40893b8d3b0e3133b1f8b
+  "eslintConfig": {
+    "extends": "react-app"
   }
 }

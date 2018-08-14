@@ -9,7 +9,8 @@
 //     …
 //   }
 // }
-
+import { normalize } from 'normalizr';
+import * as schema from '../actions/schemas.js';
 
 const BASE_URL = 'https://private-anon-9d15778814-mealee.apiary-mock.com'; //CHANGE THIS TO SERVER URL
 
@@ -28,34 +29,51 @@ export default store => next => action => {
 
   headers = {
     ...defaultHeaders,
-    ...headers,
-  }
+    ...headers
+  };
 
   next({
     ...action,
     type: `${action.type}_REQUEST`
   });
-  console.log('fetch', BASE_URL + endpoint);
+  // console.log('fetch', BASE_URL + endpoint);
   fetch(`${BASE_URL}${endpoint}`, {
     method: method || 'GET',
     body,
-    headers,
+    headers
   })
     .then(response => response.json())
     .then(data => {
-      store.dispatch({
-        ...action,
-        type: `${action.type}_SUCCESS`,
-        api: undefined,
-        data,
-      })
+      if (endpoint === '/recipes') {
+        store.dispatch({
+          ...action,
+          type: `${action.type}_SUCCESS`,
+          api: undefined,
+          ...normalize(data, schema.recipeSchema)
+        });
+      }
+      if (endpoint === '/ingredients') {
+        store.dispatch({
+          ...action,
+          type: `${action.type}_SUCCESS`,
+          api: undefined,
+          ...normalize(data, schema.ingredientSchema)
+        });
+      } else {
+        store.dispatch({
+          ...action,
+          type: `${action.type}_SUCCESS`,
+          api: undefined,
+          data
+        });
+      }
     })
     .catch(error => {
       store.dispatch({
         ...action,
         type: `${action.type}_FAILURE`,
         api: undefined,
-        error,
-      })
-    })
-}
+        error
+      });
+    });
+};

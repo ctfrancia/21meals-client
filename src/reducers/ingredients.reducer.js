@@ -1,5 +1,4 @@
-import { ingredientsConstants } from "../constants/ingredients.constants";
-import { normalize, schema } from "normalizr";
+import { ingredientsConstants } from '../constants/ingredients.constants';
 
 const defaultState = { ingredients: [], loading: false };
 
@@ -12,14 +11,12 @@ export default (state = defaultState, action) => {
       };
 
     case ingredientsConstants.INGREDIENTS_GET_ALL_SUCCESS:
-      return normalizeMydata(action.data);
+      return {
+        state,
+        loading: false
+      };
 
     default:
       return state;
   }
 };
-function normalizeMydata(originalData) {
-  const ingredient = new schema.Entity("ingredients");
-  const mySchema = [ingredient];
-  return normalize(originalData, mySchema);
-}
