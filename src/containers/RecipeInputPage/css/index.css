@@ -62,7 +62,7 @@ p {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 70vh;
+  height: 80vh;
   background-color: rgb(86, 83, 94);
 }
 
@@ -124,6 +124,18 @@ li.carousel.slide {
   background-color: rgb(98, 137, 172);
 }
 
-.ant-card.ant-card-bordered.ant-card-hoverable{
 
+
+ul.control-dots {
+  align-self: left;
+}
+
+.ingredient__field {
+  height: 25vw;
+  width: 20vw;
+}
+
+.ingredient__image {
+  height: 20vw;
+  width: 20vw;
 }

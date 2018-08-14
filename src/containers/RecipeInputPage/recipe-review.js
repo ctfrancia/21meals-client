@@ -5,16 +5,13 @@ import ListOfInstructions from './instructions-list';
 import { Card } from 'antd';
 class RecipeReview extends React.Component {
   renderListIteams = () => {
-    return this.props.recipe.ingredients.map((ingredient, i) => (<Card
+    return this.props.recipe.ingredients.map((ingredient, i) => (<div
       key={i}
       onClick={ingredient => this.props.removeIngredient(i)}
-      style={{ height: 100 }}
-      cover={
-        <img alt="example" style={{ height: 75}} style={{ width: 75}} src="http://www.nataliewitcher.com/wp-content/uploads/2012/11/Red-Apple.jpg" />}>
-      <p>{ingredient}</p>
-    </Card> ));
+      className="ingredient__field">
+      <img className="ingredient__image" alt="example" src="http://www.nataliewitcher.com/wp-content/uploads/2012/11/Red-Apple.jpg" />
+      <p>{ingredient}</p> </div> ));
   };
-
 
   renderList2Iteams = () => {
     return this.props.recipe.description.map((description, i) => (<li key={i} onClick={description => this.props.removeStep(i)}>{description}</li>));

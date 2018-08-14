@@ -7,14 +7,13 @@ const { Meta } = Card;
 class SelectedIngredients extends React.Component {
 
   renderListIteams = () => {
-      return this.props.ingredientList.map((ingredient, i) => (<Card
+      return this.props.ingredientList.map((ingredient, i) => (<div
         key={i}
         onClick={ingredient => this.props.removeIngredient(i)}
-        style={{ height: 100 }}
-        cover={
-          <img alt="example" style={{ height: 75}} style={{ width: 75}} src="http://www.nataliewitcher.com/wp-content/uploads/2012/11/Red-Apple.jpg" />}>
-          <p>{ingredient}</p>
-        </Card> ));
+        className="ingredient__field">
+        <img className="ingredient__image" alt="example" src="http://www.nataliewitcher.com/wp-content/uploads/2012/11/Red-Apple.jpg" />
+        <p>{ingredient}</p> </div>
+       ));
   };
 
 
