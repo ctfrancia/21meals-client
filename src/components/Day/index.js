@@ -1,14 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Avatar } from "antd";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Avatar } from 'antd';
 
-import "./Day.css";
+import './Day.css';
 
 function Day(props) {
   if (props.plan !== null) {
-    return <div className="day" onClick={props.handleClick}>
+    return (
+      <div className="day" onClick={props.handleClick}>
         <div className="day__side">
-          <Avatar size="large" style={{ backgroundColor: "#87d068" }}>
+          <Avatar size="large" style={{ backgroundColor: '#87d068' }}>
             {props.plan.title[0]}
           </Avatar>
         </div>
@@ -20,7 +21,8 @@ function Day(props) {
             <p>{props.plan.title}</p>
           </div>
         </div>
-      </div>;
+      </div>
+    );
   } else {
     return (
       <div className="day" onClick={props.handleClick}>
