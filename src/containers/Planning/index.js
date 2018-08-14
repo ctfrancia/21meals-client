@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Layout, List, Avatar } from 'antd';
+import { Layout } from 'antd';
 import { getAll } from '../../actions/plans.actions';
 
 import Day from '../../components/Day';
@@ -44,7 +44,8 @@ class Planning extends Component {
 }
 Planning.propTypes = {
   getAll: PropTypes.func,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  plan: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({

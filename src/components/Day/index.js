@@ -1,13 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Card, Avatar, List } from "antd";
+import { Avatar } from "antd";
 
 import "./Day.css";
-const { Meta } = Card;
 
 function Day(props) {
   if (props.plan !== null) {
-    console.log(props.plan);
     return <div className="day" onClick={props.handleClick}>
         <div className="day__side">
           <Avatar size="large" style={{ backgroundColor: "#87d068" }}>
