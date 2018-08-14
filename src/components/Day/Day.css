@@ -1,7 +1,42 @@
 .day {
-  background-color: red;
+  background-color: #47494E;
   height: 9rem;
   width: auto;
   margin: 10px;
-  border-radius: 10px;
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  color: #fafafa;
+  border-left: 6px solid antiquewhite;
+
+}
+
+.day__side {
+  min-width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.day__main {
+  display: flex;
+  flex-direction: column
+}
+
+.day__main--title {
+  justify-self: flex-end;
+  font-size: 2rem;
+  flex-basis: 1;
+}
+
+.day__main--title p {
+  margin: 0;
+}
+
+.day__main--body {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  flex-basis: 2;
 }

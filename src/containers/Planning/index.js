@@ -15,30 +15,21 @@ class Planning extends Component {
 
 
   render () {
-    let list;
+    const plan = this.props.plan;
+    let list = [];
     if (this.props.loading !== true) {
-      list =
-        <List
-          className="day__list"
-          itemLayout="horizontal"
-          dataSource={this.props.meals}
-          renderItem={item => (
-            <List.Item>
-              <List.Item.Meta
-                avatar={<Avatar>{item.recipe ? item.recipe[0] : 'A'}</Avatar>}
-                title={`${item.weekday.toUpperCase()} ${item.meal_type.toUpperCase()}`}
-                description={item.recipe}
-              />
-            </List.Item>
-          )}
-        />
+      
+      for (const day in plan) {
+        list.push(<Day day={day} plan={plan[day]}/>)
+        
+      }
 
     }
 
     return (
       <div className="planning">
         <Layout>
-          <Content>
+          <Content className="planning">
             <div className="planning__image">
               <div className="planning__image--title">
                 <h2>Weekly Planning</h2>
@@ -57,7 +48,7 @@ Planning.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  meals: state.plans.plans.meals,
+  plan: state.plans.plan,
   loading: state.plans.loading
 })
 

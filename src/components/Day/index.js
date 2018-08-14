@@ -1,46 +1,43 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Card, Avatar, List } from 'antd';
+import React from "react";
+import PropTypes from "prop-types";
+import { Card, Avatar, List } from "antd";
 
-import './Day.css'
+import "./Day.css";
 const { Meta } = Card;
-function Day (props) {
-  return (
-    <div className="day" onClick={props.handleClick}>
-      <List.Item actions={[<a>edit</a>, <a>more</a>]}>
-        <List.Item.Meta
-          avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-          title={<a href="https://ant.design">blabla</a>}
-          description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-        />
-        <div>content</div>
-      </List.Item>
-      {/* <Card
-        hoverable
-        style={{ width: 170, borderRadius: 15 }}
-        cover={
-          <img
-            alt={props.name}
-            src={props.imageUrl}
-            style={{
-              height: 130,
-              borderRadius: '15px 15px 0 0 ',
-              objectFit: 'cover',
-            }}
-          />
-        }
-      >
-        <Meta title={props.name} description={`Serves ${props.serves}`} />
-      </Card> */}
-    </div>
-  );
+
+function Day(props) {
+  if (props.plan !== null) {
+    console.log(props.plan);
+    return <div className="day" onClick={props.handleClick}>
+        <div className="day__side">
+          <Avatar size="large" style={{ backgroundColor: "#87d068" }}>
+            {props.plan.title[0]}
+          </Avatar>
+        </div>
+        <div className="day__main">
+          <div className="day__main--title">
+            <p>{props.day}</p>
+          </div>
+          <div className="day__main--body">
+            <p>{props.plan.title}</p>
+          </div>
+        </div>
+      </div>;
+  } else {
+    return (
+      <div className="day" onClick={props.handleClick}>
+        <p />
+        <p>{props.day}</p>
+      </div>
+    );
+  }
 }
 
 Day.propTypes = {
   name: PropTypes.string,
   serves: PropTypes.string,
   imageUrl: PropTypes.string,
-  handleClick: PropTypes.func,
+  handleClick: PropTypes.func
 };
 
 export default Day;
