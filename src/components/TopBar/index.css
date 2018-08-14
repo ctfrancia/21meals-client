@@ -1,0 +1,19 @@
+.ant-layout-header {
+  padding: 0 2rem;
+  display: flex;
+}
+.topbar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+  .topbar__logo {
+  color: #fafafa;
+  font-size: 2rem;
+}
+.topbar__options {
+  font-size: 2rem;
+  color: #fafafa
+}
