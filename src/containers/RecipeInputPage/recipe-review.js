@@ -28,7 +28,7 @@ class RecipeReview extends React.Component {
         <p>{this.props.recipe.name}</p>
         <div>{this.renderListIteams()}</div>
         <ol>{this.renderList2Iteams()}</ol>
-        <button>All Perfect</button>
+        <button onClick={this.props.submitRecipe}>All Perfect</button>
       </div>
     );
   }

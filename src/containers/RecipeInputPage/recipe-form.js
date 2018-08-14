@@ -17,9 +17,9 @@ class RecipeForm extends React.Component {
         <Carousel showThumbs={false} showArrows={false} showStatus={false}>
           <RecipeName name={this.props.recipe.name} changeName={this.props.changeName}/>
           <RecipeIngridientInput name={this.props.recipe.name} ingredientList={this.props.ingredientList} addIngredient={this.props.addIngredient} removeIngredient={this.props.removeIngredient}/>
-          <QuantityInput name={this.props.recipe.name} ingredientList={this.props.ingredientList}/>
+          <QuantityInput measures={this.props.measures} name={this.props.recipe.name} ingredientList={this.props.ingredientList} changeIngredientAmount={this.props.changeIngredientAmount}/>
           <RecipeDescription name={this.props.recipe.name} descriptionList={this.props.descriptionList} addStep={this.props.addStep} removeStep={this.props.removeStep}/>
-          <RecipeReview recipe={this.props.recipe}/>
+          <RecipeReview recipe={this.props.recipe} submitRecipe={this.props.submitRecipe}/>
         </Carousel>
       </div>
     );

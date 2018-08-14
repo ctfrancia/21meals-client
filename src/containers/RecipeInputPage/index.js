@@ -8,6 +8,14 @@ import './css/index.css';
 /* eslint-disable react/prefer-stateless-function */
 export class RecipeInputPage extends React.Component {
 
+  constructor (props) {
+    console.log('wtf');
+    super(props);
+    this.state = {
+      measures: ['gramms', 'killos', 'litters', 'spoons', 'squirrels', 'bacteria']
+    };
+  }
+
   addStep (event) {
     event.preventDefault();
     this.props.addStep(event.target.instruction.value);
@@ -20,6 +28,7 @@ export class RecipeInputPage extends React.Component {
 
   addIngredient (event) {
     event.preventDefault();
+    console.log(event.target);
     this.props.addIngredient(event.target.ingredient.value);
     event.target.ingredient.value = '';
   }
@@ -32,6 +41,15 @@ export class RecipeInputPage extends React.Component {
     event.preventDefault();
     this.props.changeName(event.target.name.value);
     event.target.name.value = '';
+  }
+
+  changeIngredientAmount (event) {
+    event.preventDefault();
+    console.log(event.target.quantity.value);
+  }
+
+  submitRecipe () {
+    console.log(this.props.recipe);
   }
 
   render () {
@@ -54,6 +72,9 @@ export class RecipeInputPage extends React.Component {
             addIngredient={event => this.addIngredient(event)}
             removeIngredient={i => this.removeIngredient(i)}
             changeName={event => this.changeName(event)}
+            submitRecipe={this.submitRecipe()}
+            changeIngredientAmount={event => this.changeIngredientAmount(event)}
+            measures={this.state.measures}
           />
         </div>
         <div className="navigation__buttons"> </div>
