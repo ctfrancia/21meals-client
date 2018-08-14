@@ -1,5 +1,5 @@
 import { plansConstants } from '../constants/plans.constants';
-const defaultState = { plans: [], plan: {monday: [], tuesday: [], wednesday: [], thursday: [], friday: [], saturday: [], sunday: []}, loading: true };
+const defaultState = { plans: [], plan: {monday: [], tuesday: [], wednesday: [], thursday: [], friday: [], saturday: [], sunday: []}, shoppingList: [], loading: true };
 
 export default (state = defaultState, action) => {
   switch (action.type) {
@@ -17,8 +17,16 @@ export default (state = defaultState, action) => {
           return acc
         }, {}),
         plans: action.data[0],
-        loading: false
-      }
+        loading: false,
+        shoppingList: action.data[0].meals.reduce((acc, el) => {
+          if (el.recipe !== null) {
+            console.log(el.recipe);
+            
+            el.recipe.ingredients.forEach(ingredient => acc.push(ingredient))
+          }
+          return acc;
+          }, [])
+        }
 
     default:
       return state;
