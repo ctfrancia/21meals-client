@@ -1,3 +1,8 @@
+.list {
+  max-height: 92vh;
+  overflow: scroll;
+}
+
 .list__image {
   height: 10rem;
   width: auto;
