@@ -24,9 +24,15 @@ function onChange(e) {
   console.log(`checked = ${e.target.checked}`);
 }
 
-/* eslint-disable react/prefer-stateless-function */
-export class ShoppingList extends React.Component {
+class ShoppingList extends React.Component {
+  
+  componentDidMount = () => {
+    
+  }
+  
   render() {
+    console.log(this.props.listItems);
+
     return (
       <div>
         <Layout>
@@ -109,4 +115,18 @@ export class ShoppingList extends React.Component {
 
 ShoppingList.propTypes = {};
 
-export default ShoppingList;
+const mapStateToProps = state => ({
+  listItems: Object.keys(state.entities.meals_plan).map(el => {
+    const recipeIngredients = state.entities.recipes[state.entities.meals_plan[el].recipe_id]
+    return recipeIngredients;
+  })
+});
+
+const mapDispatchToProps = dispatch => ({});
+//Generate list of meals from meals_plan [1,2,1]
+//every recipe yelds some ingredients_recipe [1...9, 10...18]
+// ingredient_recipe.ingredient_id = name
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ShoppingList);

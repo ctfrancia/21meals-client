@@ -1,8 +1,10 @@
 import { ingredientsConstants } from '../constants/ingredients.constants';
 import { plansConstants } from '../constants/plans.constants';
 import { recipesConstants } from '../constants/recipes.constants';
+import { listConstants } from '../constants/list.constants';
 
 const defaultState = {
+  recipesIndex: [],
   loadingIngredients: true,
   loadingPlans: true,
   loadingRecipes: true
@@ -46,6 +48,11 @@ export default (state = defaultState, action) => {
         ...state,
         recipesIndex: action.result,
         loadingRecipes: false
+      };
+    case listConstants.LIST_GENERATE:
+      return {
+        ...state,
+        shoppingList: []
       };
 
     default:

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import 'antd/lib/date-picker/style/css'; // for css
-import { ShoppingList } from '../ShoppingList';
+import ShoppingList from '../ShoppingList';
 import Planning from '../Planning';
 import Main from '../Main/Main';
 import PropTypes from 'prop-types';
@@ -45,9 +45,9 @@ App.propTypes = {
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  getAllIngredients: () => dispatch(getAllIngredients()),
-  getAllRecipes: () => dispatch(getAllRecipes()),
-  getAllPlans: () => dispatch(getAllPlans()),
+  getAllIngredients:  () =>  dispatch(getAllIngredients()),
+  getAllRecipes:  () =>  dispatch(getAllRecipes()),
+  getAllPlans:  () =>  dispatch(getAllPlans()),
 });
 
 export default connect(
