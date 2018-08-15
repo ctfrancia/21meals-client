@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { changeName, addIngredient, removeIngredient, changeIngredientAmount, changeFormDisplay, addStep, removeStep } from '../../actions/recipe-input.actions';
 import RecipeForm from './recipe-form';
 import './css/index.css';
+import 'antd/lib/input/style/css';
 
 /* eslint-disable react/prefer-stateless-function */
 export class RecipeInputPage extends React.Component {
@@ -16,40 +17,9 @@ export class RecipeInputPage extends React.Component {
     };
   }
 
-  addStep (event) {
+  submitRecipe (event) {
     event.preventDefault();
-    this.props.addStep(event.target.instruction.value);
-    event.target.instruction.value = '';
-  }
-
-  removeStep (index) {
-    this.props.removeStep(index);
-  }
-
-  addIngredient (event) {
-    event.preventDefault();
-    console.log(event.target);
-    this.props.addIngredient(event.target.ingredient.value);
-    event.target.ingredient.value = '';
-  }
-
-  removeIngredient (index) {
-    this.props.removeIngredient(index);
-  }
-
-  changeName (event) {
-    event.preventDefault();
-    this.props.changeName(event.target.name.value);
-    event.target.name.value = '';
-  }
-
-  changeIngredientAmount (event) {
-    event.preventDefault();
-    console.log(event.target.quantity.value);
-  }
-
-  submitRecipe () {
-    console.log(this.props.recipe);
+    console.log(this.props.newRecipe);
   }
 
   render () {
@@ -72,7 +42,7 @@ export class RecipeInputPage extends React.Component {
             addIngredient={event => this.addIngredient(event)}
             removeIngredient={i => this.removeIngredient(i)}
             changeName={event => this.changeName(event)}
-            submitRecipe={this.submitRecipe()}
+            submitRecipe={event => this.submitRecipe(event)}
             changeIngredientAmount={event => this.changeIngredientAmount(event)}
             measures={this.state.measures}
           />

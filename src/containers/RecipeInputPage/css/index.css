@@ -42,18 +42,8 @@ p {
 }
 
 .text__input {
-  border: 2px;
-  border-style: solid;
-  border-color: orange;
-}
-
-.text__input {
-
   height: 30px;
-  border: 2px;
-  border-radius: 5px;
-  border-style: solid;
-  border-color: orange;
+  width: 50vw;
 }
 
 .name__field {
@@ -66,9 +56,24 @@ p {
   background-color: rgb(86, 83, 94);
 }
 
+.ingredient__selector {
+  display: none;
+}
+
 button {
   color: white;
 
+}
+
+.instruction__text {
+  position: absolute;
+  top: 10%;
+  /* right: 50%; */
+}
+
+.name__field form {
+  position: absolute;
+  bottom: 10%;
 }
 
 .name__field button:hover {
@@ -118,13 +123,18 @@ li.carousel.slide {
     width: 100vw;
     background-color: rgb(86, 83, 94);
 }
+
 .navigation__buttons {
   height: 10vh;
   width: 100%;
   background-color: rgb(98, 137, 172);
 }
 
-
+.ready__instructions {
+  position: absolute;
+  top: 50%;
+  color: white;
+}
 
 ul.control-dots {
   align-self: left;

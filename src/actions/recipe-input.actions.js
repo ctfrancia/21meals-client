@@ -33,10 +33,11 @@ export function removeIngredient (index) {
   };
 }
 
-export function changeIngredientAmount (index, amount) {
+export function changeIngredientAmount (index, amount, measure) {
   return {
     type: 'CHANGE_INGREDIENT_AMOUNT',
     index,
     amount,
+    measure,
   };
 }

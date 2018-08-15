@@ -12,10 +12,9 @@ class SelectedIngredients extends React.Component {
         onClick={ingredient => this.props.removeIngredient(i)}
         className="ingredient__field">
         <img className="ingredient__image" alt="example" src="http://www.nataliewitcher.com/wp-content/uploads/2012/11/Red-Apple.jpg" />
-        <p>{ingredient}</p> </div>
+        <p>{ingredient.name}</p> </div>
        ));
   };
-
 
   render () {
     console.log(this.props);
