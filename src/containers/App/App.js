@@ -11,8 +11,14 @@ import BottomBar from '../../components/BottomBar';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { getAllIngredients } from '../../actions/ingredients.actions';
 import { getAllRecipes } from '../../actions/recipes.actions';
+import { getAllPlans } from '../../actions/plans.actions';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.getAllRecipes();
+    this.props.getAllIngredients();
+    this.props.getAllPlans();
+  }
 
   render() {
     return (
@@ -32,14 +38,16 @@ class App extends Component {
 }
 
 App.propTypes = {
-  getQuote: PropTypes.func,
-  getAllIngredients: PropTypes.func
+  getAllIngredients: PropTypes.func,
+  getAllRecipes: PropTypes.func,
+  getAllPlans: PropTypes.func,
 };
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
   getAllIngredients: () => dispatch(getAllIngredients()),
-  getAllRecipes: () => dispatch(getAllRecipes())
+  getAllRecipes: () => dispatch(getAllRecipes()),
+  getAllPlans: () => dispatch(getAllPlans()),
 });
 
 export default connect(

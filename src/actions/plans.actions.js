@@ -1,8 +1,8 @@
 import { plansConstants } from '../constants/plans.constants';
+import * as schema from './schemas';
 
-export const getAll = () => ({
+export const getAllPlans = () => ({
   type: plansConstants.PLANS_GET_ALL,
-  api: {
-    endpoint: '/plans'
-  }
-})
+  api: { endpoint: '/plans/plan_id' },
+  schema: schema.planSchema,
+});

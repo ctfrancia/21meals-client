@@ -10,7 +10,6 @@
 //   }
 // }
 import { normalize } from 'normalizr';
-import * as schema from '../actions/schemas.js';
 
 const BASE_URL = 'https://private-anon-9d15778814-mealee.apiary-mock.com'; //CHANGE THIS TO SERVER URL
 
@@ -44,20 +43,12 @@ export default store => next => action => {
   })
     .then(response => response.json())
     .then(data => {
-      if (endpoint === '/recipes') {
+      if (action.schema) {
         store.dispatch({
           ...action,
           type: `${action.type}_SUCCESS`,
           api: undefined,
-          ...normalize(data, schema.recipeSchema)
-        });
-      }
-      if (endpoint === '/ingredients') {
-        store.dispatch({
-          ...action,
-          type: `${action.type}_SUCCESS`,
-          api: undefined,
-          ...normalize(data, schema.ingredientSchema)
+          ...normalize(data, action.schema)
         });
       } else {
         store.dispatch({
