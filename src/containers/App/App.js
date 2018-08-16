@@ -6,13 +6,13 @@ import ShoppingList from '../ShoppingList';
 import Planning from '../Planning';
 import Main from '../Main/Main';
 import PropTypes from 'prop-types';
-import TopBar from '../../components/TopBar';
-import BottomBar from '../../components/BottomBar';
+
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { getAllIngredients } from '../../actions/ingredients.actions';
 import { getAllRecipes } from '../../actions/recipes.actions';
 import { getAllPlans } from '../../actions/plans.actions';
 import Login from '../Login';
+import SignUp from '../SignUp';
 
 class App extends Component {
   componentDidMount() {
@@ -30,6 +30,7 @@ class App extends Component {
             <Route exact path="/" component={Main} />
             <Route path="/planning" component={Planning} />
             <Route path="/list" component={ShoppingList} />
+            <Route path="/signup" component={SignUp} />
           </div>
         </Router>
       </div>
