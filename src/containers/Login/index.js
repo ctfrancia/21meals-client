@@ -12,7 +12,8 @@ class Login extends React.Component {
     super();
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      submitted: false
     };
   }
   handleUsernameChange = event => {
