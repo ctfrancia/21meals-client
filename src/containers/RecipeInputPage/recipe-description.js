@@ -19,16 +19,20 @@ class RecipeDescription extends React.Component {
     console.log(this.props);
     return (
       <div className="name__field">
-        <p className="instruction__text">Lets outline the cooking process</p>
-        <p>{this.props.newRecipe.name}</p>
-        <ListOfInstructions className="ListOfInstructions" removeStep={this.props.removeStep} descriptionList={this.props.newRecipe.description}/>
-        <form onSubmit={this.submitForm}>
-          <Input className="text__input" name="instruction" type="text" required/>
-          <Input type="submit" name="Add"/>
-        </form>
-
+        <div className="input__header">
+          <p className="instruction__text">Lets outline the cooking process</p>
+        </div>
+        <div className="form__content">
+          <ListOfInstructions className="ListOfInstructions" removeStep={this.props.removeStep} descriptionList={this.props.newRecipe.description}/>
+        </div>
+        <div className="user__input">
+          <form className="input__form" onSubmit={this.submitForm}>
+            <Input className="text__input" name="instruction" type="text" required/>
+            <Input className="button__add__ready" type="submit" name="Add"/>
+          </form>
+        </div>
       </div>
-    );
+      );
   }
 }
 

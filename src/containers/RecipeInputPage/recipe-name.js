@@ -18,12 +18,18 @@ class RecipeName extends React.Component {
   render () {
     return (
       <div className="name__field">
-        <p className="instruction__text">How should we call it?</p>
-        <p>{this.props.newRecipe.name}</p>
-        <form onSubmit={this.submitForm}>
-          <Input className="text__input" name="name" type="text" required/>
-          <Input type="submit" name="addName" />
-        </form>
+        <div className="input__header">
+          <p className="instruction__text">How should we call it?</p>
+        </div>
+        <div className="form__content">
+          <h1 className="recipe__name">{this.props.newRecipe.name}</h1>
+        </div>
+        <div className="user__input">
+          <form className="input__form" onSubmit={this.submitForm}>
+            <Input className="text__input" name="name" type="text" required/>
+            <Input className="button__add__ready" type="submit" name="addName" />
+          </form>
+        </div>
       </div>
     );
   }

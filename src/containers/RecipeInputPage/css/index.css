@@ -8,13 +8,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* scroll-behavior: none; */
-  /* overflow: hidden; */
   text-decoration-color: white;
-}
-
-p {
-  color: white;
 }
 
 .header {
@@ -29,7 +23,7 @@ p {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: rgb(86, 83, 94);
+  background-color: rgb(37, 32, 52);
 }
 
 .form__wrapper {
@@ -50,30 +44,14 @@ p {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   height: 80vh;
-  background-color: rgb(86, 83, 94);
+  background-color: rgb(37, 32, 52);
 }
 
 .ingredient__selector {
   display: none;
-}
-
-button {
-  color: white;
-
-}
-
-.instruction__text {
-  position: absolute;
-  top: 10%;
-  /* right: 50%; */
-}
-
-.name__field form {
-  position: absolute;
-  bottom: 10%;
 }
 
 .name__field button:hover {
@@ -85,13 +63,14 @@ button {
 
 .selected-ingredients{
   width: 100vw;
-  margin: 0px;
-  height: 70%;
+  padding: 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
+
+.selected
 
 .slider-wrapper.axis-horizontal {
   width: 100vw;
@@ -104,24 +83,24 @@ button {
     margin: 0;
     overflow: hidden;
     color: inherit;
-    background-color: rgb(86, 83, 94);
+    background-color: rgb(37, 32, 52);
 }
 
 .slider-wrapper {
   max-width: 100vw;
-  background-color: rgb(86, 83, 94);
+  background-color: rgb(37, 32, 52);
 
 }
 
 li.carousel.slide {
   width: 100vw;
   height: 100%;
-  background-color: rgb(86, 83, 94);
+  background-color: rgb(37, 32, 52);
 }
 
 .slide .selected {
     width: 100vw;
-    background-color: rgb(86, 83, 94);
+    background-color: rgb(37, 32, 52);
 }
 
 .navigation__buttons {
@@ -130,22 +109,93 @@ li.carousel.slide {
   background-color: rgb(98, 137, 172);
 }
 
+.input__header {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  align-items: center;
+  height: 5vh;
+  width: 100%;
+}
+
 .ready__instructions {
-  position: absolute;
-  top: 50%;
   color: white;
 }
 
 ul.control-dots {
-  align-self: left;
+  padding: 0;
+  height: 2vh;
 }
 
 .ingredient__field {
-  height: 25vw;
+  margin: 2.5%;
+  height: 27vw;
   width: 20vw;
+  background-color: rgb(230, 154, 118);
+  border: 4px;
+  border-radius: 10px;
+  border-style: outset;
+  border-color: rgb(233, 182, 129)
+
 }
 
 .ingredient__image {
   height: 20vw;
   width: 20vw;
+  border-radius: 10px;
+}
+
+.button__add__ready {
+  margin-top: 1%;
+  margin-bottom: 0;
+  width: 20vw;
+  padding: 0;
+  background-color: rgb(230, 154, 118);
+  color: rgb(37, 32, 52);
+}
+
+.input__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form__content {
+  height: 62.5vh;
+  width: 100vw;
+  overflow: hidden;
+  overflow-y: scroll;
+  /* background: red; */
+}
+
+.carousel.carousel-slider .control-arrow {
+  position: absolute !important;
+  top: 66.55vh !important;
+  height: 15vh;
+}
+
+.instruction__text {
+  color: rgb(230, 154, 118);
+  font-weight: bold;
+  margin-top: 2.5%;
+}
+
+.user__input {
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ingredient__description {
+  font-weight: bold;
+  color: rgb(37, 32, 52);
+}
+
+.recipe__name {
+  font-weight: bold;
+  color: rgb(230, 154, 118);
+  margin-top: 50%;
 }

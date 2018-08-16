@@ -15,7 +15,7 @@ class RecipeForm extends React.Component {
   render () {
     return (
       <div className="form__wrapper">
-        <Carousel showThumbs={false} showArrows={false} showStatus={false} autoPlay={false} selectedItem={this.props.slider} >
+        <Carousel showThumbs={false} swipeable={false} showArrows={true} showStatus={false} autoPlay={false} selectedItem={this.props.slider} >
           <RecipeName />
           <RecipeIngridientInput />
           <QuantityInput measures={this.props.measures} />

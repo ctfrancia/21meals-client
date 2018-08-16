@@ -20,13 +20,18 @@ class RecipeIngridientInput extends React.Component {
   render () {
     return (
       <div className="name__field">
-        <p className="instruction__text" >Lets add some ingridients</p>
-        <p>{this.props.newRecipe.name}</p>
-        <SelectedIngredients className="ingredient__selector" ingredientList={this.props.newRecipe.ingredients} removeIngredient={this.props.removeIngredient}/>
-        <form onSubmit={this.submitForm}>
-          <Input className="text__input" name="ingredient" type="text" required/>
-          <Input type="submit" name="Add"/>
-        </form>
+        <div className="input__header">
+          <p className="instruction__text" >Lets add some ingridients</p>
+        </div>
+        <div className="form__content">
+          <SelectedIngredients className="ingredient__selector" ingredientList={this.props.newRecipe.ingredients} removeIngredient={this.props.removeIngredient}/>
+        </div>
+        <div className="user__input">
+          <form className="input__form" onSubmit={this.submitForm}>
+            <Input className="text__input" name="ingredient" type="text" required/>
+            <Input className="button__add__ready" type="submit" name="Add"/>
+          </form>
+        </div>
       </div>
     );
   }

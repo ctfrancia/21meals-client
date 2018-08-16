@@ -43,18 +43,23 @@ class QuantityInput extends React.Component {
   render () {
     return (
       <div className="name__field">
-        <p className="instruction__text">Lets select the quantities</p>
-        <p>{this.props.newRecipe.name}</p>
-        <SelectedIngredients ingredientList={this.props.newRecipe.ingredients} removeIngredient={this.props.removeIngredient}/>
-        <form onSubmit={this.submitForm}>
-          <InputGroup compact>
-            <InputNumber name="quantityAmount"/>
-            <Select defaultValue="Measure" name="quantity" onChange={this.handleChange}>
-              {this.renderListIteams()}
-            </Select>
-          </InputGroup>
-        <Input type="submit" name="Add"/>
-        </form>
+        <div className="input__header">
+          <p className="instruction__text">Lets select the quantities</p>
+        </div>
+        <div className="form__content">
+          <SelectedIngredients ingredientList={this.props.newRecipe.ingredients} removeIngredient={this.props.removeIngredient}/>
+        </div>
+        <div className="user__input">
+          <form className="input__form" onSubmit={this.submitForm}>
+            <InputGroup compact>
+              <InputNumber name="quantityAmount"/>
+              <Select defaultValue="Measure" name="quantity" onChange={this.handleChange}>
+                {this.renderListIteams()}
+              </Select>
+            </InputGroup>
+            <Input className="button__add__ready" type="submit" name="Add"/>
+          </form>
+        </div>
       </div>
     );
   }
