@@ -10,7 +10,7 @@ import './RecipeCard.css';
 const { Meta } = Card;
 // import styled from 'styled-components';
 const styles = {
-  card: { width: 170, borderRadius: 15 },
+  card: { width: 155, borderRadius: 15 },
   img: {
     height: 130,
     borderRadius: '15px ',

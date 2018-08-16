@@ -1,6 +1,7 @@
 .ant-layout-header {
   padding: 0 2rem;
   display: flex;
+  max-height: 3rem;
 }
 
 .topbar {
@@ -13,14 +14,15 @@
 .topbar__logo {
   height: 60px;
   width: 200px;
+  align-items: center;
+  display: flex;
 }
 
 .topbar__logo img {
-  max-width: 100%;
-  max-height: 100%;
+  max-height: 50%;
 }
 
 .topbar__options {
   font-size: 2rem;
-  color: #fafafa
+  color: #e69b76
 }

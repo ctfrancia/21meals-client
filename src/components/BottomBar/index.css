@@ -1,6 +1,6 @@
 .ant-layout-footer {
   padding: 0;
-  height: 3.5rem;
+  height: 2.5rem;
   background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
 }
 
@@ -10,5 +10,9 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  font-size: 2rem;
+  font-size: 1.5rem;
+}
+
+.bottom-bar__option a {
+  color: #e69b76
 }

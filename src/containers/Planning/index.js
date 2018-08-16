@@ -29,14 +29,10 @@ class Planning extends Component {
 
   render() {
     return (
-      <div className="planning">
+      <div >
         <Layout>
           <Content className="planning">
-            <div className="planning__image">
-              <div className="planning__image--title">
-                <h2>Weekly Planning</h2>
-              </div>
-            </div>
+            
             {this.renderPlanning()}
           </Content>
         </Layout>
