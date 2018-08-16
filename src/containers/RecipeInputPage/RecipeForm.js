@@ -2,7 +2,7 @@ import React from 'react';
 import './css/index.css';
 import RecipeName from './RecipeName';
 import { connect } from 'react-redux';
-import RecipeIngridientInput from './RecipeIngredient';
+import RecipeIngredientInput from './RecipeIngredient';
 import QuantityInput from './QuantityInput';
 import RecipeDescription from './RecipeDescription';
 import RecipeReview from './RecipeReview';
@@ -17,7 +17,7 @@ class RecipeForm extends React.Component {
       <div className="form__wrapper">
         <Carousel showThumbs={false} swipeable={false} showArrows={true} showStatus={false} autoPlay={false} selectedItem={this.props.slider} >
           <RecipeName />
-          <RecipeIngridientInput />
+          <RecipeIngredientInput />
           <QuantityInput measures={this.props.measures} />
           <RecipeDescription />
           <RecipeReview recipe={this.props.recipe} submitRecipe={this.props.submitRecipe}/>

@@ -17,7 +17,12 @@ class RecipeReview extends React.Component {
           <h3 className="recepe__review__name">{this.props.newRecipe.name}</h3>
         </div>
         <div className="form__content">
+          <div className="image__placeholder">
+            <img className="recipe__image" alt="example" src="https://static.planetminecraft.com/files/resource_media/screenshot/1814/screenshot-272-1522741691_lrg.png" />
+          </div>
+          <h3 className="recipe__review__text">Your ingredients: </h3>
           <SelectedIngredients className="ingredient__selector" ingredientList={this.props.newRecipe.ingredients} />
+          <h3 className="recipe__review__text">Your instructions: </h3>
           <ListOfInstructions className="ListOfInstructions" active={-1} descriptionList={this.props.newRecipe.description}/>
         </div>
         <div className="user__input">

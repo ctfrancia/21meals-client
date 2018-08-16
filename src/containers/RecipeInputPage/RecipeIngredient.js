@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import './css/index.css';
 
 
-class RecipeIngridientInput extends React.Component {
+class RecipeIngredientInput extends React.Component {
 
   submitForm = (event) => {
     event.preventDefault();
@@ -53,4 +53,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecipeIngridientInput);
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeIngredientInput);

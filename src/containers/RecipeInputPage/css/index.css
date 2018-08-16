@@ -211,3 +211,22 @@ ul.control-dots {
   font-weight: bold;
   color: rgb(230, 154, 118);
 }
+
+.recipe__image {
+  /* width: 200px; */
+  height: 30vh;
+  border: 5px;
+  border-radius: 10px;
+}
+
+.image__placeholder {
+  width: 90vw;
+  margin-left: 5vw;
+}
+
+.recipe__review__text {
+  font-weight: bold;
+  color: rgb(230, 154, 118);
+  font-size: 1.3em;
+  align-self: left;
+}
