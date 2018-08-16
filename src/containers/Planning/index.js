@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Layout } from 'antd';
-
+import TopBar from '../../components/TopBar';
+import BottomBar from '../../components/BottomBar';
 import Day from '../../components/Day';
 import './Planning.css';
 const { Content } = Layout;
 
 class Planning extends Component {
   componentDidMount() {}
-
 
   renderPlanning() {
     const plan = this.props.meals_plan;
@@ -29,13 +29,12 @@ class Planning extends Component {
 
   render() {
     return (
-      <div >
+      <div>
+        <TopBar />
         <Layout>
-          <Content className="planning">
-            
-            {this.renderPlanning()}
-          </Content>
+          <Content className="planning">{this.renderPlanning()}</Content>
         </Layout>
+        <BottomBar />
       </div>
     );
   }

@@ -3,7 +3,8 @@
  * ShoppingList
  *
  */
-
+import TopBar from '../../components/TopBar';
+import BottomBar from '../../components/BottomBar';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,7 +12,6 @@ import { Layout, List, Icon, Checkbox } from 'antd';
 import './ShoppingList.css';
 import 'antd/dist/antd.css';
 const { Content } = Layout;
-
 
 function onChange() {
   // console.log(`checked = ${e.target.checked}`);
@@ -36,7 +36,11 @@ class ShoppingList extends React.Component {
             renderItem={item => (
               <List.Item key={item.id}>
                 <Checkbox onChange={onChange}>
-                  {`${item.amount === 0 || item.amount === null ? 'Some' : item.amount} ${item.measure === null ? '': item.measure} ${item.name}`}
+                  {`${
+                    item.amount === 0 || item.amount === null
+                      ? 'Some'
+                      : item.amount
+                  } ${item.measure === null ? '' : item.measure} ${item.name}`}
                 </Checkbox>
               </List.Item>
             )}
@@ -50,9 +54,9 @@ class ShoppingList extends React.Component {
   componentDidMount = () => {};
 
   render() {
-
     return (
       <div>
+        <TopBar />
         <Layout>
           <Content>
             <div className="list">
@@ -65,6 +69,7 @@ class ShoppingList extends React.Component {
             </div>
           </Content>
         </Layout>
+        <BottomBar />
       </div>
     );
   }
@@ -136,10 +141,10 @@ const mapStateToProps = state => ({
 // }, [])
 // const mapDispatchToProps = dispatch => ({});
 ShoppingList.propTypes = {
-  listItems: PropTypes.object,
+  listItems: PropTypes.object
 };
 
 export default connect(
-  mapStateToProps,
+  mapStateToProps
   // mapDispatchToProps
 )(ShoppingList);

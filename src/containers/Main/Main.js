@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { Layout, Spin } from 'antd';
 import RecipeCard from '../../components/RecipeCard';
 import './Main.css';
-
+import TopBar from '../../components/TopBar';
+import BottomBar from '../../components/BottomBar';
 const { Content } = Layout;
 
 class Main extends React.Component {
@@ -44,9 +45,11 @@ class Main extends React.Component {
 
     return (
       <div>
+        <TopBar/>
         <Layout>
           <Content>{this.renderCards()}</Content>
         </Layout>
+        <BottomBar/>
       </div>
     );
   }

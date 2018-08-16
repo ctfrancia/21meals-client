@@ -31,12 +31,26 @@ class Day extends React.Component {
       visible: false
     });
   };
-  
-  handleRecipeChange = (item,e)  => {
+
+  handleRecipeChange = (item, e) => {
     e.stopPropagation();
     this.setState({ visible: false });
-    this.props.changeMeal(item.id, this.props.meal_id, this.props.day, this.props.meal_time);
-  }
+    if (item === undefined) {
+      this.props.changeMeal(
+        undefined,
+        this.props.meal_id,
+        this.props.day,
+        this.props.meal_time
+      );
+    } else {
+      this.props.changeMeal(
+        item.id,
+        this.props.meal_id,
+        this.props.day,
+        this.props.meal_time
+      );
+    }
+  };
 
   render() {
     if (this.props.recipe !== undefined) {
@@ -52,6 +66,58 @@ class Day extends React.Component {
               <p>
                 {this.props.day} - {this.props.meal_time}
               </p>
+            </div>
+            <div className="day__main--body">
+              <Modal
+                title={`Choose a recipe for ${this.props.day}`}
+                visible={this.state.visible}
+                onOk={this.handleOk}
+                onCancel={this.handleCancel}
+                footer={[
+                  <Button
+                    key="delete"
+                    type="danger"
+                    onClick={this.handleRecipeChange.bind(this, undefined)}
+                  >
+                    Clear this meal
+                  </Button>,
+                  <Button key="back" onClick={this.handleCancel}>
+                    Return
+                  </Button>,
+                ]}
+              >
+                <List
+                  itemLayout="horizontal"
+                  dataSource={this.props.allRecipes}
+                  renderItem={item => (
+                    <List.Item>
+                      <List.Item.Meta
+                        avatar={<Avatar>{item.title[0]}</Avatar>}
+                        title={item.title}
+                        onClick={this.handleRecipeChange.bind(this, item)}
+                        description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                      />
+                    </List.Item>
+                  )}
+                />
+                ,
+              </Modal>
+              <p>{this.props.recipe.title}</p>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="day" onClick={this.showModal}>
+          <div className="day__side">
+            <Avatar size="large" style={{ backgroundColor: '#87d068' }}>
+              O
+            </Avatar>
+          </div>
+          <div className="day__main">
+            <div className="day__main--title">
+              <p>{this.props.day}</p>
             </div>
             <div className="day__main--body">
               <Modal
@@ -81,36 +147,11 @@ class Day extends React.Component {
                 />
                 ,
               </Modal>
-              <p>{this.props.recipe.title}</p>
+              <p>No meal planned!</p>
             </div>
           </div>
         </div>
       );
-    } else {
-      return <div className="day" onClick={this.showModal}>
-          <div className="day__side">
-            <Avatar size="large" style={{ backgroundColor: '#87d068' }}>
-              O
-            </Avatar>
-          </div>
-          <div className="day__main">
-            <div className="day__main--title">
-              <p>{this.props.day}</p>
-            </div>
-            <div className="day__main--body">
-              <Modal title={`Choose a recipe for ${this.props.day}`} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel} footer={[<Button key="back" onClick={this.handleCancel}>
-                    Return
-                  </Button>]}>
-                <List itemLayout="horizontal" dataSource={this.props.allRecipes} renderItem={item => <List.Item>
-                      <List.Item.Meta avatar={<Avatar>
-                            {item.title[0]}
-                          </Avatar>} title={item.title} onClick={this.handleRecipeChange.bind(this, item)} description="Ant Design, a design language for background applications, is refined by Ant UED Team" />
-                    </List.Item>} />,
-              </Modal>
-              <p>EATING OUT</p>
-            </div>
-          </div>
-        </div>;
     }
   }
 }
@@ -133,8 +174,9 @@ const mapStateToProps = (state, props) => ({
   allRecipes: Object.values(state.entities.recipes)
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  changeMeal: (mealId, recipeId, day, mealTime) => dispatch(changeMeal(mealId, recipeId, day, mealTime)) 
+const mapDispatchToProps = dispatch => ({
+  changeMeal: (mealId, recipeId, day, mealTime) =>
+    dispatch(changeMeal(mealId, recipeId, day, mealTime))
 });
 
 export default connect(

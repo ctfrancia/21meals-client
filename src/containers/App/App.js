@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { getAllIngredients } from '../../actions/ingredients.actions';
 import { getAllRecipes } from '../../actions/recipes.actions';
 import { getAllPlans } from '../../actions/plans.actions';
+import Login from '../Login';
 
 class App extends Component {
   componentDidMount() {
@@ -25,11 +26,10 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <TopBar />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/" component={Main} />
             <Route path="/planning" component={Planning} />
             <Route path="/list" component={ShoppingList} />
-            <BottomBar />
           </div>
         </Router>
       </div>
@@ -40,14 +40,14 @@ class App extends Component {
 App.propTypes = {
   getAllIngredients: PropTypes.func,
   getAllRecipes: PropTypes.func,
-  getAllPlans: PropTypes.func,
+  getAllPlans: PropTypes.func
 };
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  getAllIngredients:  () =>  dispatch(getAllIngredients()),
-  getAllRecipes:  () =>  dispatch(getAllRecipes()),
-  getAllPlans:  () =>  dispatch(getAllPlans()),
+  getAllIngredients: () => dispatch(getAllIngredients()),
+  getAllRecipes: () => dispatch(getAllRecipes()),
+  getAllPlans: () => dispatch(getAllPlans())
 });
 
 export default connect(
