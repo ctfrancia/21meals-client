@@ -3,18 +3,18 @@
  * RecipeCard
  *
  */
-import PropTypes from "prop-types";
-import { Card } from "antd";
-import React from "react";
-import "./RecipeCard.css";
+import PropTypes from 'prop-types';
+import { Card } from 'antd';
+import React from 'react';
+import './RecipeCard.css';
 const { Meta } = Card;
 // import styled from 'styled-components';
 const styles = {
-  card: { width: 170, borderRadius: 15 },
+  card: { width: 155, borderRadius: 15 },
   img: {
     height: 130,
-    borderRadius: "15px 15px 0 0 ",
-    objectFit: "cover"
+    borderRadius: '15px ',
+    objectFit: 'cover'
   }
 };
 function RecipeCard(props) {
@@ -25,7 +25,10 @@ function RecipeCard(props) {
         style={styles.card}
         cover={<img alt={props.name} src={props.imageUrl} style={styles.img} />}
       >
-        <Meta title={props.name} description={`Serves ${props.serves}`} />
+        <Meta 
+        title={props.name} 
+        //description={`Serves ${props.serves}`}
+         />
       </Card>
     </div>
   );

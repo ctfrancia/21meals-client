@@ -1,13 +1,12 @@
 .day {
   background-color: #47494E;
-  height: 9rem;
+  height: 6.3rem;
   width: auto;
-  margin: 10px;
+  margin: 15px;
   border-radius: 0 10px 10px 0;
   display: flex;
   color: #fafafa;
-  border-left: 6px solid darkred;
-
+  border-left: 6px solid #e69b76;
 }
 
 .day__side {
@@ -25,11 +24,12 @@
 
 .day__main--title {
   justify-self: flex-end;
-  font-size: 2rem;
+  font-size: 1rem;
   flex-basis: 1;
 }
 
 .day__main--title p {
+  text-transform: uppercase;
   margin: 0;
 }
 
@@ -37,6 +37,6 @@
   margin-top: 10px;
   display: flex;
   align-items: center;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   flex-basis: 2;
 }

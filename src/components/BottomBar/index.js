@@ -13,7 +13,7 @@ const { Footer } = Layout;
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
-function BottomBar () {
+function BottomBar() {
   return (
     <Footer
       style={{
@@ -21,7 +21,7 @@ function BottomBar () {
         zIndex: 1,
         width: '100%',
         bottom: 0,
-        backgroundColor: 'black',
+        backgroundColor: 'black'
       }}
     >
       <div className="bottom-bar">

@@ -1,8 +1,10 @@
-import { ingredientsConstants } from "../constants/ingredients.constants";
+import { ingredientsConstants } from '../constants/ingredients.constants';
+import * as schema from './schemas';
 
-export const getAll = () => ({
+export const getAllIngredients = () => ({
   type: ingredientsConstants.INGREDIENTS_GET_ALL,
   api: {
-    endpoint: "/ingredients"
-  }
+    endpoint: '/ingredients'
+  },
+  schema: schema.ingredientSchema
 });

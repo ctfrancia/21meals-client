@@ -1,16 +1,15 @@
-import { getAll } from "../../actions/recipes.actions";
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Layout, Spin } from "antd";
-import RecipeCard from "../../components/RecipeCard";
-import "./Main.css";
-
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Layout, Spin } from 'antd';
+import RecipeCard from '../../components/RecipeCard';
+import './Main.css';
+import TopBar from '../../components/TopBar';
+import BottomBar from '../../components/BottomBar';
 const { Content } = Layout;
 
 class Main extends React.Component {
   componentDidMount() {
-    this.props.getAll();
   }
   renderCards() {
     if (this.props.loading) {
@@ -22,7 +21,7 @@ class Main extends React.Component {
     } else {
       return (
         <div className="cards">
-          {/* <RecipeCard
+          <RecipeCard
             handleClick={this.showModal}
             imageUrl="https://cdn.onlinewebfonts.com/svg/img_211806.png"
             name="Add new"
@@ -36,17 +35,21 @@ class Main extends React.Component {
               name={el.title}
               serves={el.serves}
             />
-          ))} */}
+          ))}
         </div>
       );
     }
   }
   render() {
+
+
     return (
       <div>
+        <TopBar/>
         <Layout>
           <Content>{this.renderCards()}</Content>
         </Layout>
+        <BottomBar/>
       </div>
     );
   }
@@ -54,20 +57,18 @@ class Main extends React.Component {
 
 Main.propTypes = {
   recipes: PropTypes.array,
-  getAll: PropTypes.func,
   loading: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-  loading: state.loading,
-  recipes: state.recipes.recipes
+  loading: state.pages.loadingRecipes,
+  recipes: state.pages.recipesIndex.map(el => state.entities.recipes[el])
 });
 
-const mapDispatchToProps = dispatch => ({
-  getAll: () => dispatch(getAll())
-});
+// const mapDispatchToProps = dispatch => ({
+// });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  // mapDispatchToProps
 )(Main);

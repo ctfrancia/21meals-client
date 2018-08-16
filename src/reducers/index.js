@@ -1,13 +1,10 @@
 import { combineReducers } from 'redux';
-
-import recipes from './recipes.reducer';
-import ingredients from './ingredients.reducer';
-import plans from './plans.reducer';
+import entities from './entities.reducer'
+import pages from './pages.reducer';
 
 const reducers = combineReducers({
-  recipes,
-  plans,
-  ingredients,
+  entities,
+  pages,
   
 });
 

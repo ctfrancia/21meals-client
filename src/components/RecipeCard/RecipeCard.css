@@ -1,7 +1,13 @@
 .recipe_card {
   margin: 5.5px;
+  padding: 5px;
 }
-
+.ant-card {
+  min-height: 210px;
+}
+.ant-card-cover {
+  padding: 10px;
+}
 .ant-card-body {
   padding: 10px;
 }
