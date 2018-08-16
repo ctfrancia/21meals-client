@@ -13,7 +13,7 @@ const styles = {
   card: { width: 170, borderRadius: 15 },
   img: {
     height: 130,
-    borderRadius: '15px 15px 0 0 ',
+    borderRadius: '15px ',
     objectFit: 'cover'
   }
 };
@@ -25,7 +25,10 @@ function RecipeCard(props) {
         style={styles.card}
         cover={<img alt={props.name} src={props.imageUrl} style={styles.img} />}
       >
-        <Meta title={props.name} description={`Serves ${props.serves}`} />
+        <Meta 
+        title={props.name} 
+        //description={`Serves ${props.serves}`}
+         />
       </Card>
     </div>
   );
