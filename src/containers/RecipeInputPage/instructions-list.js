@@ -4,13 +4,13 @@ import './css/index.css';
 class ListOfInstructions extends React.Component {
 
   renderListIteams = () => {
-      return this.props.descriptionList.map((description, i) => (<li key={i} onClick={description => this.props.removeStep(i)}>{description}</li>));
+      return this.props.descriptionList.map((description, i) => (<li key={i} onClick={description => this.props.onClick(i)}>{description}</li>));
   };
 
   render () {
     return (
       <div className="ready__instructions">
-        <ol>
+        <ol className="list__numbered">
           {this.renderListIteams()}
         </ol>
       </div>

@@ -1,6 +1,3 @@
-.body {
-  background-color: white;
-}
 
 .main {
   height: 100vh;
@@ -165,7 +162,7 @@ ul.control-dots {
   width: 100vw;
   overflow: hidden;
   overflow-y: scroll;
-  /* background: red; */
+  scroll-behavior: smooth;
 }
 
 .carousel.carousel-slider .control-arrow {
@@ -178,6 +175,7 @@ ul.control-dots {
   color: rgb(230, 154, 118);
   font-weight: bold;
   margin-top: 2.5%;
+  font-size: 1.4em;
 }
 
 .user__input {
@@ -198,4 +196,18 @@ ul.control-dots {
   font-weight: bold;
   color: rgb(230, 154, 118);
   margin-top: 50%;
+}
+
+.list__numbered {
+  font-size: 1.2em;
+  margin-top: 3vh;
+  font-weight: bold;
+  text-align: left;
+  list-style-type: upper-roman;
+  color: rgb(230, 154, 118);
+}
+
+.recepe__review__name {
+  font-weight: bold;
+  color: rgb(230, 154, 118);
 }

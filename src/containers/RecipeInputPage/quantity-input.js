@@ -16,7 +16,8 @@ class QuantityInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      measure: 'default'
+      measure: 'default',
+      activeIngredientIndex: -1,
     }
   }
 
@@ -30,14 +31,24 @@ class QuantityInput extends React.Component {
   handleChange = (value) => {
     this.setState({
       measure: value,
+      activeIngredientIndex: this.state.activeIngredientIndex,
     });
+  }
+
+  changeActiveIngredient = (index) => {
+    this.setState({
+      measure: this.state.measure,
+      activeIngredientIndex: index,
+    });
+    console.log(this.state.activeIngredientIndex);
   }
 
   submitForm = (event) => {
     event.preventDefault();
-    this.props.changeIngredientAmount(0, event.target.quantityAmount.value, this.state.measure);
+    this.props.changeIngredientAmount(this.state.activeIngredientIndex, event.target.quantityAmount.value, this.state.measure);
     event.target.quantityAmount.value = '';
     this.props.changeDefaultSlide(2);
+    this.changeActiveIngredient(-1);
   }
 
   render () {
@@ -47,7 +58,7 @@ class QuantityInput extends React.Component {
           <p className="instruction__text">Lets select the quantities</p>
         </div>
         <div className="form__content">
-          <SelectedIngredients ingredientList={this.props.newRecipe.ingredients} removeIngredient={this.props.removeIngredient}/>
+          <SelectedIngredients ingredientList={this.props.newRecipe.ingredients} active={this.state.activeIngredientIndex} onClick={this.changeActiveIngredient}/>
         </div>
         <div className="user__input">
           <form className="input__form" onSubmit={this.submitForm}>

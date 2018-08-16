@@ -23,7 +23,7 @@ class RecipeDescription extends React.Component {
           <p className="instruction__text">Lets outline the cooking process</p>
         </div>
         <div className="form__content">
-          <ListOfInstructions className="ListOfInstructions" removeStep={this.props.removeStep} descriptionList={this.props.newRecipe.description}/>
+          <ListOfInstructions className="ListOfInstructions" onClick={this.props.removeStep} descriptionList={this.props.newRecipe.description}/>
         </div>
         <div className="user__input">
           <form className="input__form" onSubmit={this.submitForm}>

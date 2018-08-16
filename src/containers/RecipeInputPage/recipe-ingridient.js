@@ -24,7 +24,7 @@ class RecipeIngridientInput extends React.Component {
           <p className="instruction__text" >Lets add some ingridients</p>
         </div>
         <div className="form__content">
-          <SelectedIngredients className="ingredient__selector" ingredientList={this.props.newRecipe.ingredients} removeIngredient={this.props.removeIngredient}/>
+          <SelectedIngredients className="ingredient__selector" active={-1} ingredientList={this.props.newRecipe.ingredients} onClick={this.props.removeIngredient}/>
         </div>
         <div className="user__input">
           <form className="input__form" onSubmit={this.submitForm}>
