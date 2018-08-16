@@ -21,7 +21,6 @@ class SignUp extends React.Component {
     };
   }
   handleChange = (event) => {
-    console.log(event.target);
     
     const { name, value } = event.target;
     const { user } = this.state;
@@ -32,15 +31,9 @@ class SignUp extends React.Component {
       }
     });
   }
-  handleUsernameChange = event => {
-    this.setState({ username: event.target.value });
-  };
-  handlePasswordChange = event => {
-    this.setState({ password: event.target.value });
-  };
+
   handleSubmit = e => {
     e.preventDefault();
-    console.log('aaaaa');
   };
   render() {
     return (
@@ -65,7 +58,7 @@ class SignUp extends React.Component {
               <Input
                 onChange={this.handleChange}
                 name="lastName"
-                value={this.state.lastName}
+                value={this.state.user.lastName}
                 prefix={
                   <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />
                 }
@@ -75,7 +68,7 @@ class SignUp extends React.Component {
             <FormItem>
               <Input
                 onChange={this.handleChange}
-                value={this.state.email}
+                value={this.state.user.email}
                 name="email"
                 prefix={
                   <Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />
@@ -86,7 +79,7 @@ class SignUp extends React.Component {
             <FormItem>
               <Input
                 onChange={this.handleChange}
-                value={this.state.password}
+                value={this.state.user.password}
                 name="password"
                 prefix={
                   <Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />
@@ -102,13 +95,12 @@ class SignUp extends React.Component {
                 className="login-form-button"
               >
                 Register
-                {/* <Link to="/">Log in </Link> */}
               </Button>
             </FormItem>
             
             <FormItem className="login-form__options">
               <a className="login-form-forgot" href="">
-                Log in
+                <Link to="/">Log in </Link>
               </a>
             </FormItem>
           </Form>
