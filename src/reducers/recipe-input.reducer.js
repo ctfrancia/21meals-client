@@ -1,48 +1,61 @@
-
 const initialState = {
   name: '',
-  ingredients: [],
   description: [],
+  ingredients: [],
 };
 
 export default (state = initialState, action) => {
   let newDescription = [...state.description];
-  let newIngridients = [...state.ingredients];
-  let changedIngredient = {};
-  let newState = {
-    ...state
-  };
+  let newIngredients = [...state.ingredients];
+
   switch (action.type) {
   case 'ADD_STEP':
-    newDescription = [...newDescription, action.step];
-    newState.description = [...newDescription];
-    return newState;
+    return {
+      name: state.name,
+      description: [...state.description, action.step],
+      ingredients: state.ingredients,
+    };
   case 'REMOVE_STEP':
     newDescription.splice(action.index, 1);
-    newState.description = [...newDescription];
-    return newState;
+    return {
+      name: state.name,
+      description: [...newDescription],
+      ingredients: state.ingredients,
+    };
   case 'ADD_INGREDIENT':
-    newIngridients = [...newIngridients, {
-      name: action.ingredient,
-      amount: '',
-      measure: '',
-    }];
-    newState.ingredients = [...newIngridients];
-    return newState;
+    return {
+      name: state.name,
+      description: state.description,
+      ingredients: [...state.ingredients, {
+        name: action.ingredient,
+        amount: '',
+        measure: '',
+      }],
+    };
   case 'REMOVE_INGREDIENT':
-    newIngridients.splice(action.index, 1);
-    newState.ingredients = [...newIngridients];
-    return newState;
+    newIngredients.splice(action.index, 1);
+    return {
+      name: state.name,
+      description: state.description,
+      ingredients: [...newIngredients],
+    };
   case 'CHANGE_NAME':
-    newState.name = action.name;
-    return newState;
+    return {
+      name: action.name,
+      description: state.description,
+      ingredients: state.ingredients,
+    };
   case 'CHANGE_INGREDIENT_AMOUNT':
-    changedIngredient = {...state.ingredients[action.index]};
-    changedIngredient.amount = action.amount;
-    changedIngredient.measure = action.measure;
-    newIngridients[action.index] = changedIngredient;
-    newState.ingredients = [...newIngridients];
-    return newState;
+    newIngredients[action.index] = {
+      name: state.ingredients[action.index].name,
+      amount: action.amount,
+      measure: action.measure,
+    };
+    return {
+      name: state.name,
+      description: state.description,
+      ingredients: [...newIngredients],
+    };
   default:
     return state;
   }
