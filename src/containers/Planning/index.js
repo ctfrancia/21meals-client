@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Layout } from 'antd';
-// import { getAllPlans } from '../../actions/plans.actions';
 
 import Day from '../../components/Day';
 import './Planning.css';
@@ -10,11 +9,15 @@ const { Content } = Layout;
 
 class Planning extends Component {
   componentDidMount() {}
+
+  handleClick() {
+    alert('hello')
+  }
   renderPlanning() {
     const plan = this.props.meals_plan;
     if (this.props.loading !== true) {
       return Object.keys(plan).map((el, i) => (
-        <Day key={i} day={plan[el].weekday} recipe={plan[el].recipe_id} />
+        <Day key={i} meal_id={plan[el].id} day={plan[el].weekday} meal_time={plan[el].meal_type} recipe={plan[el].recipe_id} clickHandler={this.handleClick}/>
       ));
     }
   }
@@ -39,7 +42,8 @@ class Planning extends Component {
 Planning.propTypes = {
   getAllPlans: PropTypes.func,
   loading: PropTypes.bool,
-  plan: PropTypes.object
+  plan: PropTypes.object,
+  meals_plan: PropTypes.object
 };
 
 const mapStateToProps = state => ({
@@ -48,11 +52,10 @@ const mapStateToProps = state => ({
   loading: state.pages.loadingPlans
 });
 
-const mapDispatchToProps = dispatch => ({
-  // getAllPlans: () => dispatch(getAllPlans())
-});
+// const mapDispatchToProps = (dispatch) => ({
+// });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  // mapDispatchToProps
 )(Planning);
