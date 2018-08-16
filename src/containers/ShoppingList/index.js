@@ -12,16 +12,9 @@ import './ShoppingList.css';
 import 'antd/dist/antd.css';
 const { Content } = Layout;
 
-const drinks = [
-  '12 bottles of water',
-  '6 cans of Coca-cola',
-  '3 bottles of wine'
-];
 
-const meat = ['2 Steaks', '6 Chickent thigs'];
-
-function onChange(e) {
-  console.log(`checked = ${e.target.checked}`);
+function onChange() {
+  // console.log(`checked = ${e.target.checked}`);
 }
 
 class ShoppingList extends React.Component {
@@ -57,8 +50,6 @@ class ShoppingList extends React.Component {
   componentDidMount = () => {};
 
   render() {
-    console.log(this.props.listItems);
-    // console.log(this.props.ingredients_recipe);
 
     return (
       <div>
@@ -143,11 +134,12 @@ const mapStateToProps = state => ({
 //     return acc
 //   }
 // }, [])
-const mapDispatchToProps = dispatch => ({});
-//Generate list of meals from meals_plan [1,2,1]
-//every recipe yelds some ingredients_recipe [1...9, 10...18]
-// ingredient_recipe.ingredient_id = name
+// const mapDispatchToProps = dispatch => ({});
+ShoppingList.propTypes = {
+  listItems: PropTypes.object,
+};
+
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  // mapDispatchToProps
 )(ShoppingList);

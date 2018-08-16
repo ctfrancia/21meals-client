@@ -10,14 +10,19 @@ const { Content } = Layout;
 class Planning extends Component {
   componentDidMount() {}
 
-  handleClick() {
-    alert('hello')
-  }
+
   renderPlanning() {
     const plan = this.props.meals_plan;
     if (this.props.loading !== true) {
       return Object.keys(plan).map((el, i) => (
-        <Day key={i} meal_id={plan[el].id} day={plan[el].weekday} meal_time={plan[el].meal_type} recipe={plan[el].recipe_id} clickHandler={this.handleClick}/>
+        <Day
+          key={i}
+          meal_id={plan[el].id}
+          day={plan[el].weekday}
+          meal_time={plan[el].meal_type}
+          recipe={plan[el].recipe_id}
+          clickHandler={this.handleClick}
+        />
       ));
     }
   }
@@ -56,6 +61,6 @@ const mapStateToProps = state => ({
 // });
 
 export default connect(
-  mapStateToProps,
+  mapStateToProps
   // mapDispatchToProps
 )(Planning);

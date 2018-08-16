@@ -122,7 +122,10 @@ Day.propTypes = {
   handleClick: PropTypes.func,
   recipe: PropTypes.object,
   day: PropTypes.string,
-  meal_time: PropTypes.string
+  meal_time: PropTypes.string,
+  changeMeal: PropTypes.func,
+  meal_id: PropTypes.number,
+  allRecipes: PropTypes.array
 };
 
 const mapStateToProps = (state, props) => ({

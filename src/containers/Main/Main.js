@@ -62,10 +62,10 @@ const mapStateToProps = state => ({
   recipes: state.pages.recipesIndex.map(el => state.entities.recipes[el])
 });
 
-const mapDispatchToProps = dispatch => ({
-});
+// const mapDispatchToProps = dispatch => ({
+// });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  // mapDispatchToProps
 )(Main);

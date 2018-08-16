@@ -1,3 +1,4 @@
+
 const defaultState = {
   recipes: {},
   ingredients_recipe: {},
@@ -7,6 +8,7 @@ const defaultState = {
 };
 
 export default (state = defaultState, action) => {
+  
   if (!action.entities) return state;
 
   return {
