@@ -1,9 +1,9 @@
 import React from 'react';
 import './SignUp.css';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import logo from '../../assets/logo.svg';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button } from 'antd';
 import { Link } from 'react-router-dom';
 const FormItem = Form.Item;
 
@@ -99,9 +99,9 @@ class SignUp extends React.Component {
             </FormItem>
             
             <FormItem className="login-form__options">
-              <a className="login-form-forgot" href="">
-                <Link to="/">Log in </Link>
-              </a>
+              <Link to="/" className="login-form-forgot">
+                Log in
+              </Link>
             </FormItem>
           </Form>
         </div>
@@ -110,7 +110,7 @@ class SignUp extends React.Component {
   }
 }
 
-SignUp.propTypes = {};
+// SignUp.propTypes = {};
 
 // const mapStateToProps = state => ({
 

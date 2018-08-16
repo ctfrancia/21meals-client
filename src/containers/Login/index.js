@@ -67,14 +67,14 @@ class Login extends React.Component {
               </Button>
             </FormItem>
             <FormItem className="login-form__options">
-              <a className="login-form-forgot" href="">
+              <Link className="login-form-forgot" to="/main">
                 Forgot password
-              </a>
+              </Link>
             </FormItem>
             <FormItem className="login-form__options">
-              <a className="login-form-forgot" href="">
+              <Link className="login-form-forgot" to="/signup">
                 register now!
-              </a>
+              </Link>
             </FormItem>
           </Form>
         </div>
