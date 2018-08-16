@@ -22,11 +22,10 @@ class Login extends React.Component {
   handlePasswordChange = event => {
     this.setState({ password: event.target.value });
   };
-  handleSubmit = (e) => {
-    e.preventDefault()
-    // console.log('aaaaa');
-    
-  }
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log('aaaaa');
+  };
   render() {
     return (
       <div className="login-page">
@@ -62,8 +61,7 @@ class Login extends React.Component {
                 htmlType="submit"
                 className="login-form-button"
               >
-                Log in 
-                {/* <Link to="/">Log in </Link> */}
+                Log in
               </Button>
             </FormItem>
             <FormItem className="login-form__options">
