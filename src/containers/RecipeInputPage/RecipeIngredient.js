@@ -1,5 +1,5 @@
 import React from 'react';
-import SelectedIngredients from './selected-ingredients';
+import SelectedIngredients from './SelectedIngredients';
 import {removeIngredient, addIngredient } from '../../actions/recipe-input.actions';
 import { changeDefaultSlide } from '../../actions/carousel.actions';
 import { Input } from 'antd';
@@ -21,7 +21,7 @@ class RecipeIngridientInput extends React.Component {
     return (
       <div className="name__field">
         <div className="input__header">
-          <p className="instruction__text" >Lets add some ingridients</p>
+          <p className="instruction__text" >Lets add some ingrеdients</p>
         </div>
         <div className="form__content">
           <SelectedIngredients className="ingredient__selector" active={-1} ingredientList={this.props.newRecipe.ingredients} onClick={this.props.removeIngredient}/>

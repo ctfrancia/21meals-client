@@ -1,11 +1,11 @@
 import React from 'react';
 import './css/index.css';
-import RecipeName from './recipe-name';
+import RecipeName from './RecipeName';
 import { connect } from 'react-redux';
-import RecipeIngridientInput from './recipe-ingridient';
-import QuantityInput from './quantity-input';
-import RecipeDescription from './recipe-description';
-import RecipeReview from './recipe-review';
+import RecipeIngridientInput from './RecipeIngredient';
+import QuantityInput from './QuantityInput';
+import RecipeDescription from './RecipeDescription';
+import RecipeReview from './RecipeReview';
 import { changeDefaultSlide } from '../../actions/carousel.actions';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';

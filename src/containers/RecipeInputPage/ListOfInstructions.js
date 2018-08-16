@@ -3,8 +3,14 @@ import './css/index.css';
 
 class ListOfInstructions extends React.Component {
 
+  handleClick = (index) => {
+      if(this.props.onClick) {
+        this.props.onClick(index);
+      }
+    }
+
   renderListIteams = () => {
-      return this.props.descriptionList.map((description, i) => (<li key={i} onClick={description => this.props.onClick(i)}>{description}</li>));
+      return this.props.descriptionList.map((description, i) => (<li key={i} onClick={description => this.handleClick(i)}>{description}</li>));
   };
 
   render () {

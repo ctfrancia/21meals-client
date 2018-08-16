@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './css/index.css';
-import ListOfInstructions from './instructions-list';
+import ListOfInstructions from './ListOfInstructions';
 import { Input } from 'antd';
 import { addStep, removeStep } from '../../actions/recipe-input.actions';
 import { changeDefaultSlide } from '../../actions/carousel.actions';
@@ -16,7 +16,6 @@ class RecipeDescription extends React.Component {
   }
 
   render () {
-    console.log(this.props);
     return (
       <div className="name__field">
         <div className="input__header">

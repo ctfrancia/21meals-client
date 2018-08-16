@@ -1,6 +1,6 @@
 import React from 'react';
 import './css/index.css';
-import SelectedIngredients from './selected-ingredients';
+import SelectedIngredients from './SelectedIngredients';
 import { connect } from 'react-redux';
 import { Input, InputNumber, Select } from 'antd';
 import {removeIngredient, changeIngredientAmount} from '../../actions/recipe-input.actions';
@@ -40,7 +40,6 @@ class QuantityInput extends React.Component {
       measure: this.state.measure,
       activeIngredientIndex: index,
     });
-    console.log(this.state.activeIngredientIndex);
   }
 
   submitForm = (event) => {

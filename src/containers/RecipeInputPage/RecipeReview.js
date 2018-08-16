@@ -1,17 +1,13 @@
 import React from 'react';
 import './css/index.css';
 import { connect } from 'react-redux';
-import SelectedIngredients from './selected-ingredients';
-import ListOfInstructions from './instructions-list';
+import SelectedIngredients from './SelectedIngredients';
+import ListOfInstructions from './ListOfInstructions';
 import { Input } from 'antd';
 
 class RecipeReview extends React.Component {
-  doNothing = () => {
-
-  }
 
   render () {
-
     return (
       <div className="name__field">
         <div className="input__header">
@@ -21,8 +17,8 @@ class RecipeReview extends React.Component {
           <h3 className="recepe__review__name">{this.props.newRecipe.name}</h3>
         </div>
         <div className="form__content">
-          <SelectedIngredients className="ingredient__selector" ingredientList={this.props.recipe.ingredients} onClick={this.doNothing}/>
-          <ListOfInstructions className="ListOfInstructions" active={-1} onClick={this.doNothing} descriptionList={this.props.recipe.description}/>
+          <SelectedIngredients className="ingredient__selector" ingredientList={this.props.newRecipe.ingredients} />
+          <ListOfInstructions className="ListOfInstructions" active={-1} descriptionList={this.props.newRecipe.description}/>
         </div>
         <div className="user__input">
           <form className="input__form" onSubmit={this.props.submitRecipe}>
@@ -33,11 +29,9 @@ class RecipeReview extends React.Component {
     );
   }
 }
+
 const mapStateToProps = (state) => ({
   newRecipe: state.newRecipe,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(RecipeReview);
+export default connect(mapStateToProps)(RecipeReview);
