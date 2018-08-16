@@ -1,9 +1,9 @@
 import React from 'react';
 import './Login.css';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import logo from '../../assets/logo.svg';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button } from 'antd';
 import { Link } from 'react-router-dom';
 const FormItem = Form.Item;
 
@@ -24,7 +24,7 @@ class Login extends React.Component {
   };
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log('aaaaa');
+    // console.log('aaaaa');
     
   }
   render() {
