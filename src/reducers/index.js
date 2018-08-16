@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
-
-import mock from './mock.reducer'
-
+import entities from './entities.reducer'
+import pages from './pages.reducer';
 
 const reducers = combineReducers({
-  mock
+  entities,
+  pages,
+  
 });
 
 export default reducers;

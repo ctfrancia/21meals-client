@@ -1,37 +1,56 @@
 import React, { Component } from 'react';
-import logo from '../../assets/logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
-import  {getChuck}  from '../../actions/mocks.actions';
-import DatePicker from 'antd/lib/date-picker';  // for js
-import 'antd/lib/date-picker/style/css';        // for css
-class App extends Component {
+import 'antd/lib/date-picker/style/css'; // for css
+import ShoppingList from '../ShoppingList';
+import Planning from '../Planning';
+import Main from '../Main/Main';
+import PropTypes from 'prop-types';
+import TopBar from '../../components/TopBar';
+import BottomBar from '../../components/BottomBar';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { getAllIngredients } from '../../actions/ingredients.actions';
+import { getAllRecipes } from '../../actions/recipes.actions';
+import { getAllPlans } from '../../actions/plans.actions';
+import Login from '../Login';
 
+class App extends Component {
   componentDidMount() {
-    this.props.getQuote();
+    this.props.getAllRecipes();
+    this.props.getAllIngredients();
+    this.props.getAllPlans();
   }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          {this.props.quote}
-        </p>
-      <DatePicker />
+        <Router>
+          <div>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/" component={Main} />
+            <Route path="/planning" component={Planning} />
+            <Route path="/list" component={ShoppingList} />
+          </div>
+        </Router>
       </div>
     );
   }
 }
-const mapStateToProps = (state) => ({
-  quote : state.mock.quote
 
+App.propTypes = {
+  getAllIngredients: PropTypes.func,
+  getAllRecipes: PropTypes.func,
+  getAllPlans: PropTypes.func
+};
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = dispatch => ({
+  getAllIngredients: () => dispatch(getAllIngredients()),
+  getAllRecipes: () => dispatch(getAllRecipes()),
+  getAllPlans: () => dispatch(getAllPlans())
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  getQuote: () => dispatch(getChuck())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

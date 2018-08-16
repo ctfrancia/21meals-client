@@ -1,11 +1,11 @@
 {
-  "name": "mealee",
+  "name": "mealeee",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "antd": "^3.8.1",
     "connected-react-router": "^4.4.1",
-    "history": "^4.7.2",
+    "normalizr": "^3.2.4",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
@@ -21,7 +21,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "babel-plugin-import": "^1.8.0"
+  "eslintConfig": {
+    "extends": "react-app"
   }
 }

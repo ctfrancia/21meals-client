@@ -1,0 +1,29 @@
+.list {
+  max-height: 92vh;
+  overflow: scroll;
+}
+
+.list__image {
+  height: 10rem;
+  width: auto;
+  background-image: url("../../assets/shop.jpg");
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
+}
+
+.list__list {
+  overflow: scroll;
+}
+
+.list__image--title h2 {
+  font-size: 1.8rem;
+  font-weight: 200;
+  color: #fafafa;
+  padding: 1rem;
+}
+
+.ant-list-header {
+  font-weight: bold;
+  background-color: #fafafa
+}
