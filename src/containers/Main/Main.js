@@ -6,11 +6,12 @@ import RecipeCard from '../../components/RecipeCard';
 import './Main.css';
 import TopBar from '../../components/TopBar';
 import BottomBar from '../../components/BottomBar';
+import RecipeInput from '../RecipeInput/RecipeInput';
+
 const { Content } = Layout;
 
 class Main extends React.Component {
-  componentDidMount() {
-  }
+  componentDidMount() {}
   renderCards() {
     if (this.props.loading) {
       return (
@@ -21,12 +22,7 @@ class Main extends React.Component {
     } else {
       return (
         <div className="cards">
-          <RecipeCard
-            handleClick={this.showModal}
-            imageUrl="https://cdn.onlinewebfonts.com/svg/img_211806.png"
-            name="Add new"
-            description="Add your recipe"
-          />
+          <RecipeInput />
           {this.props.recipes.map((el, i) => (
             <RecipeCard
               key={i}
@@ -41,15 +37,13 @@ class Main extends React.Component {
     }
   }
   render() {
-
-
     return (
       <div>
-        <TopBar/>
+        <TopBar />
         <Layout>
           <Content>{this.renderCards()}</Content>
         </Layout>
-        <BottomBar/>
+        <BottomBar />
       </div>
     );
   }
@@ -69,6 +63,6 @@ const mapStateToProps = state => ({
 // });
 
 export default connect(
-  mapStateToProps,
+  mapStateToProps
   // mapDispatchToProps
 )(Main);
