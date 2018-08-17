@@ -1,5 +1,4 @@
-
-.main {
+.recipe__form {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -58,7 +57,7 @@
   border-color: orange;
 }
 
-.selected-ingredients{
+.selected-ingredients {
   width: 100vw;
   padding: 0;
   display: flex;
@@ -67,26 +66,23 @@
   justify-content: flex-start;
 }
 
-.selected
-
-.slider-wrapper.axis-horizontal {
+.selected .slider-wrapper.axis-horizontal {
   width: 100vw;
 }
 
 .carousel.carousel-slider {
-    position: relative;
-    height: 100%;
-    width: 100vw;
-    margin: 0;
-    overflow: hidden;
-    color: inherit;
-    background-color: rgb(37, 32, 52);
+  position: relative;
+  height: 100%;
+  width: 100vw;
+  margin: 0;
+  overflow: hidden;
+  color: inherit;
+  background-color: rgb(37, 32, 52);
 }
 
 .slider-wrapper {
   max-width: 100vw;
   background-color: rgb(37, 32, 52);
-
 }
 
 li.carousel.slide {
@@ -96,8 +92,8 @@ li.carousel.slide {
 }
 
 .slide .selected {
-    width: 100vw;
-    background-color: rgb(37, 32, 52);
+  width: 100vw;
+  background-color: rgb(37, 32, 52);
 }
 
 .navigation__buttons {
@@ -133,7 +129,6 @@ ul.control-dots {
   border-radius: 10px;
   border-style: outset;
   border-color: rgb(233, 182, 129)
-
 }
 
 .ingredient__image {

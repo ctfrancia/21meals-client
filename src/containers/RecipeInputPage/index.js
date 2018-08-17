@@ -22,7 +22,7 @@ export class RecipeInputPage extends React.Component {
 
   render () {
     return (
-      <div className="main">
+      <div className="recipe__form">
         <Helmet>
           <title>New Recipe</title>
           <meta name="description" content="Description of RecipeInputPage" />
