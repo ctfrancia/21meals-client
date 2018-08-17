@@ -1,0 +1,22 @@
+
+.planning__image--title h2 {
+  font-size: 1.3rem;
+  font-weight: 200;
+  color: #fafafa;
+  padding: 1rem;
+}
+
+.planning {
+  max-height: 100%;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  background-color: #252134;
+}
+
+.day__list {
+  min-height: 250px;
+}
+
+.planning.ant-list-item {
+  min-height: 300px;
+}

@@ -1,12 +1,16 @@
-import { combineReducers } from 'redux';
+
 import newRecipe from './recipe-input.reducer';
-import mock from './mock.reducer';
 import slider from './carousel.reducer';
+import { combineReducers } from 'redux';
+import entities from './entities.reducer'
+import pages from './pages.reducer';
 
 const reducers = combineReducers({
-  mock,
   newRecipe,
   slider,
+  entities,
+  pages,
+  
 });
 
 export default reducers;

@@ -9,9 +9,9 @@
 //     …
 //   }
 // }
+import { normalize } from 'normalizr';
 
-
-const BASE_URL = 'http://api.icndb.com'; //CHANGE THIS TO SERVER URL
+const BASE_URL = 'https://private-anon-9d15778814-mealee.apiary-mock.com'; //CHANGE THIS TO SERVER URL
 
 export default store => next => action => {
   if (!action.api) return next(action);
@@ -28,34 +28,43 @@ export default store => next => action => {
 
   headers = {
     ...defaultHeaders,
-    ...headers,
-  }
+    ...headers
+  };
 
   next({
     ...action,
     type: `${action.type}_REQUEST`
   });
-  console.log('fetch', BASE_URL + endpoint);
+  // console.log('fetch', BASE_URL + endpoint);
   fetch(`${BASE_URL}${endpoint}`, {
     method: method || 'GET',
     body,
-    headers,
+    headers
   })
     .then(response => response.json())
     .then(data => {
-      store.dispatch({
-        ...action,
-        type: `${action.type}_SUCCESS`,
-        api: undefined,
-        data,
-      })
+      if (action.schema) {
+        store.dispatch({
+          ...action,
+          type: `${action.type}_SUCCESS`,
+          api: undefined,
+          ...normalize(data, action.schema)
+        });
+      } else {
+        store.dispatch({
+          ...action,
+          type: `${action.type}_SUCCESS`,
+          api: undefined,
+          data
+        });
+      }
     })
     .catch(error => {
       store.dispatch({
         ...action,
         type: `${action.type}_FAILURE`,
         api: undefined,
-        error,
-      })
-    })
-}
+        error
+      });
+    });
+};
