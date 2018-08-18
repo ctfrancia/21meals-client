@@ -7,6 +7,7 @@ import './RecipeInput.css';
 import TextArea from '../../../node_modules/antd/lib/input/TextArea';
 import RecipeInputSummary from '../../components/RecipeInputSummary';
 import { postIngredient } from '../../actions/ingredients.actions';
+import { postRecipe } from '../../actions/recipes.actions';
 const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
 const Panel = Collapse.Panel;
@@ -41,7 +42,18 @@ class RecipeInput extends React.Component {
   //Input handlers
 
   //TODO
-  handleChangeRecipe = event => {};
+  handleChangeRecipe = event => {
+    console.log(event.target)
+    const { name, value } = event.target;
+    const { recipe } = this.state;
+    this.setState({
+      ...this.state,
+      recipe: {
+        ...recipe,
+        [name]: value
+      }
+    });
+  };
   //TODO
 
   handleChangeIngredient = event => {
@@ -209,9 +221,12 @@ class RecipeInput extends React.Component {
 
   sendNewIngredient = e => {
     e.preventDefault();
-    this.props.postIngredient(this.state.newIngredient)
-    .then(data => console.log(data))
+    this.props.postIngredient(this.state.newIngredient);
+  };
 
+  sendNewRecipe = e => {
+    e.preventDefault();
+    this.props.postRecipe(this.state.postRecipe);
   };
 
   render() {
@@ -236,19 +251,38 @@ class RecipeInput extends React.Component {
                 <TabPane tab="Recipe" key="1">
                   <FormItem label="Recipe name">
                     <Input
-                      prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+                      prefix={
+                        <Icon
+                          type="user"
+                          style={{ fontSize: 13 }}
+                        />
+                      }
+                          name="title"
                       placeholder="Recipe name"
+                      value={this.state.recipe.title}
+                      onChange={this.handleChangeRecipe}
                     />
                   </FormItem>
                   <FormItem label="Image URL">
                     <Input
+                      value={this.state.recipe.photo}
+                      onChange={this.handleChangeRecipe}
                       type="url"
-                      prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+                          name="photo"
+                      prefix={
+                        <Icon
+                          type="user"
+                          style={{ fontSize: 13 }}
+                        />
+                      }
                       placeholder="Image URL"
                     />
                   </FormItem>
                   <FormItem label="Recipe Instructions">
                     <TextArea
+                      value={this.state.recipe.instructions}
+                      onChange={this.handleChangeRecipe}
+                      name="instructions"
                       autosize
                       type="text"
                       prefix={<Icon type="user" style={{ fontSize: 13 }} />}
@@ -314,6 +348,12 @@ class RecipeInput extends React.Component {
                     </Panel>
 
                     <Panel header="Create a new ingredient" key="2">
+                      <Button
+                        type="primary"
+                        onClick={() => console.log(this.state)}
+                      >
+                        Ok
+                      </Button>
                       <FormItem>
                         <Input
                           addonAfter={this.ingredientTypeSelect()}
@@ -341,7 +381,7 @@ class RecipeInput extends React.Component {
                 </TabPane>
 
                 <TabPane tab="Finish" key="3">
-                  {RecipeInputSummary()}
+                  {RecipeInputSummary(this.state.recipe)}
                 </TabPane>
               </Tabs>
             </Form>
@@ -366,7 +406,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  postIngredient: data => dispatch(postIngredient(data))
+  postIngredient: data => dispatch(postIngredient(data)),
+  postRecipe: data => dispatch(postRecipe(data))
 });
 
 export default connect(
