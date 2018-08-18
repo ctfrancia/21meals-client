@@ -22,12 +22,7 @@ class Main extends React.Component {
     } else {
       return (
         <div className="cards">
-          <RecipeCard
-            handleClick={this.showModal}
-            imageUrl="https://cdn.onlinewebfonts.com/svg/img_211806.png"
-            name="Add new"
-            description="Add your recipe"
-          />
+          <RecipeInput />
           {this.props.recipes.map((el, i) => (
             <RecipeCard
               key={i}
