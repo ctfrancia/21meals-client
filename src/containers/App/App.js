@@ -13,12 +13,14 @@ import { getAllRecipes } from '../../actions/recipes.actions';
 import { getAllPlans } from '../../actions/plans.actions';
 import Login from '../Login';
 import SignUp from '../SignUp';
+import { getAllMeasures } from '../../actions/measures.actions';
 
 class App extends Component {
   componentDidMount() {
     this.props.getAllRecipes();
     this.props.getAllIngredients();
     this.props.getAllPlans();
+    this.props.getAllMeasures();
   }
 
   render() {
@@ -48,7 +50,8 @@ const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
   getAllIngredients: () => dispatch(getAllIngredients()),
   getAllRecipes: () => dispatch(getAllRecipes()),
-  getAllPlans: () => dispatch(getAllPlans())
+  getAllPlans: () => dispatch(getAllPlans()),
+  getAllMeasures: () => dispatch(getAllMeasures())
 });
 
 export default connect(

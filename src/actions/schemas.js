@@ -16,3 +16,7 @@ export const meals_plan = new schema.Entity('meals_plan');
 export const planSchema = new schema.Entity('plan', {
   meals: [meals_plan]
 });
+
+//Schema for measures
+export const measure = new schema.Entity('measures');
+export const measureSchema = [measure];

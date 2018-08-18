@@ -4,7 +4,8 @@ const defaultState = {
   ingredients_recipe: {},
   allIngredients: {},
   plan: {},
-  meals_plan: {}
+  meals_plan: {},
+  measures: {},
 };
 
 export default (state = defaultState, action) => {
@@ -20,6 +21,8 @@ export default (state = defaultState, action) => {
     },
     allIngredients: { ...state.allIngredients, ...action.entities.ingredients },
     plan: { ...state.plan, ...action.entities.plan },
-    meals_plan: { ...state.meals_plan, ...action.entities.meals_plan }
+    meals_plan: { ...state.meals_plan, ...action.entities.meals_plan },
+    measures: { ...state.measures, ...action.entities.measures },
+
   };
 };
