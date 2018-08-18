@@ -123,14 +123,13 @@ class RecipeInput extends React.Component {
     });
   };
 
-  handleOk = e => {
+  handleOk = () => {
     this.setState({
       visible: false
     });
   };
 
-  handleCancel = e => {
-    console.log(e);
+  handleCancel = () => {
     this.setState({
       visible: false
     });

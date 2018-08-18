@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import entities from './entities.reducer'
 import pages from './pages.reducer';
+import authentication from './authentication.reducer';
 
 const reducers = combineReducers({
+  authentication,
   entities,
   pages,
   
