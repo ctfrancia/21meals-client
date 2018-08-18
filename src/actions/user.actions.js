@@ -1,11 +1,13 @@
 import { usersConstants } from '../constants/users.constants';
 
 export const login = (data) => ({
-  type: usersConstants.LOGIN_REQUEST,
+  type: usersConstants.LOGIN,
   api: { 
     endpoint: '/sign-in',
-    method: 'POST', 
-    body: data
+    method: 'GET', 
+    headers: {
+      Authorization: 'Basic' + btoa(data.username + ":" + data.password)
+    },
   },
 });
 
@@ -18,7 +20,7 @@ export const register = (data) => ({
   type: usersConstants.REGISTER,
   api: {
     endpoint: '/users',
-    body: data,
-    method: 'POST'
+    method: 'GET',
+    
   },
 });
