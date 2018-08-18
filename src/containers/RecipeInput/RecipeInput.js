@@ -41,9 +41,8 @@ class RecipeInput extends React.Component {
 
   //Input handlers
 
-  //TODO
+  
   handleChangeRecipe = event => {
-    console.log(event.target)
     const { name, value } = event.target;
     const { recipe } = this.state;
     this.setState({
@@ -54,7 +53,7 @@ class RecipeInput extends React.Component {
       }
     });
   };
-  //TODO
+
 
   handleChangeIngredient = event => {
     const { name, value } = event.target;
@@ -226,7 +225,8 @@ class RecipeInput extends React.Component {
 
   sendNewRecipe = e => {
     e.preventDefault();
-    this.props.postRecipe(this.state.postRecipe);
+    
+    this.props.postRecipe(this.state.Recipe);
   };
 
   render() {
@@ -251,13 +251,8 @@ class RecipeInput extends React.Component {
                 <TabPane tab="Recipe" key="1">
                   <FormItem label="Recipe name">
                     <Input
-                      prefix={
-                        <Icon
-                          type="user"
-                          style={{ fontSize: 13 }}
-                        />
-                      }
-                          name="title"
+                      prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+                      name="title"
                       placeholder="Recipe name"
                       value={this.state.recipe.title}
                       onChange={this.handleChangeRecipe}
@@ -268,13 +263,8 @@ class RecipeInput extends React.Component {
                       value={this.state.recipe.photo}
                       onChange={this.handleChangeRecipe}
                       type="url"
-                          name="photo"
-                      prefix={
-                        <Icon
-                          type="user"
-                          style={{ fontSize: 13 }}
-                        />
-                      }
+                      name="photo"
+                      prefix={<Icon type="user" style={{ fontSize: 13 }} />}
                       placeholder="Image URL"
                     />
                   </FormItem>
@@ -382,6 +372,9 @@ class RecipeInput extends React.Component {
 
                 <TabPane tab="Finish" key="3">
                   {RecipeInputSummary(this.state.recipe)}
+                  <div className="recipe__body--confirm">
+                    <Button type="primary" onClick={this.sendNewRecipe}>Spot on, baby boy</Button>
+                  </div>
                 </TabPane>
               </Tabs>
             </Form>

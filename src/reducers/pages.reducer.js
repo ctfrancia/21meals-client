@@ -49,6 +49,12 @@ export default (state = defaultState, action) => {
         recipesIndex: action.result,
         loadingRecipes: false
       };
+    case recipesConstants.RECIPES_POST_NEW_SUCCESS:
+      return {
+        ...state,
+        recipesIndex: [...state.recipesIndex, ...action.result],
+        loadingRecipes: false
+      };
     case listConstants.LIST_GENERATE:
       return {
         ...state,

@@ -7,11 +7,11 @@ export const getAllRecipes = () => ({
   schema: schema.recipeSchema
 });
 
-export const postRecipe = payload => ({
+export const postRecipe = data => ({
   type: recipesConstants.RECIPES_POST_NEW,
   api: {
     endpoint: '/recipes',
-    body: payload,
+    body: data,
     header: 'Content-Type: application/json',
     method: 'POST'
   },
