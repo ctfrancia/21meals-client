@@ -20,3 +20,7 @@ export const planSchema = new schema.Entity('plan', {
 //Schema for measures
 export const measure = new schema.Entity('measures');
 export const measureSchema = [measure];
+
+//Schema for measures
+export const ingredientType = new schema.Entity('ingredientTypes');
+export const ingredientTypesSchema = [ingredientType];

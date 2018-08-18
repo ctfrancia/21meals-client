@@ -8,7 +8,7 @@ import Main from '../Main/Main';
 import PropTypes from 'prop-types';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { getAllIngredients } from '../../actions/ingredients.actions';
+import { getAllIngredients, getAllTypes  } from '../../actions/ingredients.actions';
 import { getAllRecipes } from '../../actions/recipes.actions';
 import { getAllPlans } from '../../actions/plans.actions';
 import Login from '../Login';
@@ -21,6 +21,7 @@ class App extends Component {
     this.props.getAllIngredients();
     this.props.getAllPlans();
     this.props.getAllMeasures();
+    this.props.getAllIngredientTypes();
   }
 
   render() {
@@ -51,7 +52,8 @@ const mapDispatchToProps = dispatch => ({
   getAllIngredients: () => dispatch(getAllIngredients()),
   getAllRecipes: () => dispatch(getAllRecipes()),
   getAllPlans: () => dispatch(getAllPlans()),
-  getAllMeasures: () => dispatch(getAllMeasures())
+  getAllMeasures: () => dispatch(getAllMeasures()),
+  getAllIngredientTypes: () => dispatch(getAllTypes())
 });
 
 export default connect(

@@ -15,7 +15,7 @@ const BASE_URL = 'https://private-anon-9d15778814-mealee.apiary-mock.com'; //CHA
 
 export default store => next => action => {
   if (!action.api) return next(action);
-
+console.log('fire!')
   const { endpoint, method } = action.api;
   let { body, headers } = action.api;
 

@@ -6,12 +6,15 @@ import RecipeCard from '../../components/RecipeCard';
 import './RecipeInput.css';
 import TextArea from '../../../node_modules/antd/lib/input/TextArea';
 import RecipeInputSummary from '../../components/RecipeInputSummary';
+import { postIngredient } from '../../actions/ingredients.actions';
 const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
 const Panel = Collapse.Panel;
 const Option = Select.Option;
 
 class RecipeInput extends React.Component {
+  //Local storage
+
   constructor(props) {
     super(props);
     this.state = {
@@ -27,14 +30,25 @@ class RecipeInput extends React.Component {
         amount: '',
         measure: '',
         measure_id: ''
+      },
+      newIngredient: {
+        name: '',
+        ingredient_type_id: ''
       }
     };
   }
+
+  //Input handlers
+
+  //TODO
+  handleChangeRecipe = event => {};
+  //TODO
+
   handleChangeIngredient = event => {
     const { name, value } = event.target;
-    const { selectedIngredient, recipe } = this.state;
+    const { selectedIngredient } = this.state;
     this.setState({
-      recipe: { ...recipe },
+      ...this.state,
       selectedIngredient: {
         ...selectedIngredient,
         [name]: value
@@ -42,9 +56,23 @@ class RecipeInput extends React.Component {
     });
   };
 
-  handleChangeIngredientSelect = value => {
-    const { selectedIngredient, recipe } = this.state;
+  handleChangeNewIngredient = event => {
+    const { name, value } = event.target;
     this.setState({
+      ...this.state,
+      newIngredient: {
+        ...this.state.newIngredient,
+        [name]: value
+      }
+    });
+  };
+
+  // Select Handlers
+
+  handleChangeIngredientSelect = value => {
+    const { selectedIngredient, recipe, newIngredient } = this.state;
+    this.setState({
+      newIngredient: { ...newIngredient },
       recipe: { ...recipe },
       selectedIngredient: {
         ...selectedIngredient,
@@ -53,10 +81,11 @@ class RecipeInput extends React.Component {
       }
     });
   };
+
   handleChangeMeasureSelect = value => {
-    const { selectedIngredient, recipe } = this.state;
+    const { selectedIngredient } = this.state;
     this.setState({
-      recipe: { ...recipe },
+      ...this.state,
       selectedIngredient: {
         ...selectedIngredient,
         measure_id: this.props.measures[value].id,
@@ -65,6 +94,18 @@ class RecipeInput extends React.Component {
     });
   };
 
+  handleChangeTypeSelect = value => {
+    this.setState({
+      ...this.state,
+      newIngredient: {
+        ...this.state.newIngredient,
+        ingredient_type_id: value
+      }
+    });
+  };
+
+  // Modal Controllers
+
   showModal = () => {
     this.setState({
       visible: true
@@ -72,7 +113,6 @@ class RecipeInput extends React.Component {
   };
 
   handleOk = e => {
-    console.log(e);
     this.setState({
       visible: false
     });
@@ -84,6 +124,8 @@ class RecipeInput extends React.Component {
       visible: false
     });
   };
+
+  // Select and list renderers
 
   ingredientsSelect = () => {
     return Object.values(this.props.ingredients).map(el => {
@@ -110,7 +152,6 @@ class RecipeInput extends React.Component {
       <ul>
         {this.state.recipe.ingredients.map((el, i) => {
           return (
-            
             <li key={i}>
               {`${el.amount} ${this.props.measures[el.measure_id].name} of ${
                 this.props.ingredients[el.ingredient_id].name
@@ -121,6 +162,26 @@ class RecipeInput extends React.Component {
       </ul>
     );
   };
+
+  ingredientTypeSelect = () => {
+    return (
+      <Select
+        placeholder="type"
+        style={{ width: 120 }}
+        onChange={this.handleChangeTypeSelect}
+      >
+        {Object.values(this.props.ingredientTypes).map((el, i) => {
+          return (
+            <Option key={i} value={el.id}>
+              {el.name}
+            </Option>
+          );
+        })}
+      </Select>
+    );
+  };
+
+  // Input confirm
 
   addIngredient = () => {
     const { recipe } = this.state;
@@ -144,8 +205,13 @@ class RecipeInput extends React.Component {
         measure_id: 1
       }
     });
+  };
 
-    console.log(this.state);
+  sendNewIngredient = e => {
+    e.preventDefault();
+    this.props.postIngredient(this.state.newIngredient)
+    .then(data => console.log(data))
+
   };
 
   render() {
@@ -174,6 +240,13 @@ class RecipeInput extends React.Component {
                       placeholder="Recipe name"
                     />
                   </FormItem>
+                  <FormItem label="Image URL">
+                    <Input
+                      type="url"
+                      prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+                      placeholder="Image URL"
+                    />
+                  </FormItem>
                   <FormItem label="Recipe Instructions">
                     <TextArea
                       autosize
@@ -183,60 +256,90 @@ class RecipeInput extends React.Component {
                     />
                   </FormItem>
                 </TabPane>
-                <TabPane tab="3" key="2">
+
+                <TabPane tab="Ingredient" key="2">
                   <div className="ingredient__list">
                     {this.ingredientList()}
                   </div>
 
-                  <div
-                    className="ingredient__select"
-                    style={
-                      this.state.selectedIngredient.title === ''
-                        ? { display: 'none' }
-                        : { display: '' }
-                    }
-                  >
-                    <FormItem label={this.state.selectedIngredient.title}>
-                      <Input
-                        value={this.state.selectedIngredient.amount}
-                        name="amount"
-                        style={{ width: 80 }}
-                        //prefix={<Icon type="user" style={{ fontSize: 13 }} />}
-                        placeholder="Amount"
-                        onChange={this.handleChangeIngredient}
-                      />
-                      <Select
-                        defaultValue="measure"
-                        name="measure"
-                        style={{ width: 100 }}
-                        onChange={this.handleChangeMeasureSelect}
+                  <Collapse bordered={false} accordion>
+                    <Panel header="Choose existing ingredient" key="1">
+                      <FormItem>
+                        <Select
+                          showSearch
+                          name="title"
+                          onChange={this.handleChangeIngredientSelect}
+                          placeholder="Select an ingredient"
+                          optionFilterProp="children"
+                          filterOption={(input, option) =>
+                            option.props.children
+                              .toLowerCase()
+                              .indexOf(input.toLowerCase()) >= 0
+                          }
+                        >
+                          {this.ingredientsSelect()}
+                        </Select>
+                      </FormItem>
+                      <div
+                        className="ingredient__select"
+                        style={
+                          this.state.selectedIngredient.title === ''
+                            ? { display: 'none' }
+                            : { display: '' }
+                        }
                       >
-                        {this.measureSelect()}
-                      </Select>
-                      <Button onClick={this.addIngredient}>Ok</Button>
-                    </FormItem>
-                  </div>
-                  <Button onClick={() => console.log(this.state)}>click</Button>
-                  <FormItem label="Add Ingredient">
-                    <Select
-                      showSearch
-                      name="title"
-                      onChange={this.handleChangeIngredientSelect}
-                      placeholder="Select an ingredient"
-                      optionFilterProp="children"
-                      filterOption={(input, option) =>
-                        option.props.children
-                          .toLowerCase()
-                          .indexOf(input.toLowerCase()) >= 0
-                      }
-                    >
-                      {this.ingredientsSelect()}
-                    </Select>
-                  </FormItem>
-                  <FormItem label="Create new Ingredient">
+                        <FormItem label="Select amount and measure unit">
+                          <Input
+                            value={this.state.selectedIngredient.amount}
+                            name="amount"
+                            style={{ width: 80 }}
+                            placeholder="Amount"
+                            onChange={
+                              this.handleChangeIngredient //prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+                            }
+                          />
+                          <Select
+                            placeholder="unit"
+                            name="measure"
+                            style={{ width: 100 }}
+                            onChange={this.handleChangeMeasureSelect}
+                          >
+                            {this.measureSelect()}
+                          </Select>
+                          <Button type="primary" onClick={this.addIngredient}>
+                            Ok
+                          </Button>
+                        </FormItem>
+                      </div>
+                    </Panel>
 
-                  </FormItem>
+                    <Panel header="Create a new ingredient" key="2">
+                      <FormItem>
+                        <Input
+                          addonAfter={this.ingredientTypeSelect()}
+                          name="name"
+                          placeholder="Ingredient name"
+                          onChange={this.handleChangeNewIngredient}
+                        />
+                        <FormItem>
+                          <Button
+                            disabled={
+                              this.state.newIngredient.name &&
+                              this.state.newIngredient.ingredient_type_id
+                                ? false
+                                : true
+                            }
+                            type="primary"
+                            onClick={this.sendNewIngredient}
+                          >
+                            Add
+                          </Button>
+                        </FormItem>
+                      </FormItem>
+                    </Panel>
+                  </Collapse>
                 </TabPane>
+
                 <TabPane tab="Finish" key="3">
                   {RecipeInputSummary()}
                 </TabPane>
@@ -258,13 +361,15 @@ const mapStateToProps = state => ({
   ingredients: state.entities.allIngredients,
   loading: state.pages.loadingRecipes,
   recipes: state.pages.recipesIndex.map(el => state.entities.recipes[el]),
-  measures: state.entities.measures
+  measures: state.entities.measures,
+  ingredientTypes: state.entities.ingredient_types
 });
 
-// const mapDispatchToProps = dispatch => ({
-// });
+const mapDispatchToProps = dispatch => ({
+  postIngredient: data => dispatch(postIngredient(data))
+});
 
 export default connect(
-  mapStateToProps
-  // mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(RecipeInput);
