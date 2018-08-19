@@ -55,12 +55,12 @@ class Day extends React.Component {
   render() {
     if (this.props.recipe !== undefined) {
       return (
-        <div className="day" onClick={this.showModal}>
-          <div className="day__side">
+        <div className="day monday" onClick={this.showModal}>
+          {/* <div className="day__side">
             <Avatar size="large" style={{ backgroundColor: '#87d068' }}>
               {this.props.recipe.title[0]}
             </Avatar>
-          </div>
+          </div> */}
           <div className="day__main">
             <div className="day__main--title">
               <p>
@@ -110,11 +110,11 @@ class Day extends React.Component {
     } else {
       return (
         <div className="day" onClick={this.showModal}>
-          <div className="day__side">
+          {/* <div className="day__side">
             <Avatar size="large" style={{ backgroundColor: '#87d068' }}>
               O
             </Avatar>
-          </div>
+          </div> */}
           <div className="day__main">
             <div className="day__main--title">
               <p>{this.props.day}</p>
