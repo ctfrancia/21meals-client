@@ -9,6 +9,13 @@
   margin-bottom: 3rem;
 }
 
+.loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .ant-layout {
-  background: #f3f2ea;
+  /* background: #f3f2ea; */
 }

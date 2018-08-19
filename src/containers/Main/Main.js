@@ -28,7 +28,7 @@ class Main extends React.Component {
   renderCards() {
     if (this.props.loading) {
       return (
-        <div className="cards">
+        <div className="cards loading">
           <Spin size="large" />
         </div>
       );
