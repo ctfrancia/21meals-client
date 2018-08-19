@@ -1,10 +1,12 @@
 import React from 'react';
 import './SignUp.css';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import logo from '../../assets/logo.svg';
 import { Form, Icon, Input, Button } from 'antd';
 import { Link } from 'react-router-dom';
+import { register } from '../../actions/user.actions';
+import { history } from '../../helpers/history';
 const FormItem = Form.Item;
 
 class SignUp extends React.Component {
@@ -32,8 +34,11 @@ class SignUp extends React.Component {
     });
   }
 
-  handleSubmit = e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
+    await this.props.register(this.state.user)
+    history.push('/main')
+    
   };
   render() {
     return (
@@ -55,7 +60,7 @@ class SignUp extends React.Component {
               />
             </FormItem>
             <FormItem>
-              <Input
+              <Input required
                 onChange={this.handleChange}
                 name="lastName"
                 value={this.state.user.lastName}
@@ -66,7 +71,7 @@ class SignUp extends React.Component {
               />
             </FormItem>
             <FormItem>
-              <Input
+              <Input required
                 onChange={this.handleChange}
                 value={this.state.user.email}
                 name="email"
@@ -77,7 +82,7 @@ class SignUp extends React.Component {
               />
             </FormItem>
             <FormItem>
-              <Input
+              <Input required
                 onChange={this.handleChange}
                 value={this.state.user.password}
                 name="password"
@@ -89,13 +94,19 @@ class SignUp extends React.Component {
               />
             </FormItem>
             <FormItem>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button"
-              >
-                Register
-              </Button>
+              {this.props.loggingIn ? (
+                <Button type="primary" className="login-form-button" loading>
+                  Registering...
+                </Button>
+              ) : (
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="login-form-button"
+                  >
+                    Register
+                </Button>
+                )}
             </FormItem>
             
             <FormItem className="login-form__options">
@@ -110,15 +121,18 @@ class SignUp extends React.Component {
   }
 }
 
-// SignUp.propTypes = {};
+SignUp.propTypes = {
+  register: PropTypes.func,
+  loggingIn: PropTypes.bool
+};
 
-// const mapStateToProps = state => ({
+const mapStateToProps = state => ({
+  loggingIn: state.authentication.logging_in
+});
 
-// });
+const mapDispatchToProps = dispatch => ({
+register: (data) => dispatch(register(data))
+});
 
-// const mapDispatchToProps = dispatch => ({
-// });
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
 
-export default connect()(SignUp);
-// mapStateToProps
-// mapDispatchToProps

@@ -19,7 +19,7 @@ export const register = (data) => ({
   type: usersConstants.REGISTER,
   api: {
     endpoint: '/users',
-    method: 'GET',
-    
+    method: 'POST',
+    body: data
   },
 });
