@@ -56,7 +56,7 @@ class ShoppingList extends React.Component {
   render() {
     return (
       <div>
-        <TopBar />
+        <TopBar section="My Shopping List"/>
         <Layout>
           <Content>
             <div className="list">

@@ -52,7 +52,7 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <TopBar />
+        <TopBar section="My Recipes"/>
         <Layout>
           <Content>{this.renderCards()}</Content>
         </Layout>

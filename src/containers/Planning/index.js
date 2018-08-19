@@ -30,7 +30,7 @@ class Planning extends Component {
   render() {
     return (
       <div>
-        <TopBar />
+        <TopBar section="My Weekly Planning"/>
         <Layout>
           <Content className="planning">{this.renderPlanning()}</Content>
         </Layout>
