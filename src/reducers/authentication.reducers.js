@@ -1,15 +1,18 @@
 import { usersConstants } from '../constants/users.constants';
-const defaultState = {
+let user = JSON.parse(localStorage.getItem('user'));
+const defaultState = user ? {
   logging_in: false,
-  logged_in: false
-};
+  logged_in: true,
+  user
+} : {};
 
 export default (state = defaultState, action) => {
   switch (action.type) {
     case usersConstants.LOGIN_REQUEST:
       return {
         ...state,
-        logging_in: true
+        logging_in: true,
+        logged_in: false
       };
     case usersConstants.LOGIN_SUCCESS:
       localStorage.setItem('user', JSON.stringify(action.data));
@@ -17,17 +20,22 @@ export default (state = defaultState, action) => {
         ...state,
         logging_in: false,
         logged_in: true,
-        user: {
-          userId: action.data.id,
-          firstName: action.data.first_name,
-          lastName: action.data.last_name
-        }
+        user: action.data
       };
     case usersConstants.LOGIN_FAILURE:
       return {
         ...state,
         logging_in: false,
-        logged_in: true
+        logged_in: false
+      };
+    
+    case usersConstants.LOGOUT:
+      localStorage.removeItem('user');
+      return {
+        ...state,
+        logging_in: false,
+        logged_in: false,
+        user: {}
       };
     default:
       return state;

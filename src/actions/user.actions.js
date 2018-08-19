@@ -13,7 +13,6 @@ export const login = (data) => ({
 
 export const logout = () => ({
   type: usersConstants.LOGOUT,
-  
 });
 
 export const register = (data) => ({
