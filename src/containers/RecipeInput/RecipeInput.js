@@ -234,7 +234,7 @@ class RecipeInput extends React.Component {
       <div>
         <RecipeCard
           handleClick={this.showModal}
-          imageUrl="https://cdn.onlinewebfonts.com/svg/img_211806.png"
+          imageUrl={recipe}
           name="Add new"
           description="Add your recipe"
         />
