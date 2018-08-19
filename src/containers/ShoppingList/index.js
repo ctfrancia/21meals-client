@@ -11,7 +11,22 @@ import { connect } from 'react-redux';
 import { Layout, List, Icon, Checkbox } from 'antd';
 import './ShoppingList.css';
 import 'antd/dist/antd.css';
+import alcohol from '../../assets/icons/alcohol.svg'
+import Pasta from '../../assets/icons/pasta.svg'
+import Mushrooms from '../../assets/icons/mushroom.svg'
+import Dairy from '../../assets/icons/milk.svg'
+import Vegetables from '../../assets/icons/carrot.svg'
+import Condiments from '../../assets/icons/condiments.svg'
+import Cereals from '../../assets/icons/cereals.svg'
+import Legumes from '../../assets/icons/legumes.svg'
+import Soup from '../../assets/icons/soup.svg'
+import Bakery from '../../assets/icons/bread.svg'
+import Fruits from '../../assets/icons/fruit.svg'
 const { Content } = Layout;
+
+const icons = {
+  alcohol, Pasta, Mushrooms, Dairy, Vegetables, Condiments, Cereals, Legumes, 'Broths & Soups': Soup, Bakery, Fruits
+}
 
 function onChange() {
   // console.log(`checked = ${e.target.checked}`);
@@ -27,8 +42,10 @@ class ShoppingList extends React.Component {
             key={category}
             header={
               <div className="list__list--header">
-                <img src="../../assets/Icons/alcohol.svg" />
+                <img src={icons[category]} />
+                <div className="list__list--header--category">
                 {category.toUpperCase()}
+                </div>
               </div>
             }
             bordered

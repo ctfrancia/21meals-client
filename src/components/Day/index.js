@@ -95,7 +95,7 @@ class Day extends React.Component {
                         avatar={<Avatar>{item.title[0]}</Avatar>}
                         title={item.title}
                         onClick={this.handleRecipeChange.bind(this, item)}
-                        description="Click here to add this meal to your planning. The shopping list will update"
+                        
                       />
                     </List.Item>
                   )}
