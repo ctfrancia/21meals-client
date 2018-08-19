@@ -1,5 +1,5 @@
 .recipe__input .ant-modal-header {
-  background: linear-gradient( rgba(230, 155, 118, 0.8), rgba(230, 155, 118, 0.8)), url(../../assets/food.jpg);
+  background: linear-gradient( rgba(37, 33, 52, 0.6), rgba(37, 33, 52, 0.6)), url(../../assets/food.jpg);
   min-height: 80px;
   background-size: cover;
 }

@@ -2,6 +2,8 @@ import React from 'react';
 import { Button } from 'antd';
 
 function RecipeInputSummary(props) {
+  console.log(props);
+  
   return (
     <div>
       <div className="recipe__header">
@@ -14,22 +16,10 @@ function RecipeInputSummary(props) {
       <div className="recipe__body">
         <div className="recipe__body--ingredients">
           <ul>
-            <li>200 grams Potatoes</li>
-            <li>2 gr Salt</li>
-            <li>20 ml Oil</li>
+            
           </ul>
         </div>
-        <div className="recipe__body--instructions">
-          {!props.instructions ? (
-            <p>
-              <i>There is still no description for this recipe. Please add one</i>
-            </p>
-          ) : (
-            <p>
-              <i>{props.instructions}</i>
-            </p>
-          )}
-        </div>
+        
         
       </div>
     </div>

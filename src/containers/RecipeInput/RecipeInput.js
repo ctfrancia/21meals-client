@@ -7,7 +7,7 @@ import RecipeCard from '../../components/RecipeCard';
 import { postIngredient } from '../../actions/ingredients.actions';
 import { postRecipe } from '../../actions/recipes.actions';
 import TextArea from '../../../node_modules/antd/lib/input/TextArea';
-import recipe from "../../assets/icons/recipe.svg";
+import recipe from '../../assets/icons/recipe.svg';
 import './RecipeInput.css';
 const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
@@ -20,6 +20,11 @@ class RecipeInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      tabs: {
+        activeKey: '1',
+        next: true,
+        prev: false
+      },
       recipe: {
         title: '',
         instructions: '',
@@ -42,7 +47,6 @@ class RecipeInput extends React.Component {
 
   //Input handlers
 
-  
   handleChangeRecipe = event => {
     const { name, value } = event.target;
     const { recipe } = this.state;
@@ -54,7 +58,6 @@ class RecipeInput extends React.Component {
       }
     });
   };
-
 
   handleChangeIngredient = event => {
     const { name, value } = event.target;
@@ -160,6 +163,7 @@ class RecipeInput extends React.Component {
 
   ingredientList = () => {
     return (
+      this.state.recipe.ingredients.length === 0 ? <p>Add some ingredients to your recipe</p> :
       <ul>
         {this.state.recipe.ingredients.map((el, i) => {
           return (
@@ -225,8 +229,56 @@ class RecipeInput extends React.Component {
 
   sendNewRecipe = e => {
     e.preventDefault();
+    console.log(this.state);
     
-    this.props.postRecipe(this.state.Recipe);
+    this.props.postRecipe(this.state.recipe);
+  };
+
+  changeTab = direction => {
+
+    const { tabs } = this.state;
+    const { activeKey } = tabs;
+
+    if (activeKey === '1' && direction === true) {
+      this.setState({
+        ...this.state,
+        tabs: {
+          activeKey: '2',
+          next: true,
+          prev: true
+        }
+      });
+    }
+    if (activeKey === '2' && !direction) {
+      this.setState({
+        ...this.state,
+        tabs: {
+          activeKey: '1',
+          next: true,
+          prev: false
+        }
+      });
+    }
+    if (activeKey === '2' && direction) {
+      this.setState({
+        ...this.state,
+        tabs: {
+          activeKey: '3',
+          next: false,
+          prev: true
+        }
+      });
+    }
+    if (activeKey === '3' && !direction) {
+      this.setState({
+        ...this.state,
+        tabs: {
+          activeKey: '2',
+          next: true,
+          prev: true
+        }
+      });
+    }
   };
 
   render() {
@@ -239,16 +291,42 @@ class RecipeInput extends React.Component {
           description="Add your recipe"
         />
         <Modal
+          style={{ top: 20 }}
           className="recipe__input"
           title="New Recipe"
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
+          footer={[
+            <Button
+              disabled={!this.state.tabs.prev ? true : false}
+              key="back"
+              size="large"
+              type="primary"
+              onClick={this.changeTab.bind(this, false)}
+            >
+              Prev
+            </Button>,
+            <Button 
+              disabled={!this.state.tabs.next ? true: false}
+              key="submit"
+              type="primary"
+              size="large"
+              onClick={this.changeTab.bind(this, true)}
+            >
+              Next
+            </Button>
+          ]}
         >
           <div>
             <Form layout="vertical" onSubmit={this.handleSubmit}>
-              <Tabs tabPosition="bottom">
+              <Tabs
+                tabPosition="top"
+                size="small"
+                activeKey={this.state.tabs.activeKey}
+              >
                 <TabPane tab="Recipe" key="1">
+                  <h2 className="ingredients">Your Recipe</h2>
                   <FormItem label="Recipe name">
                     <Input
                       prefix={<Icon type="user" style={{ fontSize: 13 }} />}
@@ -268,26 +346,17 @@ class RecipeInput extends React.Component {
                       placeholder="Image URL"
                     />
                   </FormItem>
-                  <FormItem label="Recipe Instructions">
-                    <TextArea
-                      value={this.state.recipe.instructions}
-                      onChange={this.handleChangeRecipe}
-                      name="instructions"
-                      autosize
-                      type="text"
-                      prefix={<Icon type="user" style={{ fontSize: 13 }} />}
-                      placeholder="Instructions..."
-                    />
-                  </FormItem>
+                  
                 </TabPane>
 
                 <TabPane tab="Ingredient" key="2">
+                  <h2 className="ingredients">Ingredients</h2>
                   <div className="ingredient__list">
                     {this.ingredientList()}
                   </div>
 
                   <Collapse bordered={false} accordion>
-                    <Panel header="Choose existing ingredient" key="1">
+                    <Panel header="Choose an existing ingredient" key="1">
                       <FormItem>
                         <Select
                           showSearch
@@ -373,7 +442,20 @@ class RecipeInput extends React.Component {
                 <TabPane tab="Finish" key="3">
                   {RecipeInputSummary(this.state.recipe)}
                   <div className="recipe__body--confirm">
-                    <Button type="primary" onClick={this.sendNewRecipe}>Spot on, baby boy</Button>
+                    <FormItem label="Recipe Instructions">
+                      <TextArea
+                        value={this.state.recipe.instructions}
+                        onChange={this.handleChangeRecipe}
+                        name="instructions"
+                        autosize
+                        type="text"
+                        prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+                        placeholder="There are no instructions for this recipe. Add some!"
+                      />
+                    </FormItem>
+                    <Button type="primary" onClick={this.sendNewRecipe}>
+                      Spot on, baby boy
+                    </Button>
                   </div>
                 </TabPane>
               </Tabs>
@@ -393,7 +475,6 @@ RecipeInput.propTypes = {
   ingredientTypes: PropTypes.object,
   postIngredient: PropTypes.func,
   postRecipe: PropTypes.func
-
 };
 
 const mapStateToProps = state => ({
