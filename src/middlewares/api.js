@@ -9,13 +9,14 @@
 //     …
 //   }
 // }
+import { history } from '../helpers/history';
+
 import { normalize } from 'normalizr';
 
 const BASE_URL = 'https://private-anon-9d15778814-mealee.apiary-mock.com'; //CHANGE THIS TO SERVER URL
 
 export default store => next => action => {
   if (!action.api) return next(action);
-console.log('fire!')
   const { endpoint, method } = action.api;
   let { body, headers } = action.api;
 
@@ -50,6 +51,14 @@ console.log('fire!')
           api: undefined,
           ...normalize(data, action.schema)
         });
+      } else if (action.type == 'LOGIN') {
+        store.dispatch({
+          ...action,
+          type: `${action.type}_SUCCESS`,
+          api: undefined,
+          data
+        });
+        history.push('/main');
       } else {
         store.dispatch({
           ...action,

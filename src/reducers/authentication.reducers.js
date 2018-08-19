@@ -1,6 +1,4 @@
 import { usersConstants } from '../constants/users.constants';
-
-
 const defaultState = {
   logging_in: false,
   logged_in: false
@@ -14,7 +12,7 @@ export default (state = defaultState, action) => {
         logging_in: true
       };
     case usersConstants.LOGIN_SUCCESS:
-    localStorage.setItem('user', JSON.stringify(action.data))
+      localStorage.setItem('user', JSON.stringify(action.data));
       return {
         ...state,
         logging_in: false,

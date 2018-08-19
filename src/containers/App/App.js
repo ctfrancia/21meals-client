@@ -6,16 +6,25 @@ import ShoppingList from '../ShoppingList';
 import Planning from '../Planning';
 import Main from '../Main/Main';
 import PropTypes from 'prop-types';
-
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { getAllIngredients, getAllTypes  } from '../../actions/ingredients.actions';
+import { PrivateRoute } from '../../helpers/PrivateRoute';
+import { Router, Route } from 'react-router-dom';
+import {
+  getAllIngredients,
+  getAllTypes
+} from '../../actions/ingredients.actions';
 import { getAllRecipes } from '../../actions/recipes.actions';
 import { getAllPlans } from '../../actions/plans.actions';
+import { getAllMeasures } from '../../actions/measures.actions';
 import Login from '../Login';
 import SignUp from '../SignUp';
-import { getAllMeasures } from '../../actions/measures.actions';
+import { history } from '../../helpers/history';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    history.listen ((location, action) => {
+    });
+  }
   componentDidMount() {
     this.props.getAllRecipes();
     this.props.getAllIngredients();
@@ -27,13 +36,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Router>
+        <Router history={history}>
           <div>
             <Route exact path="/" component={Login} />
-            <Route exact path="/main" component={Main} />
-            <Route path="/planning" component={Planning} />
-            <Route path="/list" component={ShoppingList} />
             <Route path="/signup" component={SignUp} />
+            <PrivateRoute exact path="/main" component={Main} />
+            <PrivateRoute path="/planning" component={Planning} />
+            <PrivateRoute path="/list" component={ShoppingList} />
           </div>
         </Router>
       </div>
@@ -44,6 +53,8 @@ class App extends Component {
 App.propTypes = {
   getAllIngredients: PropTypes.func,
   getAllRecipes: PropTypes.func,
+  getAllMeasures: PropTypes.func,
+  getAllIngredientTypes: PropTypes.func,
   getAllPlans: PropTypes.func
 };
 const mapStateToProps = () => ({});
