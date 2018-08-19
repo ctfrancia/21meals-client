@@ -1,13 +1,14 @@
-import { Modal, Form, Icon, Input, Button, Tabs, Select, Collapse } from 'antd';
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import RecipeCard from '../../components/RecipeCard';
-import './RecipeInput.css';
-import TextArea from '../../../node_modules/antd/lib/input/TextArea';
+import { Modal, Form, Icon, Input, Button, Tabs, Select, Collapse } from 'antd';
+import { connect } from 'react-redux';
 import RecipeInputSummary from '../../components/RecipeInputSummary';
+import RecipeCard from '../../components/RecipeCard';
 import { postIngredient } from '../../actions/ingredients.actions';
 import { postRecipe } from '../../actions/recipes.actions';
+import TextArea from '../../../node_modules/antd/lib/input/TextArea';
+import recipe from "../../assets/icons/recipe.svg";
+import './RecipeInput.css';
 const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
 const Panel = Collapse.Panel;
@@ -337,12 +338,12 @@ class RecipeInput extends React.Component {
                     </Panel>
 
                     <Panel header="Create a new ingredient" key="2">
-                      <Button
+                      {/* <Button
                         type="primary"
                         onClick={() => console.log(this.state)}
                       >
                         Ok
-                      </Button>
+                      </Button> */}
                       <FormItem>
                         <Input
                           addonAfter={this.ingredientTypeSelect()}
@@ -386,7 +387,13 @@ class RecipeInput extends React.Component {
 
 RecipeInput.propTypes = {
   recipes: PropTypes.array,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  ingredients: PropTypes.object,
+  measures: PropTypes.object,
+  ingredientTypes: PropTypes.object,
+  postIngredient: PropTypes.func,
+  postRecipe: PropTypes.func
+
 };
 
 const mapStateToProps = state => ({
