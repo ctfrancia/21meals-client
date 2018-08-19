@@ -13,6 +13,8 @@
 }
 
 .list__list {
+  padding-top: 3.4rem;
+  padding-bottom: 2.5rem;
   overflow: scroll;
 }
 
@@ -23,7 +25,11 @@
   padding: 1rem;
 }
 
-.ant-list-header {
+.list__list .ant-list {
+  border-top: 1px solid black;
+}
+
+.list__list .ant-list-header {
   font-weight: bold;
   background-color: #fafafa
 }

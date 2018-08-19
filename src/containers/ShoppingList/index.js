@@ -27,7 +27,7 @@ class ShoppingList extends React.Component {
             key={category}
             header={
               <div className="list__list--header">
-                <Icon type="coffee" />
+                <img src="../../assets/Icons/alcohol.svg" />
                 {category.toUpperCase()}
               </div>
             }
@@ -56,19 +56,12 @@ class ShoppingList extends React.Component {
   render() {
     return (
       <div>
-        <TopBar section="My Shopping List"/>
-        <Layout>
-          <Content>
-            <div className="list">
-              <div className="list__image">
-                <div className="list__image--title">
-                  <h2>Shopping List</h2>
-                </div>
-              </div>
-              <div className="list__list">{this.createShoppingList()}</div>
-            </div>
-          </Content>
-        </Layout>
+        <TopBar section="My Shopping List" />
+
+        <div className="list">
+          <div className="list__list">{this.createShoppingList()}</div>
+        </div>
+
         <BottomBar />
       </div>
     );
