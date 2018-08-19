@@ -8,13 +8,6 @@ import Main from '../Main/Main';
 import PropTypes from 'prop-types';
 import { PrivateRoute } from '../../helpers/PrivateRoute';
 import { Router, Route } from 'react-router-dom';
-import {
-  getAllIngredients,
-  getAllTypes
-} from '../../actions/ingredients.actions';
-import { getAllRecipes } from '../../actions/recipes.actions';
-import { getAllPlans } from '../../actions/plans.actions';
-import { getAllMeasures } from '../../actions/measures.actions';
 import Login from '../Login';
 import SignUp from '../SignUp';
 import { history } from '../../helpers/history';
@@ -26,11 +19,7 @@ class App extends Component {
     });
   }
   componentDidMount() {
-    this.props.getAllRecipes();
-    this.props.getAllIngredients();
-    this.props.getAllPlans();
-    this.props.getAllMeasures();
-    this.props.getAllIngredientTypes();
+
   }
 
   render() {
@@ -50,21 +39,12 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  getAllIngredients: PropTypes.func,
-  getAllRecipes: PropTypes.func,
-  getAllMeasures: PropTypes.func,
-  getAllIngredientTypes: PropTypes.func,
-  getAllPlans: PropTypes.func
-};
+App.propTypes = {};
+
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  getAllIngredients: () => dispatch(getAllIngredients()),
-  getAllRecipes: () => dispatch(getAllRecipes()),
-  getAllPlans: () => dispatch(getAllPlans()),
-  getAllMeasures: () => dispatch(getAllMeasures()),
-  getAllIngredientTypes: () => dispatch(getAllTypes())
+  
 });
 
 export default connect(

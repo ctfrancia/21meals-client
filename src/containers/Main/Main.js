@@ -7,11 +7,24 @@ import './Main.css';
 import TopBar from '../../components/TopBar';
 import BottomBar from '../../components/BottomBar';
 import RecipeInput from '../RecipeInput/RecipeInput';
+import {
+  getAllIngredients,
+  getAllTypes
+} from '../../actions/ingredients.actions';
+import { getAllRecipes } from '../../actions/recipes.actions';
+import { getAllPlans } from '../../actions/plans.actions';
+import { getAllMeasures } from '../../actions/measures.actions';
 
 const { Content } = Layout;
 
 class Main extends React.Component {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getAllRecipes();
+    this.props.getAllIngredients();
+    this.props.getAllPlans();
+    this.props.getAllMeasures();
+    this.props.getAllIngredientTypes();
+  }
   renderCards() {
     if (this.props.loading) {
       return (
@@ -51,7 +64,12 @@ class Main extends React.Component {
 
 Main.propTypes = {
   recipes: PropTypes.array,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  getAllIngredients: PropTypes.func,
+  getAllRecipes: PropTypes.func,
+  getAllMeasures: PropTypes.func,
+  getAllIngredientTypes: PropTypes.func,
+  getAllPlans: PropTypes.func
 };
 
 const mapStateToProps = state => ({
@@ -59,10 +77,15 @@ const mapStateToProps = state => ({
   recipes: state.pages.recipesIndex.map(el => state.entities.recipes[el])
 });
 
-// const mapDispatchToProps = dispatch => ({
-// });
+const mapDispatchToProps = dispatch => ({
+  getAllIngredients: () => dispatch(getAllIngredients()),
+  getAllRecipes: () => dispatch(getAllRecipes()),
+  getAllPlans: () => dispatch(getAllPlans()),
+  getAllMeasures: () => dispatch(getAllMeasures()),
+  getAllIngredientTypes: () => dispatch(getAllTypes())
+});
 
 export default connect(
-  mapStateToProps
-  // mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Main);
