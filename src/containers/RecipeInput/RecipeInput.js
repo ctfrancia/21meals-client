@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Form, Icon, Input, Button, Tabs, Select, Collapse } from 'antd';
 import { connect } from 'react-redux';
-import RecipeInputSummary from '../../components/RecipeInputSummary';
 import RecipeCard from '../../components/RecipeCard';
 import { postIngredient } from '../../actions/ingredients.actions';
 import { postRecipe } from '../../actions/recipes.actions';
@@ -31,7 +30,7 @@ class RecipeInput extends React.Component {
         photo: '',
         ingredients: []
       },
-      selectedIngredient: {
+      selectedIngredient: {  
         title: '',
         ingredient_id: '',
         amount: '',
@@ -229,7 +228,6 @@ class RecipeInput extends React.Component {
 
   sendNewRecipe = e => {
     e.preventDefault();
-    console.log(this.state);
     
     this.props.postRecipe(this.state.recipe);
   };
@@ -440,7 +438,26 @@ class RecipeInput extends React.Component {
                 </TabPane>
 
                 <TabPane tab="Finish" key="3">
-                  {RecipeInputSummary(this.state.recipe)}
+                  <div>
+                    <div className="recipe__header">
+                      <div className="recipe__header--image">
+                        <div className="recipe__header--title">
+                          {!this.state.recipe.title ? (
+                            <h2>Untitled Recipe</h2>
+                          ) : (
+                              <h2>{this.state.recipe.title}</h2>
+                            )}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="recipe__body">
+                      <div className="recipe__body--ingredients">
+                        <div className="ingredient__list">
+                          {this.ingredientList()}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div className="recipe__body--confirm">
                     <FormItem label="Recipe Instructions">
                       <TextArea

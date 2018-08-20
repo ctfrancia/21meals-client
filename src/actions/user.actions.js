@@ -5,6 +5,7 @@ export const login = (data) => ({
   api: { 
     endpoint: '/sign-in',
     method: 'GET', 
+    
     headers: {
       Authorization: 'Basic ' + btoa(data.username + ":" + data.password)
     },
