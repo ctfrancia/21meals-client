@@ -87,13 +87,14 @@ Main.propTypes = {
 
 const mapStateToProps = state => ({
   loading: state.pages.loadingRecipes,
-  recipes: state.pages.recipesIndex.map(el => state.entities.recipes[el])
+  recipes: state.pages.recipesIndex.map(el => state.entities.recipes[el]),
+  planId: state.authentication.user.plan_id
 });
 
 const mapDispatchToProps = dispatch => ({
   getAllIngredients: () => dispatch(getAllIngredients()),
   getAllRecipes: () => dispatch(getAllRecipes()),
-  getAllPlans: () => dispatch(getAllPlans()),
+  
   getAllMeasures: () => dispatch(getAllMeasures()),
   getAllIngredientTypes: () => dispatch(getAllTypes())
 });

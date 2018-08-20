@@ -3,9 +3,9 @@ import * as schema from './schemas';
 import { authHeader } from '../helpers/auth.header';
 const autHeader = authHeader();
 
-export const getAllPlans = () => ({
+export const getAllPlans = (planId) => ({
   type: plansConstants.PLANS_GET_ALL,
-  api: { headers: autHeader, endpoint: '/plans/plan_id' },
+  api: { headers: autHeader, endpoint: '/plans/'+planId },
   schema: schema.planSchema
 });
 

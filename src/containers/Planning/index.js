@@ -5,11 +5,14 @@ import { Layout } from 'antd';
 import TopBar from '../../components/TopBar';
 import BottomBar from '../../components/BottomBar';
 import Day from '../../components/Day';
+import { getAllPlans } from '../../actions/plans.actions';
 import './Planning.css';
 const { Content } = Layout;
 
 class Planning extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getAllPlans(this.props.planId);
+  }
 
   renderPlanning() {
     const plan = this.props.meals_plan;
@@ -49,13 +52,15 @@ Planning.propTypes = {
 const mapStateToProps = state => ({
   meals_plan: state.entities.meals_plan,
   plan: state.entities.plan[state.pages.plansIndex],
-  loading: state.pages.loadingPlans
+  loading: state.pages.loadingPlans,
+  planId: state.authentication.user.plan_id
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-// });
+const mapDispatchToProps = dispatch => ({
+  getAllPlans: (planId) => dispatch(getAllPlans(planId))
+});
 
 export default connect(
-  mapStateToProps
-  // mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Planning);
