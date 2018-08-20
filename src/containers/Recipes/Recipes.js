@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Layout, Spin, notification, Button } from 'antd';
 import RecipeCard from '../../components/RecipeCard';
-import './Main.css';
+import './Recipes.css';
 import TopBar from '../../components/TopBar';
 import BottomBar from '../../components/BottomBar';
 import RecipeInput from '../RecipeInput/RecipeInput';
@@ -16,14 +16,12 @@ import { getAllMeasures } from '../../actions/measures.actions';
 
 const { Content } = Layout;
 
-class Main extends React.Component {
+class Recipes extends React.Component {
   componentDidMount() {
-    
     this.props.getAllRecipes();
     this.props.getAllIngredients();
     this.props.getAllMeasures();
     this.props.getAllIngredientTypes();
-    if (this.props.recipes.length === 0) this.openNotification();
   }
 
   openNotification = () => {
@@ -41,17 +39,17 @@ class Main extends React.Component {
           <Spin size="large" />
         </div>
       );
+    } else if (this.props.recipes.length === 0) {
+      return <div className="cards">
+          <RecipeInput />
+          {this.openNotification()}
+        </div>;
     } else {
       return (
         <div className="cards">
-          {}
           <RecipeInput />
           {this.props.recipes.map((el, i) => (
-            <RecipeCard
-              key={i}
-              imageUrl={el.photo}
-              name={el.title} 
-            />
+            <RecipeCard key={i} imageUrl={el.photo} name={el.title} />
           ))}
         </div>
       );
@@ -70,7 +68,7 @@ class Main extends React.Component {
   }
 }
 
-Main.propTypes = {
+Recipes.propTypes = {
   recipes: PropTypes.array,
   loading: PropTypes.bool,
   getAllIngredients: PropTypes.func,
@@ -89,7 +87,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getAllIngredients: () => dispatch(getAllIngredients()),
   getAllRecipes: () => dispatch(getAllRecipes()),
-  
+
   getAllMeasures: () => dispatch(getAllMeasures()),
   getAllIngredientTypes: () => dispatch(getAllTypes())
 });
@@ -97,4 +95,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Main);
+)(Recipes);

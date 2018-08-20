@@ -37,7 +37,7 @@ class SignUp extends React.Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     await this.props.register(this.state.user)
-    history.push('/main')
+    history.push('/')
     
   };
   render() {

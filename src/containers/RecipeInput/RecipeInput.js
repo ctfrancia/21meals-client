@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Form, Icon, Input, Button, Tabs, Select, Collapse } from 'antd';
+import { Modal, Form, Icon, Input, Button, Tabs, Select, Collapse, message } from 'antd';
 import { connect } from 'react-redux';
 import RecipeCard from '../../components/RecipeCard';
 import { postIngredient } from '../../actions/ingredients.actions';
@@ -225,15 +225,24 @@ class RecipeInput extends React.Component {
     });
   };
 
-  sendNewIngredient = e => {
+  sendNewIngredient = async (e) => {
     e.preventDefault();
-    this.props.postIngredient(this.state.newIngredient);
+    await this.props.postIngredient(this.state.newIngredient);
+    this.setState({
+      ...this.state,
+      newIngredient: {
+        name: '',
+        ingredient_type_id: ''
+      }
+
+    })
+
   };
 
-  sendNewRecipe = e => {
+  sendNewRecipe = async (e) => {
     e.preventDefault();
 
-    this.props.postRecipe(this.state.recipe);
+    await this.props.postRecipe(this.state.recipe);
   };
 
   changeTab = direction => {
@@ -345,24 +354,25 @@ class RecipeInput extends React.Component {
                             <Button disabled={this.state.selectedIngredient.measure_id ? false : true} type="primary" onClick={this.addIngredient}>
                               Add
                             </Button>
+                            
                           </FormItem>
                         </div>
                       </div>
                     </Panel>
 
                     <Panel header="Create a new ingredient" key="2">
-                      {/* <Button
+                      <Button
                         type="primary"
                         onClick={() => console.log(this.state)}
                       >
                         Ok
-                      </Button> */}
+                      </Button>
                       <FormItem>
                         <Input addonAfter={this.ingredientTypeSelect()} name="name" placeholder="Ingredient name" onChange={this.handleChangeNewIngredient} />
                         <FormItem>
-                          <Button disabled={this.state.newIngredient.name && this.state.newIngredient.ingredient_type_id ? false : true} type="primary" onClick={this.sendNewIngredient}>
+                          {this.props.postingIngredient ? <Button loading>Posting</Button> : <Button disabled={this.state.newIngredient.name && this.state.newIngredient.ingredient_type_id ? false : true} type="primary" onClick={this.sendNewIngredient}>
                             Add
-                          </Button>
+                          </Button>}
                         </FormItem>
                       </FormItem>
                     </Panel>
@@ -392,7 +402,7 @@ class RecipeInput extends React.Component {
                   </div>
                   <div className="recipe__body--confirm">
                     <FormItem label="Recipe Instructions (optional)">
-                      <TextArea value={this.state.recipe.instructions} onChange={this.handleChangeRecipe} name="instructions" autosize type="text" prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="There are no instructions for this recipe. Add some!" />
+                      <TextArea autosize={{ minRows: 3, maxRows: 6 }} value={this.state.recipe.instructions} onChange={this.handleChangeRecipe} name="instructions" type="text" prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="There are no instructions for this recipe. Add some!" />
                     </FormItem>
                     <Button disabled={this.state.recipe.title && this.state.recipe.ingredients.length > 0 ? false : true} type="primary" onClick={this.sendNewRecipe}>
                       Add Recipe
@@ -422,7 +432,9 @@ const mapStateToProps = state => ({
   loading: state.pages.loadingRecipes,
   recipes: state.pages.recipesIndex.map(el => state.entities.recipes[el]),
   measures: state.entities.measures,
-  ingredientTypes: state.entities.ingredient_types
+  ingredientTypes: state.entities.ingredient_types,
+  postingIngredient: state.pages.postingIngredient,
+  success: state.pages.success,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -59,7 +59,7 @@ export default store => next => action => {
           api: undefined,
           data
         });
-        history.push('/main');
+        history.push('/');
       } else {
         store.dispatch({
           ...action,
