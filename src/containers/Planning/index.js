@@ -47,7 +47,8 @@ Planning.propTypes = {
   getAllPlans: PropTypes.func,
   loading: PropTypes.bool,
   plan: PropTypes.object,
-  meals_plan: PropTypes.object
+  meals_plan: PropTypes.object,
+  planId: PropTypes.string
 };
 
 const mapStateToProps = state => ({

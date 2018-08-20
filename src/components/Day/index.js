@@ -159,7 +159,8 @@ Day.propTypes = {
   meal_time: PropTypes.string,
   changeMeal: PropTypes.func,
   meal_id: PropTypes.string,
-  allRecipes: PropTypes.array
+  allRecipes: PropTypes.array,
+  planId: PropTypes.string
 };
 
 const mapStateToProps = (state, props) => ({

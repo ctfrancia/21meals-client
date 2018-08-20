@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Layout, Spin, notification, Button } from 'antd';
+import { Layout, Spin, notification } from 'antd';
 import RecipeCard from '../../components/RecipeCard';
 import './Recipes.css';
 import TopBar from '../../components/TopBar';

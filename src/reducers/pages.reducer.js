@@ -2,7 +2,7 @@ import { ingredientsConstants } from '../constants/ingredients.constants';
 import { plansConstants } from '../constants/plans.constants';
 import { recipesConstants } from '../constants/recipes.constants';
 import { listConstants } from '../constants/list.constants';
-import { message, Button } from 'antd';
+import { message } from 'antd';
 
 const defaultState = {
   recipesIndex: [],

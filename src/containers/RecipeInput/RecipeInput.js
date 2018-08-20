@@ -1,8 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Form, Icon, Input, Button, Tabs, Select, Collapse, message } from 'antd';
+import {
+  Modal,
+  Form,
+  Icon,
+  Input,
+  Button,
+  Tabs,
+  Select,
+  Collapse,
+  Card
+} from 'antd';
 import { connect } from 'react-redux';
-import RecipeCard from '../../components/RecipeCard';
 import { postIngredient } from '../../actions/ingredients.actions';
 import { postRecipe } from '../../actions/recipes.actions';
 import TextArea from '../../../node_modules/antd/lib/input/TextArea';
@@ -12,6 +21,21 @@ const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
 const Panel = Collapse.Panel;
 const Option = Select.Option;
+const { Meta } = Card;
+const styles = {
+  card: { width: 155, borderRadius: 15 },
+  img: {
+    height: 130,
+    borderRadius: '15px ',
+    objectFit: 'cover'
+  },
+  modalImg: {
+    objectFit: 'cover',
+    borderRadius: '15px ',
+    width: '100%',
+    height: 'auto'
+  }
+};
 
 class RecipeInput extends React.Component {
   //Local storage
@@ -25,7 +49,7 @@ class RecipeInput extends React.Component {
         prev: false
       },
       accordion: {
-        activeKey : '',
+        activeKey: ''
       },
       recipe: {
         title: '',
@@ -225,7 +249,7 @@ class RecipeInput extends React.Component {
     });
   };
 
-  sendNewIngredient = async (e) => {
+  sendNewIngredient = async e => {
     e.preventDefault();
     await this.props.postIngredient(this.state.newIngredient);
     this.setState({
@@ -234,12 +258,10 @@ class RecipeInput extends React.Component {
         name: '',
         ingredient_type_id: ''
       }
-
-    })
-
+    });
   };
 
-  sendNewRecipe = async (e) => {
+  sendNewRecipe = async e => {
     e.preventDefault();
 
     await this.props.postRecipe(this.state.recipe);
@@ -289,39 +311,94 @@ class RecipeInput extends React.Component {
         }
       });
     }
-  }
+  };
 
-  handleTabClick = (e) => {
+  handleTabClick = e => {
     const { tabs } = this.state;
     this.setState({
       ...this.state,
       tabs: {
         ...tabs,
         activeKey: e,
-        next: e !== "3" ? true : false,
-        prev: e !== "1" ? true : false
+        next: e !== '3' ? true : false,
+        prev: e !== '1' ? true : false
       }
-    })
-  }
+    });
+  };
 
   render() {
-    return <div>
-        <RecipeCard handleClick={this.showModal} imageUrl={recipe} name="Add new" description="Add your recipe" />
-        <Modal style={{ top: 20 }} className="recipe__input" title="New Recipe" visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel} footer={[<Button disabled={!this.state.tabs.prev ? true : false} key="back" size="large" type="primary" onClick={this.changeTab.bind(this, false)}>
+    return (
+      <div>
+        <Card
+          hoverable
+          onClick={this.showModal}
+          style={styles.card}
+          cover={
+            <img
+              alt='Add Recipe'
+              src={recipe}
+              style={styles.img}
+            />
+          }
+        >
+          <Meta title='Add Item' />
+        </Card>
+        <Modal
+          style={{ top: 20 }}
+          className="recipe__input"
+          title="New Recipe"
+          visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+          footer={[
+            <Button
+              disabled={!this.state.tabs.prev ? true : false}
+              key="back"
+              size="large"
+              type="primary"
+              onClick={this.changeTab.bind(this, false)}
+            >
               Prev
-            </Button>, <Button disabled={!this.state.tabs.next ? true : false} key="submit" type="primary" size="large" onClick={this.changeTab.bind(this, true)}>
+            </Button>,
+            <Button
+              disabled={!this.state.tabs.next ? true : false}
+              key="submit"
+              type="primary"
+              size="large"
+              onClick={this.changeTab.bind(this, true)}
+            >
               Next
-            </Button>]}>
+            </Button>
+          ]}
+        >
           <div>
             <Form layout="vertical" onSubmit={this.handleSubmit}>
-            <Tabs tabPosition="top" size="small" activeKey={this.state.tabs.activeKey} onTabClick={this.handleTabClick}>
+              <Tabs
+                tabPosition="top"
+                size="small"
+                activeKey={this.state.tabs.activeKey}
+                onTabClick={this.handleTabClick}
+              >
                 <TabPane tab="Recipe" key="1">
                   <h2 className="ingredients">Your Recipe</h2>
                   <FormItem label="Recipe name">
-                    <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} name="title" placeholder="Recipe name" value={this.state.recipe.title} onChange={this.handleChangeRecipe} />
+                    <Input
+                      prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+                      name="title"
+                      placeholder="Recipe name"
+                      value={this.state.recipe.title}
+                      onChange={this.handleChangeRecipe}
+                    />
                   </FormItem>
                   <FormItem label="Image URL  (optional)">
-                    <Input value={this.state.recipe.photo} onChange={this.handleChangeRecipe} type="url" name="photo" prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="Image URL" />
+                    <Input
+                      value={this.state.recipe.photo}
+                      onChange={this.handleChangeRecipe}
+                      type="url"
+                      name="photo"
+                      prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+                      placeholder="Image URL"
+                    />
                   </FormItem>
                 </TabPane>
 
@@ -331,48 +408,102 @@ class RecipeInput extends React.Component {
                     {this.ingredientList()}
                   </div>
 
-                  <Collapse bordered={false} accordion >
+                  <Collapse bordered={false} accordion>
                     <Panel header="Choose an existing ingredient" key="1">
                       <FormItem>
-                        <Select showSearch name="title" onChange={this.handleChangeIngredientSelect} placeholder="Select an ingredient" optionFilterProp="children" filterOption={(input, option) => option.props.children
+                        <Select
+                          showSearch
+                          name="title"
+                          onChange={this.handleChangeIngredientSelect}
+                          placeholder="Select an ingredient"
+                          optionFilterProp="children"
+                          filterOption={(input, option) =>
+                            option.props.children
                               .toLowerCase()
-                              .indexOf(input.toLowerCase()) >= 0}>
+                              .indexOf(input.toLowerCase()) >= 0
+                          }
+                        >
                           {this.ingredientsSelect()}
                         </Select>
                       </FormItem>
-                      <div className="ingredient__select" style={this.state.selectedIngredient.title === '' ? { display: 'none' } : { display: '' }}>
+                      <div
+                        className="ingredient__select"
+                        style={
+                          this.state.selectedIngredient.title === ''
+                            ? { display: 'none' }
+                            : { display: '' }
+                        }
+                      >
                         <div className="amountUnit">
                           <FormItem label="1. Amount">
-                            <Input required value={this.state.selectedIngredient.amount} name="amount" style={{ width: 80 }} placeholder="Amount" onChange={this.handleChangeIngredient} />
+                            <Input
+                              required
+                              value={this.state.selectedIngredient.amount}
+                              name="amount"
+                              style={{ width: 80 }}
+                              placeholder="Amount"
+                              onChange={this.handleChangeIngredient}
+                            />
                           </FormItem>
                           <FormItem label="2. Unit">
-                            <Select required placeholder="unit" name="measure" style={{ width: 100 }} onChange={this.handleChangeMeasureSelect}>
+                            <Select
+                              required
+                              placeholder="unit"
+                              name="measure"
+                              style={{ width: 100 }}
+                              onChange={this.handleChangeMeasureSelect}
+                            >
                               {this.measureSelect()}
                             </Select>
                           </FormItem>
                           <FormItem label="3. Confirm">
-                            <Button disabled={this.state.selectedIngredient.measure_id ? false : true} type="primary" onClick={this.addIngredient}>
+                            <Button
+                              disabled={
+                                this.state.selectedIngredient.measure_id
+                                  ? false
+                                  : true
+                              }
+                              type="primary"
+                              onClick={this.addIngredient}
+                            >
                               Add
                             </Button>
-                            
                           </FormItem>
                         </div>
                       </div>
                     </Panel>
 
                     <Panel header="Create a new ingredient" key="2">
-                      <Button
+                      {/* <Button
                         type="primary"
                         onClick={() => console.log(this.state)}
                       >
                         Ok
-                      </Button>
+                      </Button> */}
                       <FormItem>
-                        <Input addonAfter={this.ingredientTypeSelect()} name="name" placeholder="Ingredient name" onChange={this.handleChangeNewIngredient} />
+                        <Input
+                          addonAfter={this.ingredientTypeSelect()}
+                          name="name"
+                          placeholder="Ingredient name"
+                          onChange={this.handleChangeNewIngredient}
+                        />
                         <FormItem>
-                          {this.props.postingIngredient ? <Button loading>Posting</Button> : <Button disabled={this.state.newIngredient.name && this.state.newIngredient.ingredient_type_id ? false : true} type="primary" onClick={this.sendNewIngredient}>
-                            Add
-                          </Button>}
+                          {this.props.postingIngredient ? (
+                            <Button loading>Posting</Button>
+                          ) : (
+                            <Button
+                              disabled={
+                                this.state.newIngredient.name &&
+                                this.state.newIngredient.ingredient_type_id
+                                  ? false
+                                  : true
+                              }
+                              type="primary"
+                              onClick={this.sendNewIngredient}
+                            >
+                              Add
+                            </Button>
+                          )}
                         </FormItem>
                       </FormItem>
                     </Panel>
@@ -402,9 +533,26 @@ class RecipeInput extends React.Component {
                   </div>
                   <div className="recipe__body--confirm">
                     <FormItem label="Recipe Instructions (optional)">
-                      <TextArea autosize={{ minRows: 3, maxRows: 6 }} value={this.state.recipe.instructions} onChange={this.handleChangeRecipe} name="instructions" type="text" prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="There are no instructions for this recipe. Add some!" />
+                      <TextArea
+                        autosize={{ minRows: 3, maxRows: 6 }}
+                        value={this.state.recipe.instructions}
+                        onChange={this.handleChangeRecipe}
+                        name="instructions"
+                        type="text"
+                        prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+                        placeholder="There are no instructions for this recipe. Add some!"
+                      />
                     </FormItem>
-                    <Button disabled={this.state.recipe.title && this.state.recipe.ingredients.length > 0 ? false : true} type="primary" onClick={this.sendNewRecipe}>
+                    <Button
+                      disabled={
+                        this.state.recipe.title &&
+                        this.state.recipe.ingredients.length > 0
+                          ? false
+                          : true
+                      }
+                      type="primary"
+                      onClick={this.sendNewRecipe}
+                    >
                       Add Recipe
                     </Button>
                   </div>
@@ -413,7 +561,8 @@ class RecipeInput extends React.Component {
             </Form>
           </div>
         </Modal>
-      </div>;
+      </div>
+    );
   }
 }
 
@@ -424,7 +573,8 @@ RecipeInput.propTypes = {
   measures: PropTypes.object,
   ingredientTypes: PropTypes.object,
   postIngredient: PropTypes.func,
-  postRecipe: PropTypes.func
+  postRecipe: PropTypes.func,
+  postingIngredient: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
@@ -434,7 +584,7 @@ const mapStateToProps = state => ({
   measures: state.entities.measures,
   ingredientTypes: state.entities.ingredient_types,
   postingIngredient: state.pages.postingIngredient,
-  success: state.pages.success,
+  success: state.pages.success
 });
 
 const mapDispatchToProps = dispatch => ({

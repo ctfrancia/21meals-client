@@ -6,7 +6,6 @@ import logo from '../../assets/logo.svg';
 import { Form, Icon, Input, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { register } from '../../actions/user.actions';
-import { history } from '../../helpers/history';
 const FormItem = Form.Item;
 
 class SignUp extends React.Component {
@@ -37,7 +36,7 @@ class SignUp extends React.Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     await this.props.register(this.state.user)
-    history.push('/')
+   
     
   };
   render() {

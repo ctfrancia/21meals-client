@@ -22,7 +22,7 @@ class ShoppingList extends React.Component {
             key={category}
             header={
               <div className="list__list--header">
-                <img src={icons[category]}/>
+                <img src={icons[category]} alt={category}/>
                 <div className="list__list--header--category">
                 {category.toUpperCase()}
                 </div>
