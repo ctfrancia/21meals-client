@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Layout, Spin } from 'antd';
+import { Layout, Spin, notification, Button } from 'antd';
 import RecipeCard from '../../components/RecipeCard';
 import './Main.css';
 import TopBar from '../../components/TopBar';
@@ -24,7 +24,17 @@ class Main extends React.Component {
     this.props.getAllPlans();
     this.props.getAllMeasures();
     this.props.getAllIngredientTypes();
+    if (this.props.recipes.length === 0) this.openNotification()
   }
+
+  openNotification = () => {
+    notification.open({
+      message: 'Welcome to Mealee!',
+      description:
+        'Hello there! This is your recipies view. Here you will see a list of every recipe that you store. To add new recipes click on the \' Add new \' button '
+    })
+  };
+
   renderCards() {
     if (this.props.loading) {
       return (
@@ -35,6 +45,7 @@ class Main extends React.Component {
     } else {
       return (
         <div className="cards">
+          {}
           <RecipeInput />
           {this.props.recipes.map((el, i) => (
             <RecipeCard
@@ -52,9 +63,11 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <TopBar section="My Recipes"/>
+        <TopBar section="My Recipes" />
         <Layout>
-          <Content>{this.renderCards()}</Content>
+          <Content>
+          {this.renderCards()}
+          </Content>
         </Layout>
         <BottomBar />
       </div>
