@@ -27,7 +27,6 @@ function RecipeCard(props) {
       >
         <Meta 
         title={props.name} 
-        //description={`Serves ${props.serves}`}
          />
       </Card>
     </div>

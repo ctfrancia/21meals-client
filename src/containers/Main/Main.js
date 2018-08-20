@@ -49,10 +49,8 @@ class Main extends React.Component {
           {this.props.recipes.map((el, i) => (
             <RecipeCard
               key={i}
-              handleClick={this.showModal}
               imageUrl={el.photo}
-              name={el.title}
-              serves={el.serves}
+              name={el.title} 
             />
           ))}
         </div>

@@ -37,17 +37,15 @@ class Day extends React.Component {
     this.setState({ visible: false });
     if (item === undefined) {
       this.props.changeMeal(
-        undefined,
+        null,
         this.props.meal_id,
-        this.props.day,
-        this.props.meal_time
+        this.props.planId
       );
     } else {
       this.props.changeMeal(
         item.id,
         this.props.meal_id,
-        this.props.day,
-        this.props.meal_time
+        this.props.planId,
       );
     }
   };
@@ -56,11 +54,6 @@ class Day extends React.Component {
     if (this.props.recipe !== undefined) {
       return (
         <div className="day monday" onClick={this.showModal}>
-          {/* <div className="day__side">
-            <Avatar size="large" style={{ backgroundColor: '#87d068' }}>
-              {this.props.recipe.title[0]}
-            </Avatar>
-          </div> */}
           <div className="day__main">
             <div className="day__main--title">
               <p>
@@ -171,7 +164,8 @@ Day.propTypes = {
 
 const mapStateToProps = (state, props) => ({
   recipe: state.entities.recipes[props.recipe],
-  allRecipes: Object.values(state.entities.recipes)
+  allRecipes: Object.values(state.entities.recipes),
+
 });
 
 const mapDispatchToProps = dispatch => ({

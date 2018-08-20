@@ -1,57 +1,57 @@
-import Pasta from '../assets/icons/pasta.svg';
-import Salads from '../assets/icons/Salads.svg';
-import Dairy from '../assets/icons/milk.svg';
-import Vegetables from '../assets/icons/carrot.svg';
-import Condiments from '../assets/icons/condiments.svg';
-import Grains from '../assets/icons/Grains.svg';
-import Legumes from '../assets/icons/legumes.svg';
-import Soup from '../assets/icons/soup.svg';
-import Bakery from '../assets/icons/Bakery.svg';
-import Fruits from '../assets/icons/fruit.svg';
-import Dalternative from '../assets/icons/Dalternative.svg';
-import Eggs from '../assets/icons/Eggs.svg';
-import Flours from '../assets/icons/Flours.svg';
-import Oils from '../assets/icons/Oils.svg';
-import Sweeteners from '../assets/icons/Sweeteners.svg';
-import Herbs from '../assets/icons/Herbs.svg';
-import Meats from '../assets/icons/meat.svg';
-import Fish from '../assets/icons/fish.svg';
-import Seafood from '../assets/icons/Seafood.svg';
-import Sauces from '../assets/icons/Sauces.svg';
-import Nuts from '../assets/icons/Nuts.svg';
-import Desserts from '../assets/icons/Desserts.svg';
-import Snacks from '../assets/icons/Snacks.svg';
-import Ready from '../assets/icons/Ready.svg';
-import Hot from '../assets/icons/Hot.svg';
-import Beverages from '../assets/icons/Beverages.svg';
-import Alcohol from '../assets/icons/alcohol.svg';
+import pasta from '../assets/icons/pasta.svg';
+import salads from '../assets/icons/Salads.svg';
+import dairy from '../assets/icons/milk.svg';
+import vegetables from '../assets/icons/carrot.svg';
+import condiments from '../assets/icons/condiments.svg';
+import grains from '../assets/icons/Grains.svg';
+import legumes from '../assets/icons/legumes.svg';
+import soup from '../assets/icons/soup.svg';
+import bakery from '../assets/icons/Bakery.svg';
+import fruits from '../assets/icons/fruit.svg';
+import dalternative from '../assets/icons/Dalternative.svg';
+import eggs from '../assets/icons/Eggs.svg';
+import flours from '../assets/icons/Flours.svg';
+import oils from '../assets/icons/Oils.svg';
+import sweeteners from '../assets/icons/Sweeteners.svg';
+import herbs from '../assets/icons/Herbs.svg';
+import meats from '../assets/icons/meat.svg';
+import fish from '../assets/icons/fish.svg';
+import seafood from '../assets/icons/Seafood.svg';
+import sauces from '../assets/icons/Sauces.svg';
+import nuts from '../assets/icons/Nuts.svg';
+import desserts from '../assets/icons/Desserts.svg';
+import snacks from '../assets/icons/Snacks.svg';
+import ready from '../assets/icons/Ready.svg';
+import hot from '../assets/icons/Hot.svg';
+import beverages from '../assets/icons/Beverages.svg';
+import alcohol from '../assets/icons/alcohol.svg';
 
 export default  {
-  Pasta,
-  Salads,
-  Dairy,
-  Vegetables,
-  Condiments,
-  Grains,
-  Legumes,
-  'Broths & Soups': Soup,
-  Bakery,
-  Fruits,
-  'Dairy Alternatives': Dalternative,
-  Eggs,
-  Flours,
-  Oils,
-  Sweeteners,
-  'Spices & Herbs': Herbs,
-  Meats,
-  Fish,
-  Seafood,
-  Sauces,
-  'Nuts & Seeds': Nuts,
-  Desserts,
-  Snacks,
-  'Ready Meals': Ready,
-  'Hot Drinks': Hot,
-  Beverages,
-  Alcohol
+  pasta,
+  salads,
+  dairy,
+  vegetables,
+  condiments,
+  grains,
+  legumes,
+  'broths & soups': soup,
+  bakery,
+  fruits,
+  'dairy alternatives': dalternative,
+  eggs,
+  flours,
+  oils,
+  sweeteners,
+  'spices & herbs': herbs,
+  meats,
+  fish,
+  seafood,
+  sauces,
+  'nuts & seeds': nuts,
+  desserts,
+  snacks,
+  'ready meals': ready,
+  'hot drinks': hot,
+  beverages,
+  alcohol
 };

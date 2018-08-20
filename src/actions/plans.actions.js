@@ -23,10 +23,10 @@ export const getAllPlans = (planId) => ({
 //   }
 // });
 
-export const changeMeal = (recipeId, mealId, day, mealTime) => ({
+export const changeMeal = (recipeId, mealId, planId) => ({
   type: plansConstants.CHANGE_MEAL,
   api: { headers: autHeader, 
-    endpoint: '/plans/plan_id/meal', 
-    method: 'PUT', body: {mealId: mealId, recipeId: recipeId}},
+    endpoint: '/plans/'+planId+'/meal', 
+    method: 'PUT', body: {meal_id: mealId, recipe_id: recipeId}},
   schema: schema.planSchema
 });

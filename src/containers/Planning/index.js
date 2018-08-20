@@ -24,6 +24,7 @@ class Planning extends Component {
           day={plan[el].weekday}
           meal_time={plan[el].meal_type}
           recipe={plan[el].recipe_id}
+          planId= {this.props.planId}
           clickHandler={this.handleClick}
         />
       ));
