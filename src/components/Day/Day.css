@@ -7,6 +7,36 @@
   border-bottom: 1px solid black
 }
 
+.day:nth-child(1) {
+  background-color: #47494E;
+}
+
+.day:nth-child(2) {
+  background-color: #5A5A64
+}
+
+.day:nth-child(3) {
+  background-color: #496C7E
+}
+
+.day:nth-child(4) {
+  background-color: #32959E
+}
+
+.day:nth-child(5) {
+  background-color: #44BDA0
+}
+
+.day:nth-child(6) {
+  background-color: #93E089;
+  color: #4b4b4b;
+}
+
+.day:nth-child(7) {
+  background-color: #F9F871;
+  color: #4b4b4b
+}
+
 .monday {
   background-color: #2F4854
 }

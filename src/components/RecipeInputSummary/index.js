@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'antd';
 
 function RecipeInputSummary(props) {
-  console.log(props);
+  // console.log(props);
   
   return (
     <div>
