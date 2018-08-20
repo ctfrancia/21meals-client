@@ -12,27 +12,26 @@ import {
   getAllTypes
 } from '../../actions/ingredients.actions';
 import { getAllRecipes } from '../../actions/recipes.actions';
-import { getAllPlans } from '../../actions/plans.actions';
 import { getAllMeasures } from '../../actions/measures.actions';
 
 const { Content } = Layout;
 
 class Main extends React.Component {
   componentDidMount() {
+    
     this.props.getAllRecipes();
     this.props.getAllIngredients();
-    this.props.getAllPlans();
     this.props.getAllMeasures();
     this.props.getAllIngredientTypes();
-    if (this.props.recipes.length === 0) this.openNotification()
+    if (this.props.recipes.length === 0) this.openNotification();
   }
 
   openNotification = () => {
     notification.open({
       message: 'Welcome to Mealee!',
       description:
-        'Hello there! This is your recipies view. Here you will see a list of every recipe that you store. To add new recipes click on the \' Add new \' button '
-    })
+        "Hello there! This is your recipies view. Here you will see a list of every recipe that you store. To add new recipes click on the ' Add new ' button "
+    });
   };
 
   renderCards() {
@@ -65,9 +64,7 @@ class Main extends React.Component {
       <div>
         <TopBar section="My Recipes" />
         <Layout>
-          <Content>
-          {this.renderCards()}
-          </Content>
+          <Content>{this.renderCards()}</Content>
         </Layout>
         <BottomBar />
       </div>

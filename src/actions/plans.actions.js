@@ -27,6 +27,6 @@ export const changeMeal = (recipeId, mealId, day, mealTime) => ({
   type: plansConstants.CHANGE_MEAL,
   api: { headers: autHeader, 
     endpoint: '/plans/plan_id/meal', 
-    method: 'PUT', body: {meal_id: mealId, recipe_id: recipeId}},
+    method: 'PUT', body: {mealId: mealId, recipeId: recipeId}},
   schema: schema.planSchema
 });
