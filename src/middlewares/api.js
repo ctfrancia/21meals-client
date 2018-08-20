@@ -13,8 +13,8 @@ import { history } from '../helpers/history';
 
 import { normalize } from 'normalizr';
 
-// const BASE_URL = 'https://private-anon-9d15778814-mealee.apiary-mock.com'; //CHANGE THIS TO SERVER URL
-const BASE_URL = 'http://192.168.1.154:3001'; //SERVER URL
+const BASE_URL = 'https://private-anon-9d15778814-mealee.apiary-mock.com'; //CHANGE THIS TO SERVER URL
+// const BASE_URL = 'http://192.168.1.154:3001'; //SERVER URL
 
 export default store => next => action => {
   if (!action.api) return next(action);
