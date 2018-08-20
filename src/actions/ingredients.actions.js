@@ -1,7 +1,6 @@
 import { ingredientsConstants } from '../constants/ingredients.constants';
 import * as schema from './schemas';
 import { authHeader } from '../helpers/auth.header';
-// import authHeader from '../helpers/auth.header'
 
 const JWT = authHeader();
 
