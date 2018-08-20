@@ -24,6 +24,9 @@ class RecipeInput extends React.Component {
         next: true,
         prev: false
       },
+      accordion: {
+        activeKey : '',
+      },
       recipe: {
         title: '',
         instructions: '',
@@ -277,7 +280,20 @@ class RecipeInput extends React.Component {
         }
       });
     }
-  };
+  }
+
+  handleTabClick = (e) => {
+    const { tabs } = this.state;
+    this.setState({
+      ...this.state,
+      tabs: {
+        ...tabs,
+        activeKey: e,
+        next: e !== "3" ? true : false,
+        prev: e !== "1" ? true : false
+      }
+    })
+  }
 
   render() {
     return <div>
@@ -289,7 +305,7 @@ class RecipeInput extends React.Component {
             </Button>]}>
           <div>
             <Form layout="vertical" onSubmit={this.handleSubmit}>
-              <Tabs tabPosition="top" size="small" activeKey={this.state.tabs.activeKey}>
+            <Tabs tabPosition="top" size="small" activeKey={this.state.tabs.activeKey} onTabClick={this.handleTabClick}>
                 <TabPane tab="Recipe" key="1">
                   <h2 className="ingredients">Your Recipe</h2>
                   <FormItem label="Recipe name">
@@ -306,7 +322,7 @@ class RecipeInput extends React.Component {
                     {this.ingredientList()}
                   </div>
 
-                  <Collapse bordered={false} accordion>
+                  <Collapse bordered={false} accordion >
                     <Panel header="Choose an existing ingredient" key="1">
                       <FormItem>
                         <Select showSearch name="title" onChange={this.handleChangeIngredientSelect} placeholder="Select an ingredient" optionFilterProp="children" filterOption={(input, option) => option.props.children
@@ -318,8 +334,7 @@ class RecipeInput extends React.Component {
                       <div className="ingredient__select" style={this.state.selectedIngredient.title === '' ? { display: 'none' } : { display: '' }}>
                         <div className="amountUnit">
                           <FormItem label="1. Amount">
-                            <Input required value={this.state.selectedIngredient.amount} name="amount" style={{ width: 80 }} placeholder="Amount" onChange={this.handleChangeIngredient //prefix={<Icon type="user" style={{ fontSize: 13 }} />}
-                              } />
+                            <Input required value={this.state.selectedIngredient.amount} name="amount" style={{ width: 80 }} placeholder="Amount" onChange={this.handleChangeIngredient} />
                           </FormItem>
                           <FormItem label="2. Unit">
                             <Select required placeholder="unit" name="measure" style={{ width: 100 }} onChange={this.handleChangeMeasureSelect}>
