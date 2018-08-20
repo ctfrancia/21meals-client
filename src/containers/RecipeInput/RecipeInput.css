@@ -11,3 +11,8 @@
   font-weight: 500;
   color: #fafafa;
 }
+
+.amountUnit {
+  display: flex;
+  justify-content: space-between;
+}

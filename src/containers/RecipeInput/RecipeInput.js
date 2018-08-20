@@ -30,7 +30,7 @@ class RecipeInput extends React.Component {
         photo: '',
         ingredients: []
       },
-      selectedIngredient: {  
+      selectedIngredient: {
         title: '',
         ingredient_id: '',
         amount: '',
@@ -161,8 +161,9 @@ class RecipeInput extends React.Component {
   };
 
   ingredientList = () => {
-    return (
-      this.state.recipe.ingredients.length === 0 ? <p>Add some ingredients to your recipe</p> :
+    return this.state.recipe.ingredients.length === 0 ? (
+      <p>Add some ingredients to your recipe</p>
+    ) : (
       <ul>
         {this.state.recipe.ingredients.map((el, i) => {
           return (
@@ -228,12 +229,11 @@ class RecipeInput extends React.Component {
 
   sendNewRecipe = e => {
     e.preventDefault();
-    
+
     this.props.postRecipe(this.state.recipe);
   };
 
   changeTab = direction => {
-
     const { tabs } = this.state;
     const { activeKey } = tabs;
 
@@ -280,71 +280,24 @@ class RecipeInput extends React.Component {
   };
 
   render() {
-    return (
-      <div>
-        <RecipeCard
-          handleClick={this.showModal}
-          imageUrl={recipe}
-          name="Add new"
-          description="Add your recipe"
-        />
-        <Modal
-          style={{ top: 20 }}
-          className="recipe__input"
-          title="New Recipe"
-          visible={this.state.visible}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-          footer={[
-            <Button
-              disabled={!this.state.tabs.prev ? true : false}
-              key="back"
-              size="large"
-              type="primary"
-              onClick={this.changeTab.bind(this, false)}
-            >
+    return <div>
+        <RecipeCard handleClick={this.showModal} imageUrl={recipe} name="Add new" description="Add your recipe" />
+        <Modal style={{ top: 20 }} className="recipe__input" title="New Recipe" visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel} footer={[<Button disabled={!this.state.tabs.prev ? true : false} key="back" size="large" type="primary" onClick={this.changeTab.bind(this, false)}>
               Prev
-            </Button>,
-            <Button 
-              disabled={!this.state.tabs.next ? true: false}
-              key="submit"
-              type="primary"
-              size="large"
-              onClick={this.changeTab.bind(this, true)}
-            >
+            </Button>, <Button disabled={!this.state.tabs.next ? true : false} key="submit" type="primary" size="large" onClick={this.changeTab.bind(this, true)}>
               Next
-            </Button>
-          ]}
-        >
+            </Button>]}>
           <div>
             <Form layout="vertical" onSubmit={this.handleSubmit}>
-              <Tabs
-                tabPosition="top"
-                size="small"
-                activeKey={this.state.tabs.activeKey}
-              >
+              <Tabs tabPosition="top" size="small" activeKey={this.state.tabs.activeKey}>
                 <TabPane tab="Recipe" key="1">
                   <h2 className="ingredients">Your Recipe</h2>
                   <FormItem label="Recipe name">
-                    <Input
-                      prefix={<Icon type="user" style={{ fontSize: 13 }} />}
-                      name="title"
-                      placeholder="Recipe name"
-                      value={this.state.recipe.title}
-                      onChange={this.handleChangeRecipe}
-                    />
+                    <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} name="title" placeholder="Recipe name" value={this.state.recipe.title} onChange={this.handleChangeRecipe} />
                   </FormItem>
-                  <FormItem label="Image URL">
-                    <Input
-                      value={this.state.recipe.photo}
-                      onChange={this.handleChangeRecipe}
-                      type="url"
-                      name="photo"
-                      prefix={<Icon type="user" style={{ fontSize: 13 }} />}
-                      placeholder="Image URL"
-                    />
+                  <FormItem label="Image URL  (optional)">
+                    <Input value={this.state.recipe.photo} onChange={this.handleChangeRecipe} type="url" name="photo" prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="Image URL" />
                   </FormItem>
-                  
                 </TabPane>
 
                 <TabPane tab="Ingredient" key="2">
@@ -356,51 +309,29 @@ class RecipeInput extends React.Component {
                   <Collapse bordered={false} accordion>
                     <Panel header="Choose an existing ingredient" key="1">
                       <FormItem>
-                        <Select
-                          showSearch
-                          name="title"
-                          onChange={this.handleChangeIngredientSelect}
-                          placeholder="Select an ingredient"
-                          optionFilterProp="children"
-                          filterOption={(input, option) =>
-                            option.props.children
+                        <Select showSearch name="title" onChange={this.handleChangeIngredientSelect} placeholder="Select an ingredient" optionFilterProp="children" filterOption={(input, option) => option.props.children
                               .toLowerCase()
-                              .indexOf(input.toLowerCase()) >= 0
-                          }
-                        >
+                              .indexOf(input.toLowerCase()) >= 0}>
                           {this.ingredientsSelect()}
                         </Select>
                       </FormItem>
-                      <div
-                        className="ingredient__select"
-                        style={
-                          this.state.selectedIngredient.title === ''
-                            ? { display: 'none' }
-                            : { display: '' }
-                        }
-                      >
-                        <FormItem label="Select amount and measure unit">
-                          <Input
-                            value={this.state.selectedIngredient.amount}
-                            name="amount"
-                            style={{ width: 80 }}
-                            placeholder="Amount"
-                            onChange={
-                              this.handleChangeIngredient //prefix={<Icon type="user" style={{ fontSize: 13 }} />}
-                            }
-                          />
-                          <Select
-                            placeholder="unit"
-                            name="measure"
-                            style={{ width: 100 }}
-                            onChange={this.handleChangeMeasureSelect}
-                          >
-                            {this.measureSelect()}
-                          </Select>
-                          <Button type="primary" onClick={this.addIngredient}>
-                            Ok
-                          </Button>
-                        </FormItem>
+                      <div className="ingredient__select" style={this.state.selectedIngredient.title === '' ? { display: 'none' } : { display: '' }}>
+                        <div className="amountUnit">
+                          <FormItem label="1. Amount">
+                            <Input required value={this.state.selectedIngredient.amount} name="amount" style={{ width: 80 }} placeholder="Amount" onChange={this.handleChangeIngredient //prefix={<Icon type="user" style={{ fontSize: 13 }} />}
+                              } />
+                          </FormItem>
+                          <FormItem label="2. Unit">
+                            <Select required placeholder="unit" name="measure" style={{ width: 100 }} onChange={this.handleChangeMeasureSelect}>
+                              {this.measureSelect()}
+                            </Select>
+                          </FormItem>
+                          <FormItem label="3. Confirm">
+                            <Button disabled={this.state.selectedIngredient.measure_id ? false : true} type="primary" onClick={this.addIngredient}>
+                              Add
+                            </Button>
+                          </FormItem>
+                        </div>
                       </div>
                     </Panel>
 
@@ -412,23 +343,9 @@ class RecipeInput extends React.Component {
                         Ok
                       </Button> */}
                       <FormItem>
-                        <Input
-                          addonAfter={this.ingredientTypeSelect()}
-                          name="name"
-                          placeholder="Ingredient name"
-                          onChange={this.handleChangeNewIngredient}
-                        />
+                        <Input addonAfter={this.ingredientTypeSelect()} name="name" placeholder="Ingredient name" onChange={this.handleChangeNewIngredient} />
                         <FormItem>
-                          <Button
-                            disabled={
-                              this.state.newIngredient.name &&
-                              this.state.newIngredient.ingredient_type_id
-                                ? false
-                                : true
-                            }
-                            type="primary"
-                            onClick={this.sendNewIngredient}
-                          >
+                          <Button disabled={this.state.newIngredient.name && this.state.newIngredient.ingredient_type_id ? false : true} type="primary" onClick={this.sendNewIngredient}>
                             Add
                           </Button>
                         </FormItem>
@@ -445,8 +362,8 @@ class RecipeInput extends React.Component {
                           {!this.state.recipe.title ? (
                             <h2>Untitled Recipe</h2>
                           ) : (
-                              <h2>{this.state.recipe.title}</h2>
-                            )}
+                            <h2>{this.state.recipe.title}</h2>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -459,19 +376,11 @@ class RecipeInput extends React.Component {
                     </div>
                   </div>
                   <div className="recipe__body--confirm">
-                    <FormItem label="Recipe Instructions">
-                      <TextArea
-                        value={this.state.recipe.instructions}
-                        onChange={this.handleChangeRecipe}
-                        name="instructions"
-                        autosize
-                        type="text"
-                        prefix={<Icon type="user" style={{ fontSize: 13 }} />}
-                        placeholder="There are no instructions for this recipe. Add some!"
-                      />
+                    <FormItem label="Recipe Instructions (optional)">
+                      <TextArea value={this.state.recipe.instructions} onChange={this.handleChangeRecipe} name="instructions" autosize type="text" prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="There are no instructions for this recipe. Add some!" />
                     </FormItem>
-                    <Button type="primary" onClick={this.sendNewRecipe}>
-                      Spot on, baby boy
+                    <Button disabled={this.state.recipe.title && this.state.recipe.ingredients.length > 0 ? false : true} type="primary" onClick={this.sendNewRecipe}>
+                      Add Recipe
                     </Button>
                   </div>
                 </TabPane>
@@ -479,8 +388,7 @@ class RecipeInput extends React.Component {
             </Form>
           </div>
         </Modal>
-      </div>
-    );
+      </div>;
   }
 }
 
