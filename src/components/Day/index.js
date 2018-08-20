@@ -165,7 +165,7 @@ Day.propTypes = {
   day: PropTypes.string,
   meal_time: PropTypes.string,
   changeMeal: PropTypes.func,
-  meal_id: PropTypes.number,
+  meal_id: PropTypes.string,
   allRecipes: PropTypes.array
 };
 

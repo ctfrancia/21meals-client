@@ -6,7 +6,7 @@ export const login = (data) => ({
     endpoint: '/sign-in',
     method: 'GET', 
     headers: {
-      Authorization: 'Basic' + btoa(data.username + ":" + data.password)
+      Authorization: 'Basic ' + btoa(data.username + ":" + data.password)
     },
   },
 });

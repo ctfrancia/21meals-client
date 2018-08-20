@@ -14,8 +14,8 @@ class SignUp extends React.Component {
     super();
     this.state = {
       user: {
-        firstName: '',
-        lastName: '',
+        first_name: '',
+        last_name: '',
         email: '',
         password: '',
         submitted: false
@@ -51,8 +51,8 @@ class SignUp extends React.Component {
             <FormItem>
               <Input
                 onChange={this.handleChange}
-                name="firstName"
-                value={this.state.user.firstName}
+                name="first_name"
+                value={this.state.user.first_name}
                 prefix={
                   <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />
                 }
@@ -62,8 +62,8 @@ class SignUp extends React.Component {
             <FormItem>
               <Input required
                 onChange={this.handleChange}
-                name="lastName"
-                value={this.state.user.lastName}
+                name="last_name"
+                value={this.state.user.last_name}
                 prefix={
                   <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />
                 }
