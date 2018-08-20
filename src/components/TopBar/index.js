@@ -10,10 +10,6 @@ const { Header } = Layout;
 
 
 class TopBar extends React.Component {
-  constructor() {
-    super();
-
-  }
 
 logout = async () => {
   await this.props.logout()

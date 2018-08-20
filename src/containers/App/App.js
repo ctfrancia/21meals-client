@@ -5,7 +5,7 @@ import 'antd/lib/date-picker/style/css'; // for css
 import ShoppingList from '../ShoppingList';
 import Planning from '../Planning';
 import Main from '../Main/Main';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { PrivateRoute } from '../../helpers/PrivateRoute';
 import { Router, Route } from 'react-router-dom';
 import Login from '../Login';
