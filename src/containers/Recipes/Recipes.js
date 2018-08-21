@@ -32,11 +32,11 @@ class Recipes extends React.Component {
         "Hello there! This is your recipies view. Here you will see a list of every recipe that you store. To add new recipes click on the ' Add new ' button "
     });
   };
-  componentDidUpdate = (prevProps) =>{
+  componentDidUpdate = prevProps => {
     if (this.props.showNotification && !prevProps.showNotification) {
-      this.openNotification()
+      this.openNotification();
     }
-  }
+  };
 
   renderCards() {
     if (this.props.loading) {
@@ -46,13 +46,17 @@ class Recipes extends React.Component {
         </div>
       );
     } else if (this.props.recipes.length === 0) {
-      return <div className="cards">
-          <RecipeInput />
-        </div>;
-    } else {
       return (
         <div className="cards">
           <RecipeInput />
+        </div>
+      );
+    } else {
+      return (
+        <div className="cards">
+          <div className="cards__addNew">
+            <RecipeInput />
+          </div>
           {this.props.recipes.map((el, i) => (
             <RecipeCard key={i} imageUrl={el.photo} name={el.title} />
           ))}
@@ -62,10 +66,8 @@ class Recipes extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Layout>
-          <Content>{this.renderCards()}</Content>
-        </Layout>
+      <div className="recipes__view">
+          {this.renderCards()}
       </div>
     );
   }

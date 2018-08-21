@@ -1,13 +1,32 @@
-.recipe_card {
-  margin: 5.5px;
-  padding: 5px;
+.recipe_card--main {
+  margin: 10px;
+  border-radius: 5px;
+  width: 95vw;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  background-color: #fafafa;
+  justify-content: space-between;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
 }
+
+.recipe_card--info {
+  align-self: center
+}
+
+.recipe_card--image {
+  align-self: center
+}
+
 .ant-card {
   min-height: 210px;
 }
+
 .ant-card-cover {
   padding: 10px;
 }
+
 .ant-card-body {
   padding: 10px;
 }

@@ -11,7 +11,7 @@ import Profile from '../Profile';
 import { changePageView } from '../../actions/page.actions';
 class Index extends Component {
   handleSwitching = e => {
-    if (e % 1 === 0) this.props.changePageView(e);
+     this.props.changePageView(e);
   };
 
   render() {

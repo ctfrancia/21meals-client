@@ -25,8 +25,7 @@ const { Meta } = Card;
 const styles = {
   card: { width: 155, borderRadius: 15 },
   img: {
-    height: 130,
-    borderRadius: '15px ',
+    height: 80,
     objectFit: 'cover'
   },
   modalImg: {
@@ -336,14 +335,18 @@ class RecipeInput extends React.Component {
   render() {
     return (
       <div>
-        <Card
-          hoverable
-          onClick={this.showModal}
-          style={styles.card}
-          cover={<img alt="Add Recipe" src={recipe} style={styles.img} />}
-        >
-          <Meta title="Add new recipe" />
-        </Card>
+          <div className="recipe_card--main" onClick={this.showModal}>
+            <div className="recipe_card--info">
+              <h2>Add new recipe</h2>
+            </div>
+            <div className="recipe_card--image">
+              <img
+                alt="Add new recipe"
+                src={recipe} //src={this.props.imageUrl ? this.props.imageUrl : }
+                style={styles.img}
+              />
+            </div>
+          </div>
         <Modal
           style={{ top: 20 }}
           className="recipe__input"
