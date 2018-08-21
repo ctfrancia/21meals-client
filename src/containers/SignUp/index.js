@@ -109,7 +109,7 @@ class SignUp extends React.Component {
             </FormItem>
             
             <FormItem className="login-form__options">
-              <Link to="/" className="login-form-forgot">
+              <Link to="/login" className="login-form-forgot">
                 Log in
               </Link>
             </FormItem>

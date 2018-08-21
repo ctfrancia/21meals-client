@@ -32,20 +32,16 @@ class Day extends React.Component {
     });
   };
 
-  handleRecipeChange = (item, e) => {
+  handleRecipeChange = async (item, e) => {
     e.stopPropagation();
     this.setState({ visible: false });
     if (item === undefined) {
-      this.props.changeMeal(
-        null,
-        this.props.meal_id,
-        this.props.planId
-      );
+      await this.props.changeMeal(null, this.props.meal_id, this.props.planId);
     } else {
-      this.props.changeMeal(
+      await this.props.changeMeal(
         item.id,
         this.props.meal_id,
-        this.props.planId,
+        this.props.planId
       );
     }
   };
@@ -76,7 +72,7 @@ class Day extends React.Component {
                   </Button>,
                   <Button key="back" onClick={this.handleCancel}>
                     Return
-                  </Button>,
+                  </Button>
                 ]}
               >
                 <List
@@ -88,7 +84,6 @@ class Day extends React.Component {
                         avatar={<Avatar>{item.title[0]}</Avatar>}
                         title={item.title}
                         onClick={this.handleRecipeChange.bind(this, item)}
-                        
                       />
                     </List.Item>
                   )}
@@ -165,13 +160,13 @@ Day.propTypes = {
 
 const mapStateToProps = (state, props) => ({
   recipe: state.entities.recipes[props.recipe],
-  allRecipes: Object.values(state.entities.recipes),
-
+  allRecipes: Object.values(state.entities.recipes)
 });
 
 const mapDispatchToProps = dispatch => ({
   changeMeal: (mealId, recipeId, day, mealTime) =>
-    dispatch(changeMeal(mealId, recipeId, day, mealTime))
+    dispatch(changeMeal(mealId, recipeId, day, mealTime)),
+  
 });
 
 export default connect(

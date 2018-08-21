@@ -7,9 +7,14 @@ import BottomBar from '../../components/BottomBar';
 import Day from '../../components/Day';
 import { getAllPlans } from '../../actions/plans.actions';
 import './Planning.css';
+import { getAllShoppingList } from '../../actions/shoppingList.actions';
+
 const { Content } = Layout;
 
 class Planning extends Component {
+  componentDidUpdate () {
+    this.props.getList();
+  }
   componentDidMount() {
     this.props.getAllPlans(this.props.planId);
   }
@@ -59,7 +64,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllPlans: (planId) => dispatch(getAllPlans(planId))
+  getAllPlans: planId => dispatch(getAllPlans(planId)),
+  getList: () => dispatch(getAllShoppingList())
 });
 
 export default connect(

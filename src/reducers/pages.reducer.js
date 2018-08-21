@@ -3,6 +3,7 @@ import { plansConstants } from '../constants/plans.constants';
 import { recipesConstants } from '../constants/recipes.constants';
 import { listConstants } from '../constants/list.constants';
 import { message } from 'antd';
+import { shoppingListConstants } from '../constants/shoppingList.constants';
 
 const defaultState = {
   recipesIndex: [],
@@ -11,7 +12,7 @@ const defaultState = {
   loadingRecipes: true,
   postingRecipe: false,
   postingIngredient: false,
-  success: false,
+  success: false
 };
 export default (state = defaultState, action) => {
   switch (action.type) {
@@ -53,51 +54,55 @@ export default (state = defaultState, action) => {
         recipesIndex: action.result,
         loadingRecipes: false
       };
-      case recipesConstants.RECIPES_POST_NEW_REQUEST:
+    case recipesConstants.RECIPES_POST_NEW_REQUEST:
       return {
         ...state,
         recipesIndex: [...state.recipesIndex, ...action.result],
-        success:  false,
+        success: false,
         postingRecipe: true
       };
     case recipesConstants.RECIPES_POST_NEW_SUCCESS:
       return {
         ...state,
         recipesIndex: [...state.recipesIndex, ...action.result],
-        success:  true,
+        success: true,
         postingRecipe: false
       };
-      case recipesConstants.RECIPES_POST_NEW_FAILURE:
+    case recipesConstants.RECIPES_POST_NEW_FAILURE:
       return {
         ...state,
         recipesIndex: [...state.recipesIndex, ...action.result],
-        success:  false,
+        success: false,
         postingRecipe: false
       };
-      case ingredientsConstants.INGREDIENTS_POST_NEW_REQUEST:
+    case ingredientsConstants.INGREDIENTS_POST_NEW_REQUEST:
       return {
         ...state,
-        success:  false,
+        success: false,
         postingIngredient: true
       };
     case ingredientsConstants.INGREDIENTS_POST_NEW_SUCCESS:
-    message.success('Your Ingredient was added to the database!');
+      message.success('Your Ingredient was added to the database!');
       return {
         ...state,
-        success:  true,
+        success: true,
         postingIngredient: false
       };
-      case recipesConstants.INGREDIENTS_POST_NEW_FAILURE:
+    case recipesConstants.INGREDIENTS_POST_NEW_FAILURE:
       message.error('Oh no! Something went wrong!');
       return {
         ...state,
-        success:  false,
+        success: false,
         postingIngredient: false
       };
-    case listConstants.LIST_GENERATE:
+    case shoppingListConstants.SHOPPING_LIST_GET_ALL_SUCCESS:
       return {
         ...state,
-        shoppingList: []
+        shoppingList: action.data.reduce((acc, el) => {
+          if (!acc[el.ingredient_type]) acc[el.ingredient_type] = [];
+          acc[el.ingredient_type].push(el);
+          return acc;
+        }, {})
       };
 
     default:

@@ -6,10 +6,11 @@ import icons from '../../helpers/icons'
 import { connect } from 'react-redux';
 import { List, Checkbox } from 'antd';
 import './ShoppingList.css';
+import { getAllShoppingList } from '../../actions/shoppingList.actions';
 
 
-function onChange() {
-  // console.log(`checked = ${e.target.checked}`);
+function onChange(e) {
+  console.log(`checked = ${e.target.checked}`);
 }
 
 class ShoppingList extends React.Component {
@@ -32,12 +33,12 @@ class ShoppingList extends React.Component {
             dataSource={this.props.listItems[category]}
             renderItem={item => (
               <List.Item key={item.id}>
-                <Checkbox onChange={onChange}>
+                <Checkbox checked={item.bought} onChange={onChange}>
                   {`${
-                    item.amount === 0 || item.amount === null
+                    item.total_amount === 0 || item.total_amount === null
                       ? 'Some'
-                      : item.amount
-                  } ${item.measure === null ? '' : item.measure} ${item.name}`}
+                      : item.total_amount
+                  } ${item.measure === null ? '' : item.measure} ${item.ingredient}`}
                 </Checkbox>
               </List.Item>
             )}
@@ -48,7 +49,9 @@ class ShoppingList extends React.Component {
     return list;
   }
 
-  componentDidMount = () => {};
+  componentDidMount = () => {
+    this.props.getList()
+  };
 
   render() {
     return (
@@ -69,72 +72,19 @@ ShoppingList.propTypes = {};
 
 const mapStateToProps = state => ({
   ingredients_recipe: state.entities.ingredients_recipe,
+  listItems: state.pages.shoppingList
 
-  listItems: Object.values(
-    Object.values(state.entities.meals_plan)
-      .reduce((acc, el) => {
-        if (el.recipe_id) acc.push(el.recipe_id);
-        return acc;
-      }, []) //Gets where there's a recipe
-      .map(el => state.entities.recipes[el].ingredients) //gets ingredients/measures references from recipe
-      .reduce((acc, el) => acc.concat(el), []) // Flatten array
-      .reduce((acc, el) => {
-        //gets actual ingredients/measures
-        acc.push(state.entities.ingredients_recipe[el]);
-        return acc;
-      }, [])
-      .reduce((acc, el) => {
-        //gets name/type related with ingredient
-        acc.push({
-          id: el.ingredient_id,
-          name: state.entities.allIngredients[el.ingredient_id].name,
-          type: state.entities.allIngredients[el.ingredient_id].ingredient_type,
-          amount: el.amount,
-          measure: el.measure
-        });
-        return acc;
-      }, [])
-      .reduce((acc, el) => {
-        if (!acc.hasOwnProperty(el.id)) {
-          acc[el.id] = el;
-        } else {
-          acc[el.id].amount += el.amount;
-        }
-        return acc;
-      }, {})
-  ).reduce((acc, el) => {
-    if (!acc.hasOwnProperty(el.type)) {
-      acc[el.type] = [el];
-    } else {
-      acc[el.type].push(el);
-    }
-    return acc;
-  }, {})
-});
+})
+ 
 
-// .reduce((acc, el) => {
-//   if (el.recipe_id) {
-//     const recipeIngredients = state.entities.recipes[el.recipe_id].ingredients //full list of ingredients/amount references
-//     const fullList = recipeIngredients.map(el => {
-//       //switch references for actual data
-//       return state.entities.ingredients_recipe[el]
-
-//       // return {
-//       //   name: state.entities.allIngredients[el.ingredient_id].name,
-//       //   amount: el.amount
-//       // }
-//     })
-//     acc.push(fullList)
-
-//     return acc
-//   }
-// }, [])
-// const mapDispatchToProps = dispatch => ({});
 ShoppingList.propTypes = {
   listItems: PropTypes.object
 };
+const mapDispatchToProps = dispatch => ({
+  getList: () => dispatch(getAllShoppingList())
+});
 
 export default connect(
-  mapStateToProps
-  // mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(ShoppingList);

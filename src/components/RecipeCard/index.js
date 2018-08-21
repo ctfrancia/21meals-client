@@ -77,9 +77,9 @@ class RecipeCard extends React.Component {
             src={this.props.imageUrl}
             style={styles.modalImg}
           />
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+          <ul>
+
+          </ul>
         </Modal>
       </div>
     );
