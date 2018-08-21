@@ -19,41 +19,36 @@ class BottomBar extends React.Component {
   }
 
   render() {
-    return (
-      <Footer style={{
-        position: 'fixed',
-        zIndex: 1,
-        width: '100%',
-        bottom: 0,
-        backgroundColor: 'black'
-      }}>
-      <div className="bottom-bar">
-        <div className="bottom-bar__option" onClick={this.changeView.bind(this, 0)}>
-          <Icon type="global"/>
+    return <Footer style={{ position: 'fixed', zIndex: 1, width: '100%', bottom: 0, backgroundColor: 'black' }}>
+        <div className="bottom-bar">
+          <div className="bottom-bar__option" onClick={this.changeView.bind(this, 0)}>
+          {this.props.currentPage === 0 ? <Icon type="global" style={{ color: '#e69b76' }} /> : <Icon type="global" style={{ color: 'white' }} />}
+          </div>
+          <div className="bottom-bar__option" onClick={this.changeView.bind(this, 1)}>
+          {this.props.currentPage === 1 ? <Icon type="heart-o" style={{ color: '#e69b76' }} /> : <Icon type="heart-o" style={{ color: 'white' }} />}
+          </div>
+          <div className="bottom-bar__option" onClick={this.changeView.bind(this, 2)}>
+          {this.props.currentPage === 2 ? <Icon type="calendar" style={{ color: '#e69b76' }} /> : <Icon type="calendar" style={{ color: 'white' }} />}
+          </div>
+          <div className="bottom-bar__option" onClick={this.changeView.bind(this, 3)}>
+            {this.props.currentPage === 3 ? <Icon type="shopping-cart" style={{ color: '#e69b76' }} /> : <Icon type="shopping-cart" style={{ color: 'white' }} />}
+          </div>
+          <div className="bottom-bar__option" onClick={this.changeView.bind(this, 4)}>
+            {this.props.currentPage === 4 ? <Icon type="user" style={{ color: '#e69b76' }} /> : <Icon type="user" style={{ color: 'white' }} />}
+          </div>
         </div>
-        <div className="bottom-bar__option" onClick={this.changeView.bind(this, 1)}>
-          <Icon type="heart-o"/>
-        </div>
-        <div className="bottom-bar__option" onClick={this.changeView.bind(this, 2)}>
-          <Icon type="calendar"/>
-        </div>
-        <div className="bottom-bar__option" onClick={this.changeView.bind(this, 3)}>
-          <Icon type="shopping-cart"/>
-        </div>
-        <div className="bottom-bar__option" onClick={this.changeView.bind(this, 4)}>
-          <Icon type="user"/>
-        </div>
-      </div>
-    </Footer>);
+      </Footer>;
   }
 }
 
 BottomBar.propTypes = {
   changePageView: PropTypes.func,
 };
-
+const mapStateToProps = state => ({
+  currentPage: state.pages.pageIndex
+})
 const mapDispatchToProps = dispatch => ({
   changePageView: (pageIndex) => dispatch(changePageView(pageIndex))
 });
 
-export default connect(null, mapDispatchToProps)(BottomBar);
+export default connect(mapStateToProps, mapDispatchToProps)(BottomBar);

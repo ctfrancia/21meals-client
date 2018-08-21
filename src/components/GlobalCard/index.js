@@ -43,12 +43,13 @@ class GlobalCard extends Component {
   componentDidMount() {}
 
   showModal = id => {
+    console.log(id);
+    
     this.showRecipe(id);
     this.setState({
       ...this.state,
       visible: true
     });
-    console.log(this.state);
   };
 
   handleOk = () => {
@@ -56,7 +57,6 @@ class GlobalCard extends Component {
       ...this.state,
       visible: false
     });
-    console.log(this.state);
   };
 
   handleCancel = () => {

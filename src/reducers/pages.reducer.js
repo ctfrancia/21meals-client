@@ -16,7 +16,7 @@ const defaultState = {
   loadingOneGlobalRecipe: true,
   postingIngredient: false,
   success: false,
-  pageIndex: 0,
+  pageIndex: 1,
 };
 export default (state = defaultState, action) => {
   switch (action.type) {
