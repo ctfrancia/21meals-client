@@ -36,7 +36,7 @@ class GlobalCard extends Component {
       recipe: {
         ...this.state.recipe,
         title: this.props.title,
-        photo: this.props.photo
+        photo: this.props.photo,
       }
     });
   }
@@ -125,10 +125,14 @@ class GlobalCard extends Component {
 }
 
 GlobalCard.propTypes = {
+  title: PropTypes.string,
+  id: PropTypes.number,
   name: PropTypes.string,
   serves: PropTypes.string,
   imageUrl: PropTypes.string,
-  handleClick: PropTypes.func
+  handleClick: PropTypes.func,
+  getOneRecipe: PropTypes.func,
+  recipeDetails: PropTypes.object,
 };
 
 const mapStateToProps = state => ({

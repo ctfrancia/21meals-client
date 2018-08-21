@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Layout, Spin, Input } from 'antd';
-import RecipeCard from '../../components/RecipeCard';
 import './index.css';
 import { getSearchRecipes, getOneRecipe } from '../../actions/recipes.actions'
 import GlobalCard from '../../components/GlobalCard';
@@ -60,6 +59,7 @@ class GlobalRecipes extends React.Component {
               <GlobalCard
                 key={i}
                 handleClick={this.showRecipe.bind(this, el.RecipeID)}
+                id={el.RecipeID}
                 imageUrl={el.PhotoUrl}
                 name={el.Title}
                 // serves={el.Servings}
