@@ -68,7 +68,7 @@ class ShoppingList extends React.Component {
     return <div>
         <div className="list">
           <div className="list__title">
-            <h2 style={{ marginBottom: 16 }}>My Shopping List</h2>
+            <h2 >My Shopping List</h2>
           </div>
           <Divider/>
           <div className="list__list">{this.createShoppingList()}</div>
