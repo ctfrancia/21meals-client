@@ -4,35 +4,32 @@ import { connect } from 'react-redux';
 import { Layout, Spin, Input } from 'antd';
 import RecipeCard from '../../components/RecipeCard';
 import '../Recipes/Recipes.css';
-import TopBar from '../../components/TopBar';
-import BottomBar from '../../components/BottomBar';
-import { getSearchRecipes, getOneRecipe } from '../../actions/recipes.actions'
+import './index.css';
+import { getSearchRecipes, getOneRecipe } from '../../actions/recipes.actions';
 const { Content } = Layout;
 
 const Search = Input.Search;
 
 class GlobalRecipes extends React.Component {
-
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       ingredients: [],
       name: [],
       instructions: [],
-      imageUrl: '',
-    }
+      imageUrl: ''
+    };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.getSearchRecipes('featured');
   }
 
-  showRecipe (id) {
+  showRecipe(id) {
     this.props.getOneRecipe(id);
-
   }
 
-  renderCards () {
+  renderCards() {
     if (this.props.loadingGlobalRecipes) {
       return (
         <div className="cards">
@@ -40,38 +37,28 @@ class GlobalRecipes extends React.Component {
         </div>
       );
     } else {
-      return (
-        <div className="cards">
-          <div className="search__bar">
-            <Search
-              placeholder="input search text"
-              onSearch={value => this.props.getSearchRecipes(value)}
-              style={{ width: 200 }}
-            />
+      return <div className="cards global">
+          <div className="search__bar--input">
+            <Search size="large" placeholder="Search for recipes" onSearch={value => this.props.getSearchRecipes(value)} style={{ width: 200 }} />
           </div>
-          <div className="cards">
+          <div className="cards global">
             {this.props.globalRecipes.map((el, i) => (
               <RecipeCard
                 key={i}
                 handleClick={this.showRecipe.bind(this, el.RecipeID)}
                 imageUrl={el.PhotoUrl}
                 name={el.Title}
-              // serves={el.Servings}
+                // serves={el.Servings}
               />
             ))}
           </div>
-        </div>
-      );
+        </div>;
     }
   }
-  render () {
+  render() {
     return (
-      <div>
-        <TopBar />
-        <Layout>
-          <Content>{this.renderCards()}</Content>
-        </Layout>
-        <BottomBar />
+      <div className="globalView">
+          {this.renderCards()}
       </div>
     );
   }
@@ -83,19 +70,19 @@ GlobalRecipes.propTypes = {
   getSearchRecipes: PropTypes.func,
   getOneRecipe: PropTypes.func,
   globalRecipes: PropTypes.array,
-  globalRecipe: PropTypes.object,
+  globalRecipe: PropTypes.object
 };
 
 const mapStateToProps = state => ({
   loadingGlobalRecipes: state.pages.loadingGlobalRecipes,
   globalRecipes: state.pages.globalRecipes,
   globalRecipe: state.pages.globalRecipe,
-  loadingOneGlobalRecipe: state.pages.loadingOneGlobalRecipe,
+  loadingOneGlobalRecipe: state.pages.loadingOneGlobalRecipe
 });
 
 const mapDispatchToProps = dispatch => ({
-  getSearchRecipes: (keyWord) => dispatch(getSearchRecipes(keyWord)),
-  getOneRecipe: (RecipeID) => dispatch(getOneRecipe(RecipeID)),
+  getSearchRecipes: keyWord => dispatch(getSearchRecipes(keyWord)),
+  getOneRecipe: RecipeID => dispatch(getOneRecipe(RecipeID))
 });
 
 export default connect(
