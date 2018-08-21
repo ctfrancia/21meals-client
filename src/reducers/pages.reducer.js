@@ -7,7 +7,7 @@ import { shoppingListConstants } from '../constants/shoppingList.constants';
 const defaultState = {
   recipesIndex: [],
   globalRecipes: [],
-  globalRecipe: {},
+  globalRecipe: {Ingredients: []},
   loadingIngredients: true,
   loadingPlans: true,
   loadingRecipes: true,
@@ -60,7 +60,6 @@ export default (state = defaultState, action) => {
     case recipesConstants.RECIPES_POST_NEW_REQUEST:
       return {
         ...state,
-        recipesIndex: [...state.recipesIndex, ...action.result],
         success: false,
         postingRecipe: true
       };

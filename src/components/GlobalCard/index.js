@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Card, Modal } from 'antd';
+import { Card, Modal, Tabs, Input, Form } from 'antd';
 import { getOneRecipe } from '../../actions/recipes.actions';
-
+const TabPane = Tabs.TabPane;
+const FormItem = Form.Item;
 const { Meta } = Card;
 const styles = {
   card: { width: 155, borderRadius: 15 },
@@ -25,7 +26,7 @@ class GlobalCard extends Component {
     super();
     this.state = {
       recipe: { title: '', instructions: '', photo: '', ingredients: [] },
-      visible:false
+      visible: false
     };
   }
   showRecipe(id) {
@@ -39,9 +40,7 @@ class GlobalCard extends Component {
       }
     });
   }
-  componentDidMount() {
-    
-  }
+  componentDidMount() {}
 
   showModal = id => {
     this.showRecipe(id);
@@ -51,7 +50,7 @@ class GlobalCard extends Component {
     });
     console.log(this.state);
   };
-  
+
   handleOk = () => {
     this.setState({
       ...this.state,
@@ -87,11 +86,38 @@ class GlobalCard extends Component {
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-          <img
-            alt={this.props.name}
-            src={this.props.imageUrl}
-            style={styles.modalImg}
-          />
+          <Tabs
+            tabPosition="top"
+            size="small"
+            //activeKey={this.state.tabs.activeKey}
+            //onTabClick={this.handleTabClick}
+          >
+            <TabPane tab="Recipe" key="1">
+              <img
+                alt={this.props.name}
+                src={this.props.imageUrl}
+                style={styles.modalImg}
+              />
+            </TabPane>
+            <TabPane tab="Validate Ingredients" key="2">
+              <div>
+                <Form>
+                  {this.props.recipeDetails.Ingredients.map((el, i) => {
+                    if (el.Name) {
+                      return (
+                        <FormItem
+                          key={i}
+                          label={`${el.Quantity} ${el.Unit} ${el.Name}`}
+                        >
+                          <Input />
+                        </FormItem>
+                      );
+                    }
+                  })}
+                </Form>
+              </div>
+            </TabPane>
+          </Tabs>
         </Modal>
       </div>
     );

@@ -4,10 +4,11 @@
  *
  */
 import PropTypes from 'prop-types';
-import { Card, Modal } from 'antd';
+import { Card, Modal, Tabs } from 'antd';
 import React from 'react';
 import './RecipeCard.css';
 const { Meta } = Card;
+
 // import styled from 'styled-components';
 
 const styles = {
@@ -21,7 +22,7 @@ const styles = {
     objectFit: 'cover',
     borderRadius: '15px ',
     width: '100%',
-    height:'auto'
+    height: 'auto'
   }
 };
 class RecipeCard extends React.Component {
@@ -48,7 +49,7 @@ class RecipeCard extends React.Component {
       visible: false
     });
   };
-  
+
   render() {
     return (
       <div className="recipe_card">
@@ -72,14 +73,12 @@ class RecipeCard extends React.Component {
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-          <img
-            alt={this.props.name}
-            src={this.props.imageUrl}
-            style={styles.modalImg}
-          />
-          <ul>
-
-          </ul>
+              <img
+                alt={this.props.name}
+                src={this.props.imageUrl}
+                style={styles.modalImg}
+              />
+          
         </Modal>
       </div>
     );
