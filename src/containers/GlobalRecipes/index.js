@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Layout, Spin, Input } from 'antd';
-import RecipeCard from '../../components/RecipeCard';
+import { Spin, Input } from 'antd';
 import '../Recipes/Recipes.css';
 import './index.css';
 import { getSearchRecipes, getOneRecipe } from '../../actions/recipes.actions';
-const { Content } = Layout;
+import GlobalCard from '../../components/GlobalCard';
 
 const Search = Input.Search;
 
@@ -43,12 +42,12 @@ class GlobalRecipes extends React.Component {
           </div>
           <div className="cards global">
             {this.props.globalRecipes.map((el, i) => (
-              <RecipeCard
+              <GlobalCard
+              id={el.RecipeID}
                 key={i}
                 handleClick={this.showRecipe.bind(this, el.RecipeID)}
                 imageUrl={el.PhotoUrl}
                 name={el.Title}
-                // serves={el.Servings}
               />
             ))}
           </div>
