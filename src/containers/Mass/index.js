@@ -5,6 +5,7 @@ import ShoppingList from '../ShoppingList';
 import Planning from '../Planning';
 import Recipes from '../Recipes/Recipes';
 import TopBar from '../../components/TopBar';
+import GlobalRecipes from '../GlobalRecipes';
 // import BottomBar from '../../components/BottomBar';
 export default class Index extends Component {
 
@@ -14,6 +15,7 @@ export default class Index extends Component {
       <div className="appBackground">
         <TopBar />
         <SwipeableViews resistance style={{ height: '100vh', backgroundColor: '#252134'}}>
+          <GlobalRecipes/>
           <Recipes />
           <Planning />
           <ShoppingList />

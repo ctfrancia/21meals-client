@@ -42,7 +42,7 @@ class Recipes extends React.Component {
     } else if (this.props.recipes.length === 0) {
       return <div className="cards">
           <RecipeInput />
-          {this.openNotification()}
+          {/* {this.openNotification()} */}
         </div>;
     } else {
       return (
