@@ -45,7 +45,13 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         loadingPlans: false,
-        plansIndex: action.result
+        plansIndex: action.result,
+        plansByDay: Object.values(action.entities.meals_plan).reduce((acc, el) => {
+          if (!acc[el.weekday]) acc[el.weekday] = [];
+          acc[el.weekday].push(el);
+          return acc;
+        }, {}),
+        weekdays: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
       };
 
     case recipesConstants.RECIPES_GET_ALL_REQUEST:

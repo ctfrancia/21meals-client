@@ -1,53 +1,67 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Layout } from 'antd';
-import TopBar from '../../components/TopBar';
-import BottomBar from '../../components/BottomBar';
 import Day from '../../components/Day';
 import { getAllPlans } from '../../actions/plans.actions';
 import './Planning.css';
 import { getAllShoppingList } from '../../actions/shoppingList.actions';
-
-const { Content } = Layout;
-
+import { Tabs } from 'antd';
+const TabPane = Tabs.TabPane;
 class Planning extends Component {
-  componentDidUpdate () {
-    this.props.getList();
-  }
   componentDidMount() {
     this.props.getAllPlans(this.props.planId);
+    this.props.getList();
   }
 
   renderPlanning() {
+    const planDays = this.props.planByDay;
+    const weekday = this.props.weekday;
+    console.log(planDays);
+    console.log(weekday);
     const plan = this.props.meals_plan;
-    if (this.props.loading !== true) {
-      return Object.keys(plan).map((el, i) => (
-        <Day
-          key={i}
-          meal_id={plan[el].id}
-          day={plan[el].weekday}
-          meal_time={plan[el].meal_type}
-          recipe={plan[el].recipe_id}
-          planId= {this.props.planId}
-          clickHandler={this.handleClick}
-        />
-      ));
+    if (!this.props.loading) {
+      return (
+        <Tabs>
+          {weekday.map((el, i) => {
+            return (
+              <TabPane tab={el} key={i} className={`${el} day`}>
+                {planDays[el].map((meal, k) => {
+                  console.log(meal)
+                  return (
+                    <Day
+                      key={k}
+                      meal_id={meal.id}
+                      day={meal.weekday}
+                      meal_time={meal.meal_type}
+                      recipe={meal.recipe_id}
+                      planId={this.props.planId}
+                      clickHandler={this.handleClick}
+                    />
+                  );
+                })}
+              </TabPane>
+            );
+          })}
+        </Tabs>
+      );
     }
   }
 
   render() {
     return (
       <div className="plan__wrapper">
-        <Layout>
-          <Content className="planning">{this.renderPlanning()}</Content>
-        </Layout>
+        {this.props.loading === true ? (
+          <div />
+        ) : (
+          <div className="planning">{this.renderPlanning()}</div>
+        )}
       </div>
     );
   }
 }
 Planning.propTypes = {
   getAllPlans: PropTypes.func,
+  getList: PropTypes.func,
   loading: PropTypes.bool,
   plan: PropTypes.object,
   meals_plan: PropTypes.object,
@@ -56,6 +70,8 @@ Planning.propTypes = {
 
 const mapStateToProps = state => ({
   meals_plan: state.entities.meals_plan,
+  planByDay: state.pages.plansByDay,
+  weekday: state.pages.weekdays,
   plan: state.entities.plan[state.pages.plansIndex],
   loading: state.pages.loadingPlans,
   planId: state.authentication.user.plan_id
