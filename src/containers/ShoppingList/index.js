@@ -69,13 +69,12 @@ class ShoppingList extends React.Component {
   componentDidMount = e => {};
 
   render() {
-    return (
-      <div>
+    return <div>
         <div className="list">
+          <h3 style={{ marginBottom: 16 }}>My Shopping List</h3>
           <div className="list__list">{this.createShoppingList()}</div>
         </div>
-      </div>
-    );
+      </div>;
   }
 }
 

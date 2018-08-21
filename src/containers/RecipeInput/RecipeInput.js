@@ -259,6 +259,7 @@ class RecipeInput extends React.Component {
         ingredient_type_id: ''
       }
     });
+    this.handleAccordion('1')
   };
 
   sendNewRecipe = async e => {
@@ -325,6 +326,12 @@ class RecipeInput extends React.Component {
       }
     });
   };
+  handleAccordion = e => {
+    this.setState({
+      ...this.state,
+      accordion: { activeKey: e }
+    });
+  };
 
   render() {
     return (
@@ -333,15 +340,9 @@ class RecipeInput extends React.Component {
           hoverable
           onClick={this.showModal}
           style={styles.card}
-          cover={
-            <img
-              alt='Add Recipe'
-              src={recipe}
-              style={styles.img}
-            />
-          }
+          cover={<img alt="Add Recipe" src={recipe} style={styles.img} />}
         >
-          <Meta title='Add Item' />
+          <Meta title="Add new recipe" />
         </Card>
         <Modal
           style={{ top: 20 }}
@@ -408,7 +409,12 @@ class RecipeInput extends React.Component {
                     {this.ingredientList()}
                   </div>
 
-                  <Collapse bordered={false} accordion>
+                  <Collapse
+                    bordered={false}
+                    accordion
+                    onChange={this.handleAccordion}
+                    activeKey={this.state.accordion.activeKey}
+                  >
                     <Panel header="Choose an existing ingredient" key="1">
                       <FormItem>
                         <Select

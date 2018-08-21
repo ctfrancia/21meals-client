@@ -24,11 +24,19 @@ class Recipes extends React.Component {
 
   openNotification = () => {
     notification.open({
+      bottom: 300,
+      placement: 'bottomRight',
+      duration: 10,
       message: 'Welcome to Mealee!',
       description:
         "Hello there! This is your recipies view. Here you will see a list of every recipe that you store. To add new recipes click on the ' Add new ' button "
     });
   };
+  componentDidUpdate = (prevProps) =>{
+    if (this.props.showNotification && !prevProps.showNotification) {
+      this.openNotification()
+    }
+  }
 
   renderCards() {
     if (this.props.loading) {
@@ -40,7 +48,6 @@ class Recipes extends React.Component {
     } else if (this.props.recipes.length === 0) {
       return <div className="cards">
           <RecipeInput />
-          {/* {this.openNotification()} */}
         </div>;
     } else {
       return (
@@ -71,13 +78,15 @@ Recipes.propTypes = {
   getAllRecipes: PropTypes.func,
   getAllMeasures: PropTypes.func,
   getAllIngredientTypes: PropTypes.func,
-  getAllPlans: PropTypes.func
+  getAllPlans: PropTypes.func,
+  showNotification: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
   loading: state.pages.loadingRecipes,
   recipes: state.pages.recipesIndex.map(el => state.entities.recipes[el]),
-  planId: state.authentication.user.plan_id
+  planId: state.authentication.user.plan_id,
+  showNotification: state.pages.showNotification
 });
 
 const mapDispatchToProps = dispatch => ({

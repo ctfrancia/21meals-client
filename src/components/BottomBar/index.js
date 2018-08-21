@@ -33,8 +33,8 @@ class BottomBar extends React.Component {
           <div className="bottom-bar__option" onClick={this.changeView.bind(this, 3)}>
             {this.props.currentPage === 3 ? <Icon type="shopping-cart" style={{ color: '#e69b76' }} /> : <Icon type="shopping-cart" style={{ color: 'white' }} />}
           </div>
-          <div className="bottom-bar__option" onClick={this.changeView.bind(this, 4)}>
-            {this.props.currentPage === 4 ? <Icon type="user" style={{ color: '#e69b76' }} /> : <Icon type="user" style={{ color: 'white' }} />}
+          <div className="bottom-bar__option" >
+            {<Icon type="poweroff" style={{ color: 'white' }} />}
           </div>
         </div>
       </Footer>;
@@ -43,6 +43,7 @@ class BottomBar extends React.Component {
 
 BottomBar.propTypes = {
   changePageView: PropTypes.func,
+  
 };
 const mapStateToProps = state => ({
   currentPage: state.pages.pageIndex

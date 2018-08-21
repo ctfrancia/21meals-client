@@ -12,12 +12,14 @@ const defaultState = {
   loadingPlans: true,
   loadingRecipes: true,
   postingRecipe: false,
+  showNotification: false,
   loadingGlobalRecipes: true,
   loadingOneGlobalRecipe: true,
   postingIngredient: false,
   success: false,
   pageIndex: 1,
 };
+
 export default (state = defaultState, action) => {
   switch (action.type) {
     case ingredientsConstants.INGREDIENTS_GET_ALL_REQUEST:
@@ -53,10 +55,12 @@ export default (state = defaultState, action) => {
       };
 
     case recipesConstants.RECIPES_GET_ALL_SUCCESS:
+      
       return {
         ...state,
         recipesIndex: action.result,
-        loadingRecipes: false
+        loadingRecipes: false,
+        showNotification: action.result.length === 0
       };
     case recipesConstants.RECIPES_POST_NEW_REQUEST:
       return {
