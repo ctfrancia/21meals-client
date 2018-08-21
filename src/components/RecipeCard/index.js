@@ -4,18 +4,18 @@
  *
  */
 import PropTypes from 'prop-types';
-import { Card, Modal, Tabs } from 'antd';
+import { Modal } from 'antd';
 import React from 'react';
 import './RecipeCard.css';
-const { Meta } = Card;
-
+import recipePlaceHolder from '../../assets/recipe.png';
 // import styled from 'styled-components';
 
 const styles = {
   card: { width: 155, borderRadius: 15 },
   img: {
     height: 80,
-    borderRadius: '15px ',
+    width: 110,
+    borderRadius: '5px ',
     objectFit: 'cover'
   },
   modalImg: {
@@ -60,7 +60,7 @@ class RecipeCard extends React.Component {
           <div className="recipe_card--image">
             <img
               alt={this.props.name}
-              src="http://partaste.com/worldrecipes/wp-content/uploads/sites/2/2014/08/pa_amb_tomaquet.png" //src={this.props.imageUrl ? this.props.imageUrl : }
+              src={this.props.imageUrl ? this.props.imageUrl : recipePlaceHolder}
               style={styles.img}
             />
           </div>

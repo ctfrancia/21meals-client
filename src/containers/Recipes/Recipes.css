@@ -1,8 +1,9 @@
 .recipes__view {
-  background-color: #fafafa;
+  background-color: #f3f2ea;
   height: 100%;
 }
- .cards {
+
+.cards {
   display: flex;
   flex-wrap: wrap;
   margin-top: 1rem;

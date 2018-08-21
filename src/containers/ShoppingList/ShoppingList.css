@@ -11,9 +11,11 @@
   display: flex;
   align-items: flex-end;
 }
-
+.list__title {
+  padding-top: 10px;
+  padding-left: 10px;
+}
 .list__list {
-  padding-top: 3.4rem;
   padding-bottom: 2.5rem;
   overflow: scroll;
 }
