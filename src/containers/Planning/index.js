@@ -38,12 +38,10 @@ class Planning extends Component {
 
   render() {
     return (
-      <div>
-        <TopBar section="My Weekly Planning"/>
+      <div className="plan__wrapper">
         <Layout>
           <Content className="planning">{this.renderPlanning()}</Content>
         </Layout>
-        <BottomBar />
       </div>
     );
   }

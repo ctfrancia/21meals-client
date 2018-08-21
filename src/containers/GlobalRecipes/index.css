@@ -1,5 +1,11 @@
 .search__bar {
-  padding: 3rem;
+  height: 7vh;
+}
+
+.global__search {
+  padding: 1vh;
+  height: 94vh;
+  width: 100vw;
 }
 
 .search__bar--input {
@@ -19,5 +25,8 @@
   padding-top: 3.5rem;
   height: 100%;
   background-color: #fafafa;
+}
 
+.cards {
+  padding: 0;
 }
