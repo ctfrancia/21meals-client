@@ -5,6 +5,7 @@ import { Layout, Spin, Input } from 'antd';
 import RecipeCard from '../../components/RecipeCard';
 import './index.css';
 import { getSearchRecipes, getOneRecipe } from '../../actions/recipes.actions'
+import GlobalCard from '../../components/GlobalCard';
 const { Content } = Layout;
 
 const Search = Input.Search;
@@ -56,7 +57,7 @@ class GlobalRecipes extends React.Component {
 
           <div className="cards">
             {this.props.globalRecipes.map((el, i) => (
-              <RecipeCard
+              <GlobalCard
                 key={i}
                 handleClick={this.showRecipe.bind(this, el.RecipeID)}
                 imageUrl={el.PhotoUrl}
