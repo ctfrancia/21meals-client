@@ -1,16 +1,19 @@
 import { ingredientsConstants } from '../constants/ingredients.constants';
 import { plansConstants } from '../constants/plans.constants';
 import { recipesConstants } from '../constants/recipes.constants';
-import { listConstants } from '../constants/list.constants';
 import { message } from 'antd';
 import { shoppingListConstants } from '../constants/shoppingList.constants';
 
 const defaultState = {
   recipesIndex: [],
+  globalRecipes: [],
+  globalRecipe: {},
   loadingIngredients: true,
   loadingPlans: true,
   loadingRecipes: true,
   postingRecipe: false,
+  loadingGlobalRecipes: true,
+  loadingOneGlobalRecipe: true,
   postingIngredient: false,
   success: false
 };
@@ -112,6 +115,32 @@ export default (state = defaultState, action) => {
           acc[el.ingredient_type].push(el);
           return acc;
         }, {})
+      };
+
+    case recipesConstants.GLOBAL_RECIPES_GET_ALL_REQUEST:
+      return {
+        ...state,
+        loadingGlobalRecipes: true
+      };
+
+    case recipesConstants.GLOBAL_RECIPES_GET_ALL_SUCCESS:
+      return {
+        ...state,
+        globalRecipes: action.data.Results,
+        loadingGlobalRecipes: false
+      };
+
+    case recipesConstants.GLOBAL_RECIPES_GET_ONE_REQUEST:
+      return {
+        ...state,
+        loadingOneGlobalRecipe: true
+      };
+
+    case recipesConstants.GLOBAL_RECIPES_GET_ONE_SUCCESS:
+      return {
+        ...state,
+        globalRecipe: action.data,
+        loadingOneGlobalRecipe: false
       };
 
     default:

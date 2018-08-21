@@ -16,7 +16,9 @@ import { normalize } from 'normalizr';
 // const BASE_URL = 'https://private-anon-9d15778814-mealee.apiary-mock.com'; //CHANGE THIS TO SERVER URL
 // const BASE_URL = 'http://192.168.1.154:3001'; //SERVER URL
 const BASE_URL = 'http://192.168.1.235:3001'; //SERVER URL
-
+const BIG_OVEN_SEARCH_URL =
+  'http://api2.bigoven.com/recipes?pg=1&rpp=25&title_kw=';
+const BIG_OVEN_RECIPE_URL = 'http://api2.bigoven.com/recipe/';
 export default store => next => action => {
   if (!action.api) return next(action);
   const { endpoint, method } = action.api;
@@ -39,11 +41,20 @@ export default store => next => action => {
     type: `${action.type}_REQUEST`
   });
   // console.log('fetch', BASE_URL + endpoint);
-  fetch(`${BASE_URL}${endpoint}`, {
-    method: method || 'GET',
-    body,
-    headers
-  })
+  fetch(
+    `${
+      action.globalApiQuery
+        ? action.type == 'GLOBAL_RECIPES_GET_ALL'
+          ? BIG_OVEN_SEARCH_URL
+          : BIG_OVEN_RECIPE_URL
+        : BASE_URL
+    }${endpoint}`,
+    {
+      method: method || 'GET',
+      body,
+      headers
+    }
+  )
     .then(response => response.json())
     .then(data => {
       if (action.schema) {
