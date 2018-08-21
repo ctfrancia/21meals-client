@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 class Recipe extends React.Component {
   render() {
-    return <div />;
+    return 
+    <div />;
   }
 }
 

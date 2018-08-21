@@ -5,11 +5,19 @@ import { Layout } from 'antd';
 import TopBar from '../../components/TopBar';
 import BottomBar from '../../components/BottomBar';
 import Day from '../../components/Day';
+import { getAllPlans } from '../../actions/plans.actions';
 import './Planning.css';
+import { getAllShoppingList } from '../../actions/shoppingList.actions';
+
 const { Content } = Layout;
 
 class Planning extends Component {
-  componentDidMount() {}
+  componentDidUpdate () {
+    this.props.getList();
+  }
+  componentDidMount() {
+    this.props.getAllPlans(this.props.planId);
+  }
 
   renderPlanning() {
     const plan = this.props.meals_plan;
@@ -21,6 +29,7 @@ class Planning extends Component {
           day={plan[el].weekday}
           meal_time={plan[el].meal_type}
           recipe={plan[el].recipe_id}
+          planId= {this.props.planId}
           clickHandler={this.handleClick}
         />
       ));
@@ -30,7 +39,7 @@ class Planning extends Component {
   render() {
     return (
       <div>
-        <TopBar />
+        <TopBar section="My Weekly Planning"/>
         <Layout>
           <Content className="planning">{this.renderPlanning()}</Content>
         </Layout>
@@ -43,19 +52,23 @@ Planning.propTypes = {
   getAllPlans: PropTypes.func,
   loading: PropTypes.bool,
   plan: PropTypes.object,
-  meals_plan: PropTypes.object
+  meals_plan: PropTypes.object,
+  planId: PropTypes.string
 };
 
 const mapStateToProps = state => ({
   meals_plan: state.entities.meals_plan,
   plan: state.entities.plan[state.pages.plansIndex],
-  loading: state.pages.loadingPlans
+  loading: state.pages.loadingPlans,
+  planId: state.authentication.user.plan_id
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-// });
+const mapDispatchToProps = dispatch => ({
+  getAllPlans: planId => dispatch(getAllPlans(planId)),
+  getList: () => dispatch(getAllShoppingList())
+});
 
 export default connect(
-  mapStateToProps
-  // mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Planning);

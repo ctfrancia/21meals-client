@@ -1,0 +1,21 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 4.5rem;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  align-content: flex-start;
+  height: 100vh;
+  margin-bottom: 3rem;
+}
+
+.loading {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ant-layout {
+  /* background: #f3f2ea; */
+}

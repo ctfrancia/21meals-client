@@ -1,21 +1,32 @@
 .list {
-  max-height: 92vh;
+  height: 100vh;
   overflow: scroll;
+  background-color: #fafafa;
 }
 
 .list__image {
   height: 10rem;
   width: auto;
-  background-image: url("../../assets/shop.jpg");
   background-size: cover;
   display: flex;
   align-items: flex-end;
 }
 
 .list__list {
+  padding-top: 3.4rem;
+  padding-bottom: 2.5rem;
   overflow: scroll;
 }
+.list__list--header {
+  display: flex;
+  align-items: center;
+}
 
+.list__list--header img {
+  max-width: 25px;
+  margin-right: 10px;
+  
+}
 .list__image--title h2 {
   font-size: 1.8rem;
   font-weight: 200;
@@ -23,7 +34,11 @@
   padding: 1rem;
 }
 
-.ant-list-header {
+.list__list .ant-list {
+  border-top: 1px solid black;
+}
+
+.list__list .ant-list-header {
   font-weight: bold;
   background-color: #fafafa
 }

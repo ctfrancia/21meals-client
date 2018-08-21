@@ -1,35 +1,24 @@
 import React, { Component } from 'react';
 import './App.css';
-import { connect } from 'react-redux';
-import 'antd/lib/date-picker/style/css'; // for css
-import ShoppingList from '../ShoppingList';
-import Planning from '../Planning';
-import Main from '../Main/Main';
-import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { getAllIngredients } from '../../actions/ingredients.actions';
-import { getAllRecipes } from '../../actions/recipes.actions';
-import { getAllPlans } from '../../actions/plans.actions';
+// import PropTypes from 'prop-types';
+import { PrivateRoute } from '../../helpers/PrivateRoute';
+import { Router, Route } from 'react-router-dom';
 import Login from '../Login';
-import { RecipeInputPage } from '../RecipeInputPage';
+import SignUp from '../SignUp';
+import { history } from '../../helpers/history';
+import Index from '../Mass';
 
 class App extends Component {
-  componentDidMount() {
-    this.props.getAllRecipes();
-    this.props.getAllIngredients();
-    this.props.getAllPlans();
-  }
 
   render() {
     return (
       <div className="App">
-        <Router>
+        <Router history={history}>
           <div>
             <Route exact path="/login" component={Login} />
-            <Route exact path="/" component={Main} />
-            <Route path="/planning" component={Planning} />
-            <Route path="/recipeform" component={RecipeInputPage} />
-            <Route path="/list" component={ShoppingList} />
+            <Route path="/signup" component={SignUp} />
+            <PrivateRoute exact path="/" component={Index} />
+    
           </div>
         </Router>
       </div>
@@ -37,20 +26,5 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  getAllIngredients: PropTypes.func,
-  getAllRecipes: PropTypes.func,
-  getAllPlans: PropTypes.func
-};
-const mapStateToProps = () => ({});
 
-const mapDispatchToProps = dispatch => ({
-  getAllIngredients: () => dispatch(getAllIngredients()),
-  getAllRecipes: () => dispatch(getAllRecipes()),
-  getAllPlans: () => dispatch(getAllPlans())
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;

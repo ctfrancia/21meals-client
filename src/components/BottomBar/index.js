@@ -26,7 +26,7 @@ function BottomBar() {
     >
       <div className="bottom-bar">
         <div className="bottom-bar__option">
-          <Link to="/">
+          <Link to="/main">
             <Icon type="heart-o" />
           </Link>
         </div>

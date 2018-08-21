@@ -1,10 +1,11 @@
 import React from 'react';
 import './Login.css';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import logo from '../../assets/logo.svg';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button } from 'antd';
 import { Link } from 'react-router-dom';
+import { login } from '../../actions/user.actions';
 const FormItem = Form.Item;
 
 class Login extends React.Component {
@@ -21,11 +22,10 @@ class Login extends React.Component {
   handlePasswordChange = event => {
     this.setState({ password: event.target.value });
   };
-  handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('aaaaa');
-    
-  }
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.logIn(this.state);
+  };
   render() {
     return (
       <div className="login-page">
@@ -36,16 +36,18 @@ class Login extends React.Component {
           <Form onSubmit={this.handleSubmit} className="login-form">
             <FormItem>
               <Input
+                required
                 onChange={this.handleUsernameChange}
                 value={this.state.username}
                 prefix={
                   <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />
                 }
-                placeholder="Username"
+                placeholder="Email address"
               />
             </FormItem>
             <FormItem>
               <Input
+                required
                 onChange={this.handlePasswordChange}
                 value={this.state.password}
                 prefix={
@@ -56,24 +58,29 @@ class Login extends React.Component {
               />
             </FormItem>
             <FormItem>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button"
-              >
-                Log in 
-                {/* <Link to="/">Log in </Link> */}
-              </Button>
+              {this.props.loggingIn ? (
+                <Button type="primary" className="login-form-button" loading>
+                  Logging In...
+                </Button>
+              ) : (
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="login-form-button"
+                >
+                  Log in
+                </Button>
+              )}
             </FormItem>
             <FormItem className="login-form__options">
-              <a className="login-form-forgot" href="">
+              <Link className="login-form-forgot" to="/main">
                 Forgot password
-              </a>
+              </Link>
             </FormItem>
             <FormItem className="login-form__options">
-              <a className="login-form-forgot" href="">
+              <Link className="login-form-forgot" to="/signup">
                 register now!
-              </a>
+              </Link>
             </FormItem>
           </Form>
         </div>
@@ -84,13 +91,15 @@ class Login extends React.Component {
 
 Login.propTypes = {};
 
-// const mapStateToProps = state => ({
+const mapStateToProps = state => ({
+  loggingIn: state.authentication.logging_in
+});
 
-// });
+const mapDispatchToProps = dispatch => ({
+  logIn: (data)=> dispatch(login(data))
+});
 
-// const mapDispatchToProps = dispatch => ({
-// });
-
-export default connect()(Login);
-// mapStateToProps
-// mapDispatchToProps
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);

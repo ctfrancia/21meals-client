@@ -1,13 +1,10 @@
-
-import newRecipe from './recipe-input.reducer';
-import slider from './carousel.reducer';
 import { combineReducers } from 'redux';
 import entities from './entities.reducer'
 import pages from './pages.reducer';
+import authentication from './authentication.reducers';
 
 const reducers = combineReducers({
-  newRecipe,
-  slider,
+  authentication,
   entities,
   pages,
   

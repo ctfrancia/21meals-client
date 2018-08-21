@@ -1,12 +1,44 @@
 .day {
   background-color: #47494E;
-  height: 6.3rem;
+  height: 7rem;
   width: auto;
-  margin: 15px;
-  border-radius: 0 10px 10px 0;
   display: flex;
   color: #fafafa;
-  border-left: 6px solid #e69b76;
+  border-bottom: 1px solid black
+}
+
+.day:nth-child(1) {
+  background-color: #47494E;
+}
+
+.day:nth-child(2) {
+  background-color: #5A5A64
+}
+
+.day:nth-child(3) {
+  background-color: #496C7E
+}
+
+.day:nth-child(4) {
+  background-color: #32959E
+}
+
+.day:nth-child(5) {
+  background-color: #44BDA0
+}
+
+.day:nth-child(6) {
+  background-color: #93E089;
+  color: #4b4b4b;
+}
+
+.day:nth-child(7) {
+  background-color: #F9F871;
+  color: #4b4b4b
+}
+
+.monday {
+  background-color: #2F4854
 }
 
 .day__side {
@@ -26,15 +58,16 @@
   justify-self: flex-end;
   font-size: 1rem;
   flex-basis: 1;
+  margin-bottom: 5px;
 }
 
 .day__main--title p {
   text-transform: uppercase;
-  margin: 0;
+  margin: 8px;
 }
 
 .day__main--body {
-  margin-top: 10px;
+  padding: 25px;
   display: flex;
   align-items: center;
   font-size: 1.2rem;
