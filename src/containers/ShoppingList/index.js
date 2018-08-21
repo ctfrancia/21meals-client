@@ -2,18 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TopBar from '../../components/TopBar';
 import BottomBar from '../../components/BottomBar';
-import icons from '../../helpers/icons'
+import icons from '../../helpers/icons';
 import { connect } from 'react-redux';
 import { List, Checkbox } from 'antd';
 import './ShoppingList.css';
-import { getAllShoppingList } from '../../actions/shoppingList.actions';
-
-
-function onChange(e) {
-  console.log(`checked = ${e.target.checked}`);
-}
+import {
+  getAllShoppingList,
+  checkItem
+} from '../../actions/shoppingList.actions';
 
 class ShoppingList extends React.Component {
+  onChange = e => {
+    this.props.markItem(e.target.value);
+  };
   createShoppingList() {
     let list = [];
     for (const category in this.props.listItems) {
@@ -23,9 +24,9 @@ class ShoppingList extends React.Component {
             key={category}
             header={
               <div className="list__list--header">
-                <img src={icons[category]} alt={category}/>
+                <img src={icons[category]} alt={category} />
                 <div className="list__list--header--category">
-                {category.toUpperCase()}
+                  {category.toUpperCase()}
                 </div>
               </div>
             }
@@ -33,12 +34,28 @@ class ShoppingList extends React.Component {
             dataSource={this.props.listItems[category]}
             renderItem={item => (
               <List.Item key={item.id}>
-                <Checkbox checked={item.bought} onChange={onChange}>
-                  {`${
-                    item.total_amount === 0 || item.total_amount === null
-                      ? 'Some'
-                      : item.total_amount
-                  } ${item.measure === null ? '' : item.measure} ${item.ingredient}`}
+                <Checkbox
+                  checked={item.bought}
+                  onChange={this.onChange}
+                  value={item.id}
+                >
+                  {item.bought ? (
+                    <del>{`${
+                      item.total_amount === 0 || item.total_amount === null
+                        ? 'Some'
+                        : item.total_amount
+                    } ${item.measure === null ? '' : item.measure} ${
+                      item.ingredient
+                    }`}</del>
+                  ) : (
+                    `${
+                      item.total_amount === 0 || item.total_amount === null
+                        ? 'Some'
+                        : item.total_amount
+                    } ${item.measure === null ? '' : item.measure} ${
+                      item.ingredient
+                    }`
+                  )}
                 </Checkbox>
               </List.Item>
             )}
@@ -49,9 +66,7 @@ class ShoppingList extends React.Component {
     return list;
   }
 
-  componentDidMount = () => {
-    this.props.getList()
-  };
+  componentDidMount = e => {};
 
   render() {
     return (
@@ -73,15 +88,14 @@ ShoppingList.propTypes = {};
 const mapStateToProps = state => ({
   ingredients_recipe: state.entities.ingredients_recipe,
   listItems: state.pages.shoppingList
-
-})
- 
+});
 
 ShoppingList.propTypes = {
   listItems: PropTypes.object
 };
 const mapDispatchToProps = dispatch => ({
-  getList: () => dispatch(getAllShoppingList())
+  getList: () => dispatch(getAllShoppingList()),
+  markItem: itemId => dispatch(checkItem(itemId))
 });
 
 export default connect(

@@ -104,6 +104,15 @@ export default (state = defaultState, action) => {
           return acc;
         }, {})
       };
+    case shoppingListConstants.CHECK_ITEM_SUCCESS:
+      return {
+        ...state,
+        shoppingList: action.data.reduce((acc, el) => {
+          if (!acc[el.ingredient_type]) acc[el.ingredient_type] = [];
+          acc[el.ingredient_type].push(el);
+          return acc;
+        }, {})
+      };
 
     default:
       return state;

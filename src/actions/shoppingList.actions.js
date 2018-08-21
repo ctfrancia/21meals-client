@@ -1,5 +1,4 @@
 import { shoppingListConstants } from '../constants/shoppingList.constants';
-import * as schema from './schemas';
 import { authHeader } from '../helpers/auth.header';
 
 const JWT = authHeader();
@@ -14,11 +13,15 @@ export const getAllShoppingList = () => ({
   // schema: schema.ingredientSchema
 });
 
-export const checkItem = () => ({
+export const checkItem = (id) => ({
   type: shoppingListConstants.CHECK_ITEM,
   api: {
     headers: JWT,
-    endpoint: '/shopping-list-items'
+    method: 'PUT',
+    endpoint: '/shopping-list-items',
+    body: {
+      itemId: id
+    }
   },
   // schema: schema.ingredientSchema
 });
