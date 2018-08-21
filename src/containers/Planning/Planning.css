@@ -13,6 +13,9 @@
   background-color: #252134;
 }
 
+.plan__wrapper {
+  height: 94vh;
+}
 
 
 .day__list {

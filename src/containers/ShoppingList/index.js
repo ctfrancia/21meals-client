@@ -71,13 +71,9 @@ class ShoppingList extends React.Component {
   render() {
     return (
       <div>
-        <TopBar section="My Shopping List" />
-
         <div className="list">
           <div className="list__list">{this.createShoppingList()}</div>
         </div>
-
-        <BottomBar />
       </div>
     );
   }

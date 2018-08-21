@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { Layout, Spin, notification } from 'antd';
 import RecipeCard from '../../components/RecipeCard';
 import './Recipes.css';
-import TopBar from '../../components/TopBar';
-import BottomBar from '../../components/BottomBar';
 import RecipeInput from '../RecipeInput/RecipeInput';
 import {
   getAllIngredients,
@@ -58,11 +56,9 @@ class Recipes extends React.Component {
   render() {
     return (
       <div>
-        <TopBar section="My Recipes" />
         <Layout>
           <Content>{this.renderCards()}</Content>
         </Layout>
-        <BottomBar />
       </div>
     );
   }

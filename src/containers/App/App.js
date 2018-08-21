@@ -7,25 +7,20 @@ import Login from '../Login';
 import SignUp from '../SignUp';
 import { history } from '../../helpers/history';
 import Index from '../Mass';
-import globalRecipes from '../GlobalRecipes';
 
 class App extends Component {
-
   render() {
     return (
       <div className="App">
         <Router history={history}>
           <div>
+            <PrivateRoute exact path="/" component={Index} />
             <Route exact path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
-            <PrivateRoute exact path="/" component={Index} />
-    
           </div>
         </Router>
       </div>
     );
   }
 }
-
-
 export default App;

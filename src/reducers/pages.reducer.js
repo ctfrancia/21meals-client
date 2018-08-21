@@ -15,7 +15,8 @@ const defaultState = {
   loadingGlobalRecipes: true,
   loadingOneGlobalRecipe: true,
   postingIngredient: false,
-  success: false
+  success: false,
+  pageIndex: 0,
 };
 export default (state = defaultState, action) => {
   switch (action.type) {
@@ -140,6 +141,11 @@ export default (state = defaultState, action) => {
         ...state,
         globalRecipe: action.data,
         loadingOneGlobalRecipe: false
+      };
+    case 'CHANGE_PAGE_INDEX':
+      return {
+        ...state,
+        pageIndex: action.pageIndex,
       };
 
     default:
