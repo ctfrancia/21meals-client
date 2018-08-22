@@ -69,6 +69,8 @@ class GlobalCard extends Component {
   componentDidMount() {}
 
   showModal = id => {
+    console.log(id);
+    
     this.showRecipe(id);
     this.setState({
       ...this.state,

@@ -1,44 +1,96 @@
 .day {
-  background-color: #47494E;
+  /* background-color: #47494E; */
   height: 7rem;
-  width: auto;
-  display: flex;
+  width: 95vw;
   color: #fafafa;
-  border-bottom: 1px solid black
+  margin-bottom: 10px;
+  margin-left: 7px;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.30), 0 0px 2px 0 rgba(0, 0, 0, 0.08);
 }
 
-.day:nth-child(1) {
-  background-color: #47494E;
+.monday .day:nth-child(1) {
+  background-color: #BC7653;
 }
 
-.day:nth-child(2) {
-  background-color: #5A5A64
+.monday .day:nth-child(2) {
+  background-color: #945332
 }
 
-.day:nth-child(3) {
-  background-color: #496C7E
+.monday .day:nth-child(3) {
+  background-color: #6D3213
 }
 
-.day:nth-child(4) {
-  background-color: #32959E
+.tuesday .day:nth-child(1) {
+  background-color: #9EC3B7;
 }
 
-.day:nth-child(5) {
-  background-color: #44BDA0
+.tuesday .day:nth-child(2) {
+  background-color: #7FA396
 }
 
-.day:nth-child(6) {
-  background-color: #93E089;
-  color: #4b4b4b;
+.tuesday .day:nth-child(3) {
+  background-color: #608378
 }
 
-.day:nth-child(7) {
-  background-color: #F9F871;
-  color: #4b4b4b
+.wednesday .day:nth-child(1) {
+  background-color: #DB0000;
 }
 
-.monday {
-  background-color: #2F4854
+.wednesday .day:nth-child(2) {
+  background-color: #B80000
+}
+
+.wednesday .day:nth-child(3) {
+  background-color: #960000
+}
+
+.thursday .day:nth-child(1) {
+  background-color: #008ED7;
+}
+
+.thursday .day:nth-child(2) {
+  background-color: #006BB1
+}
+
+.thursday .day:nth-child(3) {
+  background-color: #004A8C
+}
+
+.friday .day:nth-child(1) {
+  background-color: #C9448A
+}
+
+.friday .day:nth-child(2) {
+  background-color: #A41B6A
+}
+
+.friday .day:nth-child(3) {
+  background-color: #81004C
+}
+
+.saturday .day:nth-child(1) {
+  background-color: #01C383;
+}
+
+.saturday .day:nth-child(2) {
+  background-color: #448364
+}
+
+.saturday .day:nth-child(3) {
+  background-color: #005B51
+}
+
+.sunday .day:nth-child(1) {
+  background-color: #919191;
+}
+
+.sunday .day:nth-child(2) {
+  background-color: #5E5E5E
+}
+
+.sunday .day:nth-child(3) {
+  background-color: #303030
 }
 
 .day__side {
@@ -49,7 +101,7 @@
   margin-right: 10px;
 }
 
-.day__main {
+.day {
   display: flex;
   flex-direction: column
 }

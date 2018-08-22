@@ -1,16 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Modal,
-  Form,
-  Icon,
-  Input,
-  Button,
-  Tabs,
-  Select,
-  Collapse,
-  Card
-} from 'antd';
+import { Modal, Form, Icon, Input, Button, Tabs, Select, Collapse } from 'antd';
 import { connect } from 'react-redux';
 import { postIngredient } from '../../actions/ingredients.actions';
 import { postRecipe } from '../../actions/recipes.actions';
@@ -21,12 +11,10 @@ const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
 const Panel = Collapse.Panel;
 const Option = Select.Option;
-const { Meta } = Card;
 const styles = {
   card: { width: 155, borderRadius: 15 },
   img: {
-    height: 130,
-    borderRadius: '15px ',
+    height: 80,
     objectFit: 'cover'
   },
   modalImg: {
@@ -212,6 +200,7 @@ class RecipeInput extends React.Component {
         style={{ width: 120 }}
         onChange={this.handleChangeTypeSelect}
       >
+        {}
         {Object.values(this.props.ingredientTypes).map((el, i) => {
           return (
             <Option key={i} value={el.id}>
@@ -259,6 +248,7 @@ class RecipeInput extends React.Component {
         ingredient_type_id: ''
       }
     });
+    this.handleAccordion('1');
   };
 
   sendNewRecipe = async e => {
@@ -325,24 +315,24 @@ class RecipeInput extends React.Component {
       }
     });
   };
+  handleAccordion = e => {
+    this.setState({
+      ...this.state,
+      accordion: { activeKey: e }
+    });
+  };
 
   render() {
     return (
-      <div>
-        <Card
-          hoverable
+      <div className="addnew__button">
+        <Button
+          type="primary"
+          icon="plus-circle-o"
+          size="large"
           onClick={this.showModal}
-          style={styles.card}
-          cover={
-            <img
-              alt='Add Recipe'
-              src={recipe}
-              style={styles.img}
-            />
-          }
         >
-          <Meta title='Add Item' />
-        </Card>
+          Add new recipe
+        </Button>
         <Modal
           style={{ top: 20 }}
           className="recipe__input"
@@ -408,7 +398,12 @@ class RecipeInput extends React.Component {
                     {this.ingredientList()}
                   </div>
 
-                  <Collapse bordered={false} accordion>
+                  <Collapse
+                    bordered={false}
+                    accordion
+                    onChange={this.handleAccordion}
+                    activeKey={this.state.accordion.activeKey}
+                  >
                     <Panel header="Choose an existing ingredient" key="1">
                       <FormItem>
                         <Select
