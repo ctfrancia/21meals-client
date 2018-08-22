@@ -22,8 +22,8 @@ class Index extends Component {
           resistance
           onSwitching={this.handleSwitching}
           style={{
-            height: '94vh',
-            backgroundColor: '#f3f2ea',
+            height: '100vh',
+            backgroundColor: 'black',
             onSwitchingoverflow: 'hidden'
           }}
         >
@@ -31,7 +31,6 @@ class Index extends Component {
           <Recipes />
           <Planning />
           <ShoppingList />
-          {/* <Profile /> */}
         </SwipeableViews>
         <BottomBar />
       </div>

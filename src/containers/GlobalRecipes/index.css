@@ -13,7 +13,9 @@
   display: flex;
   justify-content: center;
 }
-
+.global__recipes--container{
+  background-color: #fff;
+}
 .cards.global {
   background-color: #fafafa;
   padding: 0;

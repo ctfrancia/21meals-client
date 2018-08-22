@@ -1,11 +1,5 @@
 .appBackground {
   width: 100vw;
   height: 100vh;
-  background-color: #f3f2ea;
 }
 
-.SwipeableViews {
-  height: 94vh;
-  overflow: hidden;
-  background-color: orange;
-}

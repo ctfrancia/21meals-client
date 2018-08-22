@@ -98,11 +98,6 @@ class Day extends React.Component {
     } else {
       return (
         <div className="day" onClick={this.showModal}>
-          {/* <div className="day__side">
-            <Avatar size="large" style={{ backgroundColor: '#87d068' }}>
-              O
-            </Avatar>
-          </div> */}
           <div className="day__main--title">
             <p>
               <strong>{this.props.meal_time}</strong>
