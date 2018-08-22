@@ -1,29 +1,10 @@
 @import '~antd/dist/antd.css';
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
+@import "customStyles.less";
 
 * {
   font-family: 'Montserrat', sans-serif;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  font-size: 10px;
 }

@@ -7,16 +7,17 @@ import PropTypes from 'prop-types';
 import { Modal } from 'antd';
 import React from 'react';
 import './RecipeCard.css';
-import recipePlaceHolder from '../../assets/recipe.png';
+import recipePlaceHolder from '../../assets/food.jpg';
 // import styled from 'styled-components';
 
 const styles = {
   card: { width: 155, borderRadius: 15 },
   img: {
-    height: 80,
-    width: 110,
+    height: 75,
+    width: 105,
     borderRadius: '5px ',
-    objectFit: 'cover'
+    objectFit: 'none',
+    filter: 'grayscale()'
   },
   modalImg: {
     objectFit: 'cover',

@@ -1,17 +1,26 @@
-.recipe__input .ant-modal-header {
+.ant-modal-header {
   background: linear-gradient( rgba(37, 33, 52, 0.6), rgba(37, 33, 52, 0.6)), url(../../assets/food.jpg);
   min-height: 80px;
   background-size: cover;
 }
+.addnew__button {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
 
-.recipe__input .ant-modal-title {
+
+.ant-modal-title {
   margin: 0;
   font-size: 22px;
   line-height: 22px;
   font-weight: 500;
   color: #fafafa;
 }
-
+.ant-modal-close-x {
+  font-weight: bold;
+  color: #fafafa;
+}
 .amountUnit {
   display: flex;
   justify-content: space-between;

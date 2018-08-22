@@ -1,15 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Modal,
-  Form,
-  Icon,
-  Input,
-  Button,
-  Tabs,
-  Select,
-  Collapse,
-} from 'antd';
+import { Modal, Form, Icon, Input, Button, Tabs, Select, Collapse } from 'antd';
 import { connect } from 'react-redux';
 import { postIngredient } from '../../actions/ingredients.actions';
 import { postRecipe } from '../../actions/recipes.actions';
@@ -209,6 +200,7 @@ class RecipeInput extends React.Component {
         style={{ width: 120 }}
         onChange={this.handleChangeTypeSelect}
       >
+        {}
         {Object.values(this.props.ingredientTypes).map((el, i) => {
           return (
             <Option key={i} value={el.id}>
@@ -256,7 +248,7 @@ class RecipeInput extends React.Component {
         ingredient_type_id: ''
       }
     });
-    this.handleAccordion('1')
+    this.handleAccordion('1');
   };
 
   sendNewRecipe = async e => {
@@ -332,19 +324,15 @@ class RecipeInput extends React.Component {
 
   render() {
     return (
-      <div>
-          <div className="recipe_card--main" onClick={this.showModal}>
-            <div className="recipe_card--info">
-              <h2>Add new recipe</h2>
-            </div>
-            <div className="recipe_card--image">
-              <img
-                alt="Add new recipe"
-                src={recipe} //src={this.props.imageUrl ? this.props.imageUrl : }
-                style={styles.img}
-              />
-            </div>
-          </div>
+      <div className="addnew__button">
+        <Button
+          type="primary"
+          icon="plus-circle-o"
+          size="large"
+          onClick={this.showModal}
+        >
+          Add new recipe
+        </Button>
         <Modal
           style={{ top: 20 }}
           className="recipe__input"

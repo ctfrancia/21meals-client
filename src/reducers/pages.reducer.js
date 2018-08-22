@@ -5,6 +5,7 @@ import { message } from 'antd';
 import { shoppingListConstants } from '../constants/shoppingList.constants';
 
 const defaultState = {
+  ingredientsTypeIndex: [],
   recipesIndex: [],
   globalRecipes: [],
   globalRecipe: { Ingredients: [] },
@@ -33,6 +34,11 @@ export default (state = defaultState, action) => {
         ...state,
         allIngredientsIndex: action.result,
         loadingIngredients: false
+      };
+    case ingredientsConstants.TYPES_GET_ALL_SUCCESS:
+      return {
+        ...state,
+        ingredientsTypeIndex: action.result,
       };
 
     case plansConstants.PLANS_GET_ALL_REQUEST:
