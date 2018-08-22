@@ -56,10 +56,10 @@ class GlobalRecipes extends React.Component {
         </div>
 
           <div className="cards">
-            {this.props.globalRecipes.map((el, i) => (
+            {this.props.globalRecipes.map((el, i) => (             
               <GlobalCard
                 key={i}
-                handleClick={this.showRecipe.bind(this, el.RecipeID)}
+                id={el.RecipeID}
                 imageUrl={el.PhotoUrl}
                 name={el.Title}
                 // serves={el.Servings}
