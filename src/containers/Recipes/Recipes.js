@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Layout, Spin, notification } from 'antd';
+import { Spin, notification, Divider } from 'antd';
 import RecipeCard from '../../components/RecipeCard';
 import './Recipes.css';
 import RecipeInput from '../RecipeInput/RecipeInput';
@@ -12,7 +12,6 @@ import {
 import { getAllRecipes } from '../../actions/recipes.actions';
 import { getAllMeasures } from '../../actions/measures.actions';
 
-const { Content } = Layout;
 
 class Recipes extends React.Component {
   componentDidMount() {
@@ -67,6 +66,10 @@ class Recipes extends React.Component {
   render() {
     return (
       <div className="recipes__view">
+        <div className="list__title">
+          <h2>My Recipes</h2>
+        </div>
+        <Divider />
           {this.renderCards()}
       </div>
     );

@@ -1,44 +1,94 @@
 .day {
-  background-color: #47494E;
+  /* background-color: #47494E; */
   height: 7rem;
-  width: auto;
-  display: flex;
+  width: 100vw;
   color: #fafafa;
-  border-bottom: 1px solid black
+  border-bottom: 1px solid black;
+  margin: 5px;
 }
 
-.day:nth-child(1) {
-  background-color: #47494E;
+.monday .day:nth-child(1) {
+  background-color: #FDB661;
 }
 
-.day:nth-child(2) {
-  background-color: #5A5A64
+.monday .day:nth-child(2) {
+  background-color: #DE7E67
 }
 
-.day:nth-child(3) {
-  background-color: #496C7E
+.monday .day:nth-child(3) {
+  background-color: #A55669
 }
 
-.day:nth-child(4) {
-  background-color: #32959E
+.tuesday .day:nth-child(1) {
+  background-color: #4B82A2;
 }
 
-.day:nth-child(5) {
-  background-color: #44BDA0
+.tuesday .day:nth-child(2) {
+  background-color: #74988C
 }
 
-.day:nth-child(6) {
-  background-color: #93E089;
-  color: #4b4b4b;
+.tuesday .day:nth-child(3) {
+  background-color: #43655A
 }
 
-.day:nth-child(7) {
-  background-color: #F9F871;
-  color: #4b4b4b
+.wednesday .day:nth-child(1) {
+  background-color: #2AC195;
 }
 
-.monday {
-  background-color: #2F4854
+.wednesday .day:nth-child(2) {
+  background-color: #338984
+}
+
+.wednesday .day:nth-child(3) {
+  background-color: #4E5875
+}
+
+.thursday .day:nth-child(1) {
+  background-color: #BCA79D;
+}
+
+.thursday .day:nth-child(2) {
+  background-color: #E69B76
+}
+
+.thursday .day:nth-child(3) {
+  background-color: #55433B
+}
+
+.friday .day:nth-child(1) {
+  background-color: #4B82A2;
+}
+
+.friday .day:nth-child(2) {
+  background-color: #74988C
+}
+
+.friday .day:nth-child(3) {
+  background-color: #43655A
+}
+
+.saturday .day:nth-child(1) {
+  background-color: #4B82A2;
+}
+
+.saturday .day:nth-child(2) {
+  background-color: #74988C
+}
+
+.saturday .day:nth-child(3) {
+  background-color: #43655A
+}
+
+.sunday .day:nth-child(1) {
+  background-color: #4B82A2;
+}
+
+.sunday .day:nth-child(2) {
+  background-color: #74988C
+}
+
+.sunday .day:nth-child(3) {
+  background-color: #43655A
 }
 
 .day__side {
@@ -49,7 +99,7 @@
   margin-right: 10px;
 }
 
-.day__main {
+.day {
   display: flex;
   flex-direction: column
 }

@@ -9,7 +9,6 @@ import {
   Tabs,
   Select,
   Collapse,
-  Card
 } from 'antd';
 import { connect } from 'react-redux';
 import { postIngredient } from '../../actions/ingredients.actions';
@@ -21,7 +20,6 @@ const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
 const Panel = Collapse.Panel;
 const Option = Select.Option;
-const { Meta } = Card;
 const styles = {
   card: { width: 155, borderRadius: 15 },
   img: {

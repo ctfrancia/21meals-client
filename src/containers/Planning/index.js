@@ -5,7 +5,7 @@ import Day from '../../components/Day';
 import { getAllPlans } from '../../actions/plans.actions';
 import './Planning.css';
 import { getAllShoppingList } from '../../actions/shoppingList.actions';
-import { Tabs } from 'antd';
+import { Tabs, Divider } from 'antd';
 const TabPane = Tabs.TabPane;
 class Planning extends Component {
   componentDidMount() {
@@ -16,28 +16,18 @@ class Planning extends Component {
   renderPlanning() {
     const planDays = this.props.planByDay;
     const weekday = this.props.weekday;
-    console.log(planDays);
-    console.log(weekday);
-    const plan = this.props.meals_plan;
     if (!this.props.loading) {
       return (
         <Tabs>
           {weekday.map((el, i) => {
             return (
-              <TabPane tab={el} key={i} className={`${el} day`}>
+              <TabPane tab={el} key={i} >
                 {planDays[el].map((meal, k) => {
-                  console.log(meal)
-                  return (
-                    <Day
-                      key={k}
-                      meal_id={meal.id}
-                      day={meal.weekday}
-                      meal_time={meal.meal_type}
-                      recipe={meal.recipe_id}
-                      planId={this.props.planId}
-                      clickHandler={this.handleClick}
-                    />
-                  );
+                  return <div className={`${el}`}>
+                      <Day day={meal.weekday} meal_time="breakfast" />
+                      <Day day={meal.weekday} meal_time="Lunch" />
+                      <Day key={k} meal_id={meal.id} day={meal.weekday} meal_time={meal.meal_type} recipe={meal.recipe_id} planId={this.props.planId} clickHandler={this.handleClick} />
+                    </div>;
                 })}
               </TabPane>
             );
@@ -53,7 +43,13 @@ class Planning extends Component {
         {this.props.loading === true ? (
           <div />
         ) : (
-          <div className="planning">{this.renderPlanning()}</div>
+          <div className="planning">
+            <div className="list__title">
+              <h2>My 21 Meals</h2>
+            </div>
+            <Divider className="planningDivider" />
+            {this.renderPlanning()}
+          </div>
         )}
       </div>
     );
@@ -64,6 +60,8 @@ Planning.propTypes = {
   getList: PropTypes.func,
   loading: PropTypes.bool,
   plan: PropTypes.object,
+  planByDay: PropTypes.object,
+  weekday: PropTypes.array,
   meals_plan: PropTypes.object,
   planId: PropTypes.string
 };

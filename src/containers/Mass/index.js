@@ -7,11 +7,10 @@ import Planning from '../Planning';
 import Recipes from '../Recipes/Recipes';
 import GlobalRecipes from '../GlobalRecipes';
 import BottomBar from '../../components/BottomBar';
-import Profile from '../Profile';
 import { changePageView } from '../../actions/page.actions';
 class Index extends Component {
   handleSwitching = e => {
-     this.props.changePageView(e);
+    this.props.changePageView(e);
   };
 
   render() {
@@ -24,7 +23,7 @@ class Index extends Component {
           onSwitching={this.handleSwitching}
           style={{
             height: '94vh',
-            backgroundColor: '#252134',
+            backgroundColor: '#f3f2ea',
             onSwitchingoverflow: 'hidden'
           }}
         >
@@ -41,7 +40,8 @@ class Index extends Component {
 }
 
 Index.propTypes = {
-  pageIndex: PropTypes.number
+  pageIndex: PropTypes.number,
+  changePageView: PropTypes.func
 };
 
 const mapStateToProps = state => ({

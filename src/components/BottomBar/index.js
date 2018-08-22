@@ -5,7 +5,6 @@
  */
 import { Layout, Icon } from 'antd';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect} from 'react-redux';
 import { changePageView } from '../../actions/page.actions';
 import PropTypes from 'prop-types';
@@ -43,6 +42,7 @@ class BottomBar extends React.Component {
 
 BottomBar.propTypes = {
   changePageView: PropTypes.func,
+  currentPage: PropTypes.number
   
 };
 const mapStateToProps = state => ({

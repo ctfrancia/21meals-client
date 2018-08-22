@@ -44,7 +44,7 @@ export default store => next => action => {
   fetch(
     `${
       action.globalApiQuery
-        ? action.type == 'GLOBAL_RECIPES_GET_ALL'
+        ? action.type === 'GLOBAL_RECIPES_GET_ALL'
           ? BIG_OVEN_SEARCH_URL
           : BIG_OVEN_RECIPE_URL
         : BASE_URL

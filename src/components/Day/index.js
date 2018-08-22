@@ -49,7 +49,7 @@ class Day extends React.Component {
   render() {
     if (this.props.recipe !== undefined) {
       return (
-        <div className="day monday" onClick={this.showModal}>
+        <div className="day" onClick={this.showModal}>
           <div className="day__main">
             <div className="day__main--title">
               <p>
@@ -103,9 +103,10 @@ class Day extends React.Component {
               O
             </Avatar>
           </div> */}
-          <div className="day__main">
             <div className="day__main--title">
-              <p>{this.props.day}</p>
+              <p>
+                {this.props.day}- {this.props.meal_time}
+              </p>
             </div>
             <div className="day__main--body">
               <Modal
@@ -137,7 +138,6 @@ class Day extends React.Component {
               </Modal>
               <p>No meal planned!</p>
             </div>
-          </div>
         </div>
       );
     }
@@ -165,8 +165,7 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = dispatch => ({
   changeMeal: (mealId, recipeId, day, mealTime) =>
-    dispatch(changeMeal(mealId, recipeId, day, mealTime)),
-  
+    dispatch(changeMeal(mealId, recipeId, day, mealTime))
 });
 
 export default connect(

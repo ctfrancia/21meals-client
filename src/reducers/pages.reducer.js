@@ -7,7 +7,7 @@ import { shoppingListConstants } from '../constants/shoppingList.constants';
 const defaultState = {
   recipesIndex: [],
   globalRecipes: [],
-  globalRecipe: {Ingredients: []},
+  globalRecipe: { Ingredients: [] },
   loadingIngredients: true,
   loadingPlans: true,
   loadingRecipes: true,
@@ -17,7 +17,7 @@ const defaultState = {
   loadingOneGlobalRecipe: true,
   postingIngredient: false,
   success: false,
-  pageIndex: 1,
+  pageIndex: 1
 };
 
 export default (state = defaultState, action) => {
@@ -46,12 +46,37 @@ export default (state = defaultState, action) => {
         ...state,
         loadingPlans: false,
         plansIndex: action.result,
-        plansByDay: Object.values(action.entities.meals_plan).reduce((acc, el) => {
-          if (!acc[el.weekday]) acc[el.weekday] = [];
-          acc[el.weekday].push(el);
-          return acc;
-        }, {}),
-        weekdays: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+        plansByDay: Object.values(action.entities.meals_plan).reduce(
+          (acc, el) => {
+            if (!acc[el.weekday]) acc[el.weekday] = [];
+            acc[el.weekday].push(el);
+            return acc;
+          },
+          {}
+        ),
+        weekdays: [
+          'monday',
+          'tuesday',
+          'wednesday',
+          'thursday',
+          'friday',
+          'saturday',
+          'sunday'
+        ]
+      };
+
+    case plansConstants.CHANGE_MEAL_SUCCESS:
+      return {
+        ...state,
+        plansByDay: Object.values(action.entities.meals_plan).reduce(
+          (acc, el) => {
+            if (!acc[el.weekday]) acc[el.weekday] = [];
+            acc[el.weekday].push(el);
+            return acc;
+          },
+          {}
+        ),
+        
       };
 
     case recipesConstants.RECIPES_GET_ALL_REQUEST:
@@ -61,7 +86,6 @@ export default (state = defaultState, action) => {
       };
 
     case recipesConstants.RECIPES_GET_ALL_SUCCESS:
-      
       return {
         ...state,
         recipesIndex: action.result,
@@ -155,7 +179,7 @@ export default (state = defaultState, action) => {
     case 'CHANGE_PAGE_INDEX':
       return {
         ...state,
-        pageIndex: action.pageIndex,
+        pageIndex: action.pageIndex
       };
 
     default:
