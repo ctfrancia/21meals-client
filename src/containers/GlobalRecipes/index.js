@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Layout, Spin, Input, Divider } from 'antd';
+import { Spin, Input, Divider } from 'antd';
 import './index.css';
 import { getSearchRecipes, getOneRecipe } from '../../actions/recipes.actions';
 import GlobalCard from '../../components/GlobalCard';
@@ -45,7 +45,7 @@ class GlobalRecipes extends React.Component {
         <div className="global__search">
           <div className="search__bar">
             <Search
-            size="large"
+              size="large"
               placeholder="Search for Tasty Recipes"
               onSearch={value => this.props.getSearchRecipes(value)}
             />

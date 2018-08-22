@@ -23,7 +23,7 @@ class Index extends Component {
           onSwitching={this.handleSwitching}
           style={{
             height: '100vh',
-            backgroundColor: 'black',
+            backgroundColor: 'white',
             onSwitchingoverflow: 'hidden'
           }}
         >

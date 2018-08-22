@@ -6,43 +6,30 @@ import { getAllPlans } from '../../actions/plans.actions';
 import './Planning.css';
 import { getAllShoppingList } from '../../actions/shoppingList.actions';
 import { Tabs, Divider } from 'antd';
+import moment from 'moment'
+
+const today = (moment().format('d') - 1).toString()
 const TabPane = Tabs.TabPane;
 class Planning extends Component {
   componentDidMount() {
     this.props.getAllPlans(this.props.planId);
     this.props.getList();
   }
-
   renderPlanning() {
     const planDays = this.props.planByDay;
     const weekday = this.props.weekday;
     if (!this.props.loading) {
-      return (
-        <Tabs>
+      return <Tabs defaultActiveKey={today}>
           {weekday.map((el, i) => {
-            return (
-              <TabPane tab={el} key={i}>
+            return <TabPane tab={el} key={i}>
                 <div className={`${el}`}>
                   {planDays[el].map((meal, k) => {
-                    return (
-                      <Day
-                        key={k}
-                        meal_id={meal.id}
-                        day={meal.weekday}
-                        meal_time={meal.meal_type}
-                        recipe={meal.recipe_id}
-                        planId={this.props.planId}
-                        clickHandler={this.handleClick}
-                      />
-                    );
+                    return <Day key={k} meal_id={meal.id} day={meal.weekday} meal_time={meal.meal_type} recipe={meal.recipe_id} planId={this.props.planId} clickHandler={this.handleClick} />;
                   })}
-                </div>
-                ;
-              </TabPane>
-            );
+                </div>;
+              </TabPane>;
           })}
-        </Tabs>
-      );
+        </Tabs>;
     }
   }
 

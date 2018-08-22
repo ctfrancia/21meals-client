@@ -222,7 +222,7 @@ export default (state = defaultState, action) => {
 const removeIngredient = (ingredientsArr, IngredientID) => {
   let newArr = [...ingredientsArr];
   for (let i = 0; i < newArr.length; i++) {
-    if (newArr[i].IngredientID == IngredientID) {
+    if (newArr[i].IngredientID === IngredientID) {
       newArr.splice(i, 1);
       break;
     } 
