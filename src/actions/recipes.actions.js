@@ -36,3 +36,8 @@ export const getOneRecipe = (RecipeID) => ({
   },
   globalApiQuery: true,
 });
+
+export const removeIngredientFromGlobal = (IngredientID) => ({
+  type: 'REMOVE_INGREDIENT_FROM_RECIPE',
+  IngredientID
+});

@@ -50,7 +50,6 @@ class GlobalRecipes extends React.Component {
           <Search
             placeholder="Search for Tasty Recipes"
             onSearch={value => this.props.getSearchRecipes(value)}
-            // style={{ width: 200 }}
           />
         </div>
 
@@ -58,11 +57,9 @@ class GlobalRecipes extends React.Component {
             {this.props.globalRecipes.map((el, i) => (
               <GlobalCard
                 key={i}
-                handleClick={this.showRecipe.bind(this, el.RecipeID)}
                 id={el.RecipeID}
                 imageUrl={el.PhotoUrl}
                 name={el.Title}
-                // serves={el.Servings}
               />
             ))}
           </div>
