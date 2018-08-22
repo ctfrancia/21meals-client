@@ -148,7 +148,26 @@ export default (state = defaultState, action) => {
         pageIndex: action.pageIndex,
       };
 
+    case 'REMOVE_INGREDIENT_FROM_RECIPE':
+      return {
+        ...state,
+        globalRecipe: {
+          ...state.globalRecipe,
+          Ingredients: removeIngredient(state.globalRecipe.Ingredients, action.IngredientID),
+        },
+      };
     default:
       return state;
   }
 };
+
+const removeIngredient = (ingredientsArr, IngredientID) => {
+  let newArr = [...ingredientsArr];
+  for (let i = 0; i < newArr.length; i++) {
+    if (newArr[i].IngredientID == IngredientID) {
+      newArr.splice(i, 1);
+      break;
+    } 
+  }
+  return newArr;
+}
