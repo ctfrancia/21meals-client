@@ -219,7 +219,6 @@ class GlobalCard extends Component {
 
   ingredientMeasureChange = (value) => {
     let measure;
-    console.log(this.props.measures);
     for (let i = 1; i <= Object.keys(this.props.measures).length; i++) if (value === this.props.measures[i].id) measure = this.props.measures[i].name;
     this.setState( {
       ...this.state,
@@ -249,9 +248,6 @@ class GlobalCard extends Component {
       </Card>
       <Modal title={this.props.name} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
         <Tabs tabPosition="top" size="small"
-          //activeKey={this.state.tabs.activeKey}
-
-          //onTabClick={this.handleTabClick}
         >
           <TabPane tab="Recipe" key="1">
             <img alt={this.props.name} src={this.props.imageUrl} style={styles.modalImg}/>
