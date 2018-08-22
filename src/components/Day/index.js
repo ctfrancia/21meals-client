@@ -53,7 +53,7 @@ class Day extends React.Component {
           <div className="day__main">
             <div className="day__main--title">
               <p>
-                {this.props.day} - {this.props.meal_time}
+                <strong>{this.props.meal_time}</strong>
               </p>
             </div>
             <div className="day__main--body">
@@ -103,41 +103,41 @@ class Day extends React.Component {
               O
             </Avatar>
           </div> */}
-            <div className="day__main--title">
-              <p>
-                {this.props.day}- {this.props.meal_time}
-              </p>
-            </div>
-            <div className="day__main--body">
-              <Modal
-                title={`Choose a recipe for ${this.props.day}`}
-                visible={this.state.visible}
-                onOk={this.handleOk}
-                onCancel={this.handleCancel}
-                footer={[
-                  <Button key="back" onClick={this.handleCancel}>
-                    Return
-                  </Button>
-                ]}
-              >
-                <List
-                  itemLayout="horizontal"
-                  dataSource={this.props.allRecipes}
-                  renderItem={item => (
-                    <List.Item>
-                      <List.Item.Meta
-                        avatar={<Avatar>{item.title[0]}</Avatar>}
-                        title={item.title}
-                        onClick={this.handleRecipeChange.bind(this, item)}
-                        description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                      />
-                    </List.Item>
-                  )}
-                />
-                ,
-              </Modal>
-              <p>No meal planned!</p>
-            </div>
+          <div className="day__main--title">
+            <p>
+              <strong>{this.props.meal_time}</strong>
+            </p>
+          </div>
+          <div className="day__main--body">
+            <Modal
+              title={`Choose a recipe for ${this.props.day}`}
+              visible={this.state.visible}
+              onOk={this.handleOk}
+              onCancel={this.handleCancel}
+              footer={[
+                <Button key="back" onClick={this.handleCancel}>
+                  Return
+                </Button>
+              ]}
+            >
+              <List
+                itemLayout="horizontal"
+                dataSource={this.props.allRecipes}
+                renderItem={item => (
+                  <List.Item>
+                    <List.Item.Meta
+                      avatar={<Avatar>{item.title[0]}</Avatar>}
+                      title={item.title}
+                      onClick={this.handleRecipeChange.bind(this, item)}
+                      description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                    />
+                  </List.Item>
+                )}
+              />
+              ,
+            </Modal>
+            <p>No meal planned!</p>
+          </div>
         </div>
       );
     }

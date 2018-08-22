@@ -10,8 +10,9 @@ import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import rootReducers from './reducers';
 import apiClient from './middlewares/api';
+import sideEffects from './middlewares/sideEffects';
 
-const store = createStore(rootReducers, applyMiddleware(apiClient, logger));
+const store = createStore(rootReducers, applyMiddleware(apiClient, logger, sideEffects));
 
 ReactDOM.render(
 <Provider store = {store}> 

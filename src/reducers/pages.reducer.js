@@ -48,8 +48,17 @@ export default (state = defaultState, action) => {
         plansIndex: action.result,
         plansByDay: Object.values(action.entities.meals_plan).reduce(
           (acc, el) => {
-            if (!acc[el.weekday]) acc[el.weekday] = [];
-            acc[el.weekday].push(el);
+            if (!acc[el.weekday]) acc[el.weekday] = [0,0,0];
+            if (el.meal_type === 'dinner') {
+              acc[el.weekday][2] = el;
+            }
+            if (el.meal_type === 'lunch') {
+              acc[el.weekday][1] = el;
+              
+            }
+            if (el.meal_type === 'breakfast') {
+              acc[el.weekday][0] = el;
+            }
             return acc;
           },
           {}
@@ -71,7 +80,16 @@ export default (state = defaultState, action) => {
         plansByDay: Object.values(action.entities.meals_plan).reduce(
           (acc, el) => {
             if (!acc[el.weekday]) acc[el.weekday] = [];
-            acc[el.weekday].push(el);
+            if (el.meal_type === 'dinner') {
+              acc[el.weekday][2] = el;
+            }
+            if (el.meal_type === 'lunch') {
+              acc[el.weekday][1] = el;
+
+            }
+            if (el.meal_type === 'breakfast') {
+              acc[el.weekday][0] = el;
+            }
             return acc;
           },
           {}

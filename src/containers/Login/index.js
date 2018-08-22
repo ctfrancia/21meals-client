@@ -59,11 +59,11 @@ class Login extends React.Component {
             </FormItem>
             <FormItem>
               {this.props.loggingIn ? (
-                <Button type="primary" className="login-form-button" loading>
+                <Button block type="primary" className="login-form-button" loading>
                   Logging In...
                 </Button>
               ) : (
-                <Button
+                <Button block
                   type="primary"
                   htmlType="submit"
                   className="login-form-button"

@@ -21,14 +21,23 @@ class Planning extends Component {
         <Tabs>
           {weekday.map((el, i) => {
             return (
-              <TabPane tab={el} key={i} >
-                {planDays[el].map((meal, k) => {
-                  return <div className={`${el}`}>
-                      <Day day={meal.weekday} meal_time="breakfast" />
-                      <Day day={meal.weekday} meal_time="Lunch" />
-                      <Day key={k} meal_id={meal.id} day={meal.weekday} meal_time={meal.meal_type} recipe={meal.recipe_id} planId={this.props.planId} clickHandler={this.handleClick} />
-                    </div>;
-                })}
+              <TabPane tab={el} key={i}>
+                <div className={`${el}`}>
+                  {planDays[el].map((meal, k) => {
+                    return (
+                      <Day
+                        key={k}
+                        meal_id={meal.id}
+                        day={meal.weekday}
+                        meal_time={meal.meal_type}
+                        recipe={meal.recipe_id}
+                        planId={this.props.planId}
+                        clickHandler={this.handleClick}
+                      />
+                    );
+                  })}
+                </div>
+                ;
               </TabPane>
             );
           })}
