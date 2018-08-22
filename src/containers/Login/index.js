@@ -1,6 +1,6 @@
 import React from 'react';
 import './Login.css';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import logo from '../../assets/logo.svg';
 import { Form, Icon, Input, Button } from 'antd';
@@ -89,7 +89,10 @@ class Login extends React.Component {
   }
 }
 
-Login.propTypes = {};
+Login.propTypes = {
+  logIn: PropTypes.func,
+  loggingIn: PropTypes.bool
+};
 
 const mapStateToProps = state => ({
   loggingIn: state.authentication.logging_in

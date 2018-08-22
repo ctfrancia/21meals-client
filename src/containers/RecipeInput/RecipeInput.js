@@ -5,25 +5,11 @@ import { connect } from 'react-redux';
 import { postIngredient } from '../../actions/ingredients.actions';
 import { postRecipe } from '../../actions/recipes.actions';
 import TextArea from '../../../node_modules/antd/lib/input/TextArea';
-import recipe from '../../assets/icons/recipe.svg';
 import './RecipeInput.css';
 const FormItem = Form.Item;
 const TabPane = Tabs.TabPane;
 const Panel = Collapse.Panel;
 const Option = Select.Option;
-const styles = {
-  card: { width: 155, borderRadius: 15 },
-  img: {
-    height: 80,
-    objectFit: 'cover'
-  },
-  modalImg: {
-    objectFit: 'cover',
-    borderRadius: '15px ',
-    width: '100%',
-    height: 'auto'
-  }
-};
 
 class RecipeInput extends React.Component {
   //Local storage

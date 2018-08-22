@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Card, Modal, Tabs, Input, Form, Select, InputNumber, Icon, Button } from 'antd';
+import { Card, Modal, Tabs, Input, Form, Select, InputNumber, Button } from 'antd';
 import { getOneRecipe, removeIngredientFromGlobal, postRecipe } from '../../actions/recipes.actions';
 import { postIngredient } from '../../actions/ingredients.actions';
 
@@ -69,7 +69,6 @@ class GlobalCard extends Component {
   componentDidMount() {}
 
   showModal = id => {
-    console.log(id);
     
     this.showRecipe(id);
     this.setState({
@@ -221,7 +220,6 @@ class GlobalCard extends Component {
 
   ingredientMeasureChange = (value) => {
     let measure;
-    console.log(this.props.measures);
     for (let i = 1; i <= Object.keys(this.props.measures).length; i++) if (value === this.props.measures[i].id) measure = this.props.measures[i].name;
     this.setState( {
       ...this.state,
