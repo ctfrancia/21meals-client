@@ -8,6 +8,7 @@ import { Modal } from 'antd';
 import React from 'react';
 import './RecipeCard.css';
 import recipePlaceHolder from '../../assets/food.jpg';
+import { connect } from 'react-redux';
 // import styled from 'styled-components';
 
 const styles = {
@@ -16,7 +17,7 @@ const styles = {
     height: 75,
     width: 105,
     borderRadius: '5px ',
-    objectFit: 'cover',
+    objectFit: 'cover'
   },
   modalImg: {
     objectFit: 'cover',
@@ -32,6 +33,8 @@ class RecipeCard extends React.Component {
       visible: false
     };
   }
+
+  getRecipeInfo = () => {};
 
   showModal = () => {
     this.setState({
@@ -51,43 +54,65 @@ class RecipeCard extends React.Component {
   };
 
   render() {
-    return (
-      <div className="recipe_card">
+    return <div className="recipe_card">
         <div className="recipe_card--main" onClick={this.showModal}>
           <div className="recipe_card--info">
             <h2>{this.props.name}</h2>
           </div>
           <div className="recipe_card--image">
-            <img
-              alt={this.props.name}
-              src={this.props.imageUrl ? this.props.imageUrl : recipePlaceHolder}
-              style={styles.img}
-            />
+            <img alt={this.props.name} src={this.props.imageUrl ? this.props.imageUrl : recipePlaceHolder} style={styles.img} />
           </div>
         </div>
 
-        <Modal
-          title={this.props.name}
-          visible={this.state.visible}
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-        >
-          <img
-            alt={this.props.name}
-            src={this.props.imageUrl}
-            style={styles.modalImg}
-          />
+        <Modal title={this.props.name} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
+          <div className="recipe_modal--header">
+            <img alt={this.props.name} src={this.props.imageUrl ? this.props.imageUrl : recipePlaceHolder} style={styles.modalImg} />
+          </div>
+          <div className="recipe_modal--Body">
+            <h3>Ingredients</h3>
+            <ul>
+              {this.props.recipes[this.props.id].ingredients.map(
+                (el, i) => {
+                  return (
+                    <li key={i}>
+                      <span className="volume">{`(${
+                        this.props.ingredientsRecipe[el].amount
+                      } 
+                     ${this.props.ingredientsRecipe[el].measure}) `} </span>
+                      {`${
+                        this.props.allIngredients[
+                          this.props.ingredientsRecipe[el].ingredient_id
+                        ].name
+                      }`}
+                    </li>
+                  );
+                }
+              )}
+            </ul>
+            
+          </div>
         </Modal>
-      </div>
-    );
+      </div>;
   }
 }
 
 RecipeCard.propTypes = {
   name: PropTypes.string,
+  id: PropTypes.string,
   serves: PropTypes.string,
   imageUrl: PropTypes.string,
-  handleClick: PropTypes.func
+  handleClick: PropTypes.func,
+  recipes: PropTypes.object,
+  ingredientsRecipe: PropTypes.object,
+  allIngredients: PropTypes.object
 };
 
-export default RecipeCard;
+const mapStateToProps = state => ({
+  measures: state.entities.measures,
+  ingredients_types: state.entities.ingredients_types,
+  allIngredients: state.entities.allIngredients,
+  recipes: state.entities.recipes,
+  ingredientsRecipe: state.entities.ingredients_recipe
+});
+
+export default connect(mapStateToProps)(RecipeCard);

@@ -48,8 +48,7 @@ class Day extends React.Component {
 
   render() {
     if (this.props.recipe !== undefined) {
-      return (
-        <div className="day" onClick={this.showModal}>
+      return <div className="day" onClick={this.showModal}>
           <div className="day__main">
             <div className="day__main--title">
               <p>
@@ -57,44 +56,21 @@ class Day extends React.Component {
               </p>
             </div>
             <div className="day__main--body">
-              <Modal
-                title={`Choose a recipe for ${this.props.day}`}
-                visible={this.state.visible}
-                onOk={this.handleOk}
-                onCancel={this.handleCancel}
-                footer={[
-                  <Button
-                    key="delete"
-                    type="danger"
-                    onClick={this.handleRecipeChange.bind(this, undefined)}
-                  >
+              <Modal title={`Choose a recipe for ${this.props.day}`} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel} footer={[<Button key="delete" type="danger" onClick={this.handleRecipeChange.bind(this, undefined)}>
                     Clear this meal
-                  </Button>,
-                  <Button key="back" onClick={this.handleCancel}>
+                  </Button>, <Button key="back" onClick={this.handleCancel}>
                     Return
-                  </Button>
-                ]}
-              >
-                <List
-                  itemLayout="horizontal"
-                  dataSource={this.props.allRecipes}
-                  renderItem={item => (
-                    <List.Item>
-                      <List.Item.Meta
-                        avatar={<Avatar>{item.title[0]}</Avatar>}
-                        title={item.title}
-                        onClick={this.handleRecipeChange.bind(this, item)}
-                      />
-                    </List.Item>
-                  )}
-                />
-                ,
+                  </Button>]}>
+                <List itemLayout="horizontal" dataSource={this.props.allRecipes} renderItem={item => <List.Item>
+                      <List.Item.Meta avatar={<Avatar style={{ color: '#fafafa', backgroundColor: '#e69b76' }}>
+                            {item.title[0].toUpperCase()}
+                          </Avatar>} title={item.title} onClick={this.handleRecipeChange.bind(this, item)} />
+                    </List.Item>} />,
               </Modal>
               <p>{this.props.recipe.title}</p>
             </div>
           </div>
-        </div>
-      );
+        </div>;
     } else {
       return (
         <div className="day" onClick={this.showModal}>
@@ -121,10 +97,18 @@ class Day extends React.Component {
                 renderItem={item => (
                   <List.Item>
                     <List.Item.Meta
-                      avatar={<Avatar>{item.title[0]}</Avatar>}
+                      avatar={
+                        <Avatar
+                          style={{
+                            color: '#fafafa',
+                            backgroundColor: '#e69b76'
+                          }}
+                        >
+                          {item.title[0].toUpperCase()}
+                        </Avatar>
+                      }
                       title={item.title}
                       onClick={this.handleRecipeChange.bind(this, item)}
-                      description="Ant Design, a design language for background applications, is refined by Ant UED Team"
                     />
                   </List.Item>
                 )}

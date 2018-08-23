@@ -57,7 +57,7 @@ class Recipes extends React.Component {
             <RecipeInput />
           </div>
           {this.props.recipes.map((el, i) => (
-            <RecipeCard key={i} imageUrl={el.photo} name={el.title} />
+            <RecipeCard key={i} imageUrl={el.photo} name={el.title} id={el.id}/>
           ))}
         </div>
       );
@@ -90,6 +90,8 @@ Recipes.propTypes = {
 const mapStateToProps = state => ({
   loading: state.pages.loadingRecipes,
   recipes: state.pages.recipesIndex.map(el => state.entities.recipes[el]),
+  measures: state.entities.measures,
+  ingredients_types: state.entities.ingredients_types,
   planId: state.authentication.user.plan_id,
   showNotification: state.pages.showNotification
 });
