@@ -152,12 +152,27 @@ class RecipeInput extends React.Component {
   };
 
   measureSelect = () => {
-    return Object.values(this.props.measures).map(el => {
+    return this.props.measuresIndex.map(el => {
       return (
-        <Option value={el.id} key={el.id}>
-          {el.name}
+        <Option
+          value={this.props.measures[el].id}
+          key={this.props.measures[el].id}
+        >
+          {this.props.measures[el].name}
         </Option>
       );
+    });
+  };
+
+  deleteIngredient = ingredientIndex => {
+    this.setState({
+      ...this.state,
+      recipe: {
+        ...this.state.recipe,
+        ingredients: [
+          ...this.state.recipe.ingredients.splice(ingredientIndex, 1)
+        ]
+      }
     });
   };
 
@@ -178,7 +193,6 @@ class RecipeInput extends React.Component {
       </ul>
     );
   };
-
   ingredientTypeSelect = () => {
     return (
       <Select
@@ -218,8 +232,8 @@ class RecipeInput extends React.Component {
         title: '',
         ingredient_id: '',
         amount: '',
-        measure: '1',
-        measure_id: 1
+        measure: '',
+        measure_id: ''
       }
     });
   };
@@ -237,10 +251,20 @@ class RecipeInput extends React.Component {
     this.handleAccordion('1');
   };
 
-  sendNewRecipe = async e => {
+  sendNewRecipe = e => {
     e.preventDefault();
 
-    await this.props.postRecipe(this.state.recipe);
+    this.props.postRecipe(this.state.recipe);
+    this.setState({
+      ...this.state,
+        recipe: {
+          title: '',
+          instructions: '',
+          photo: '',
+          ingredients: []
+        },
+    })
+    this.handleCancel();
   };
 
   changeTab = direction => {
@@ -359,7 +383,6 @@ class RecipeInput extends React.Component {
                   <h2 className="ingredients">Your Recipe</h2>
                   <FormItem label="Recipe name">
                     <Input
-                      prefix={<Icon type="user" style={{ fontSize: 13 }} />}
                       name="title"
                       placeholder="Recipe name"
                       value={this.state.recipe.title}
@@ -372,7 +395,6 @@ class RecipeInput extends React.Component {
                       onChange={this.handleChangeRecipe}
                       type="url"
                       name="photo"
-                      prefix={<Icon type="user" style={{ fontSize: 13 }} />}
                       placeholder="Image URL"
                     />
                   </FormItem>
@@ -455,12 +477,6 @@ class RecipeInput extends React.Component {
                     </Panel>
 
                     <Panel header="Create a new ingredient" key="2">
-                      {/* <Button
-                        type="primary"
-                        onClick={() => console.log(this.state)}
-                      >
-                        Ok
-                      </Button> */}
                       <FormItem>
                         <Input
                           addonAfter={this.ingredientTypeSelect()}
@@ -549,6 +565,8 @@ class RecipeInput extends React.Component {
 
 RecipeInput.propTypes = {
   recipes: PropTypes.array,
+  typesIndex: PropTypes.array,
+  measuresIndex: PropTypes.array,
   loading: PropTypes.bool,
   ingredients: PropTypes.object,
   measures: PropTypes.object,
@@ -565,7 +583,9 @@ const mapStateToProps = state => ({
   measures: state.entities.measures,
   ingredientTypes: state.entities.ingredient_types,
   postingIngredient: state.pages.postingIngredient,
-  success: state.pages.success
+  success: state.pages.success,
+  typesIndex: state.pages.ingredientsTypeIndex,
+  measuresIndex: state.pages.measuresIndex
 });
 
 const mapDispatchToProps = dispatch => ({
