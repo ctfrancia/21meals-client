@@ -52,6 +52,11 @@ class GlobalCard extends Component {
         name: '',
         ingredient_type_id: 1,
       },
+      tabs: {
+        activeKey: '1',
+        next: true,
+        prev: false
+      },
     };
   }
 
@@ -66,6 +71,66 @@ class GlobalCard extends Component {
       }
     });
   }
+
+  handleTabClick = e => {
+    const { tabs } = this.state;
+    this.setState({
+      ...this.state,
+      tabs: {
+        ...tabs,
+        activeKey: e,
+        next: e !== '3' ? true : false,
+        prev: e !== '1' ? true : false
+      }
+    });
+  };
+
+  changeTab = direction => {
+    const { tabs } = this.state;
+    const { activeKey } = tabs;
+
+    if (activeKey === '1' && direction === true) {
+      this.setState({
+        ...this.state,
+        tabs: {
+          activeKey: '2',
+          next: true,
+          prev: true
+        }
+      });
+    }
+    if (activeKey === '2' && !direction) {
+      this.setState({
+        ...this.state,
+        tabs: {
+          activeKey: '1',
+          next: true,
+          prev: false
+        }
+      });
+    }
+    if (activeKey === '2' && direction) {
+      this.setState({
+        ...this.state,
+        tabs: {
+          activeKey: '3',
+          next: false,
+          prev: true
+        }
+      });
+    }
+    if (activeKey === '3' && !direction) {
+      this.setState({
+        ...this.state,
+        tabs: {
+          activeKey: '2',
+          next: true,
+          prev: true
+        }
+      });
+    }
+  };
+
   componentDidMount() {}
 
   showModal = id => {
@@ -203,7 +268,7 @@ class GlobalCard extends Component {
         })
       });
     }
-
+    if (this.props.recipeDetails.Ingredients.length === 1) this.changeTab(true);
     this.props.removeIngredientFromGlobal(globalID);
   }
 
@@ -215,6 +280,11 @@ class GlobalCard extends Component {
         ingredient_type_id: value,
       }
     })
+  }
+
+  createNewRecipe = () => {
+    this.props.postRecipe(this.state.recipe);
+    this.handleOk();
   }
 
   ingredientMeasureChange = (value) => {
@@ -246,8 +316,27 @@ class GlobalCard extends Component {
         />}>
         <Meta title={this.props.name}/>
       </Card>
-      <Modal title={this.props.name} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
-        <Tabs tabPosition="top" size="small"
+      <Modal title={this.props.name} visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel} footer={[
+        <Button
+          disabled={!this.state.tabs.prev ? true : false}
+          key="back"
+          size="large"
+          type="primary"
+          onClick={this.changeTab.bind(this, false)}
+        >
+          Prev
+        </Button>,
+        <Button
+          disabled={!this.state.tabs.next ? true : false}
+          key="submit"
+          type="primary"
+          size="large"
+          onClick={this.changeTab.bind(this, true)}
+        >
+          Next
+        </Button>
+      ]}>
+        <Tabs tabPosition="top" size="small" activeKey={this.state.tabs.activeKey} onTabClick={this.handleTabClick}
         >
           <TabPane tab="Recipe" key="1">
             <img alt={this.props.name} src={this.props.imageUrl} style={styles.modalImg}/>
@@ -299,7 +388,7 @@ class GlobalCard extends Component {
             <img alt={this.props.name} src={this.props.imageUrl} style={styles.modalImg}/>
             <p>{this.props.recipeDetails.Instructions}</p>
             <ul>{this.ingredientListMap()}</ul>
-            <Button onClick={this.props.postRecipe.bind(this, this.state.recipe)} >Add to my recipes</Button>
+            <Button onClick={this.createNewRecipe.bind(this)} >Add to my recipes</Button>
           </TabPane>
         </Tabs>
       </Modal>
