@@ -9,20 +9,6 @@ export const getAllPlans = (planId) => ({
   schema: schema.planSchema
 });
 
-// export const changeMeal = (recipeId, mealId, day, mealTime) => ({
-//   type: plansConstants.CHANGE_MEAL,
-//   entities: {
-//     meals_plan: {
-//       [mealId]: {
-//         id: mealId,
-//         weekday: day,
-//         meal_type: mealTime,
-//         recipe_id: recipeId
-//       }
-//     }
-//   }
-// });
-
 export const changeMeal = (recipeId, mealId, planId) => ({
   type: plansConstants.CHANGE_MEAL,
   api: { headers: autHeader, 

@@ -5,19 +5,22 @@ import { message } from 'antd';
 import { shoppingListConstants } from '../constants/shoppingList.constants';
 
 const defaultState = {
+  ingredientsTypeIndex: [],
   recipesIndex: [],
   globalRecipes: [],
-  globalRecipe: {Ingredients: []},
+  globalRecipe: { Ingredients: [] },
   loadingIngredients: true,
   loadingPlans: true,
   loadingRecipes: true,
   postingRecipe: false,
+  showNotification: false,
   loadingGlobalRecipes: true,
   loadingOneGlobalRecipe: true,
   postingIngredient: false,
   success: false,
-  pageIndex: 0,
+  pageIndex: 1
 };
+
 export default (state = defaultState, action) => {
   switch (action.type) {
     case ingredientsConstants.INGREDIENTS_GET_ALL_REQUEST:
@@ -32,6 +35,11 @@ export default (state = defaultState, action) => {
         allIngredientsIndex: action.result,
         loadingIngredients: false
       };
+    case ingredientsConstants.TYPES_GET_ALL_SUCCESS:
+      return {
+        ...state,
+        ingredientsTypeIndex: action.result,
+      };
 
     case plansConstants.PLANS_GET_ALL_REQUEST:
       return {
@@ -43,7 +51,56 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         loadingPlans: false,
-        plansIndex: action.result
+        plansIndex: action.result,
+        plansByDay: Object.values(action.entities.meals_plan).reduce(
+          (acc, el) => {
+            if (!acc[el.weekday]) acc[el.weekday] = [0,0,0];
+            if (el.meal_type === 'dinner') {
+              acc[el.weekday][2] = el;
+            }
+            if (el.meal_type === 'lunch') {
+              acc[el.weekday][1] = el;
+              
+            }
+            if (el.meal_type === 'breakfast') {
+              acc[el.weekday][0] = el;
+            }
+            return acc;
+          },
+          {}
+        ),
+        weekdays: [
+          'monday',
+          'tuesday',
+          'wednesday',
+          'thursday',
+          'friday',
+          'saturday',
+          'sunday'
+        ]
+      };
+
+    case plansConstants.CHANGE_MEAL_SUCCESS:
+      return {
+        ...state,
+        plansByDay: Object.values(action.entities.meals_plan).reduce(
+          (acc, el) => {
+            if (!acc[el.weekday]) acc[el.weekday] = [];
+            if (el.meal_type === 'dinner') {
+              acc[el.weekday][2] = el;
+            }
+            if (el.meal_type === 'lunch') {
+              acc[el.weekday][1] = el;
+
+            }
+            if (el.meal_type === 'breakfast') {
+              acc[el.weekday][0] = el;
+            }
+            return acc;
+          },
+          {}
+        ),
+        
       };
 
     case recipesConstants.RECIPES_GET_ALL_REQUEST:
@@ -56,7 +113,8 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         recipesIndex: action.result,
-        loadingRecipes: false
+        loadingRecipes: false,
+        showNotification: action.result.length === 0
       };
     case recipesConstants.RECIPES_POST_NEW_REQUEST:
       return {
@@ -145,7 +203,7 @@ export default (state = defaultState, action) => {
     case 'CHANGE_PAGE_INDEX':
       return {
         ...state,
-        pageIndex: action.pageIndex,
+        pageIndex: action.pageIndex
       };
 
     case 'REMOVE_INGREDIENT_FROM_RECIPE':
@@ -164,7 +222,7 @@ export default (state = defaultState, action) => {
 const removeIngredient = (ingredientsArr, IngredientID) => {
   let newArr = [...ingredientsArr];
   for (let i = 0; i < newArr.length; i++) {
-    if (newArr[i].IngredientID == IngredientID) {
+    if (newArr[i].IngredientID === IngredientID) {
       newArr.splice(i, 1);
       break;
     } 

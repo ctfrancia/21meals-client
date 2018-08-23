@@ -5,21 +5,32 @@ import SwipeableViews from 'react-swipeable-views';
 import ShoppingList from '../ShoppingList';
 import Planning from '../Planning';
 import Recipes from '../Recipes/Recipes';
-import TopBar from '../../components/TopBar';
 import GlobalRecipes from '../GlobalRecipes';
 import BottomBar from '../../components/BottomBar';
-import Profile from '../Profile';
+import { changePageView } from '../../actions/page.actions';
 class Index extends Component {
+  handleSwitching = e => {
+    this.props.changePageView(e);
+  };
 
   render() {
     return (
       <div className="appBackground">
-        <SwipeableViews className="SwipeableViews" index={this.props.pageIndex} resistance style={{ height: '94vh', backgroundColor: '#252134', overflow: 'hidden'}}>
+        <SwipeableViews
+          className="SwipeableViews"
+          index={this.props.pageIndex}
+          resistance
+          onSwitching={this.handleSwitching}
+          style={{
+            height: '100vh',
+            backgroundColor: 'white',
+            onSwitchingoverflow: 'hidden'
+          }}
+        >
           <GlobalRecipes />
           <Recipes />
           <Planning />
           <ShoppingList />
-          <Profile />
         </SwipeableViews>
         <BottomBar />
       </div>
@@ -29,12 +40,18 @@ class Index extends Component {
 
 Index.propTypes = {
   pageIndex: PropTypes.number,
+  changePageView: PropTypes.func
 };
 
 const mapStateToProps = state => ({
-  pageIndex: state.pages.pageIndex,
+  pageIndex: state.pages.pageIndex
+});
+
+const mapDispatchToProps = dispatch => ({
+  changePageView: pageIndex => dispatch(changePageView(pageIndex))
 });
 
 export default connect(
   mapStateToProps,
+  mapDispatchToProps
 )(Index);

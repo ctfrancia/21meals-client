@@ -1,6 +1,6 @@
 import React from 'react';
 import './Login.css';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import logo from '../../assets/logo.svg';
 import { Form, Icon, Input, Button } from 'antd';
@@ -59,11 +59,11 @@ class Login extends React.Component {
             </FormItem>
             <FormItem>
               {this.props.loggingIn ? (
-                <Button type="primary" className="login-form-button" loading>
+                <Button block type="primary" className="login-form-button" loading>
                   Logging In...
                 </Button>
               ) : (
-                <Button
+                <Button block
                   type="primary"
                   htmlType="submit"
                   className="login-form-button"
@@ -89,7 +89,10 @@ class Login extends React.Component {
   }
 }
 
-Login.propTypes = {};
+Login.propTypes = {
+  logIn: PropTypes.func,
+  loggingIn: PropTypes.bool
+};
 
 const mapStateToProps = state => ({
   loggingIn: state.authentication.logging_in

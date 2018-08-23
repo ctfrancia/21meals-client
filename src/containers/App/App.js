@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-// import PropTypes from 'prop-types';
 import { PrivateRoute } from '../../helpers/PrivateRoute';
 import { Router, Route } from 'react-router-dom';
 import Login from '../Login';
 import SignUp from '../SignUp';
 import { history } from '../../helpers/history';
-import Index from '../Mass';
+import Index from '../Index';
 
 class App extends Component {
   render() {

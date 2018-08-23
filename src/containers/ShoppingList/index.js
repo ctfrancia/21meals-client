@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TopBar from '../../components/TopBar';
-import BottomBar from '../../components/BottomBar';
 import icons from '../../helpers/icons';
 import { connect } from 'react-redux';
-import { List, Checkbox } from 'antd';
+import { List, Checkbox, Divider } from 'antd';
 import './ShoppingList.css';
 import {
   getAllShoppingList,
@@ -66,16 +64,16 @@ class ShoppingList extends React.Component {
     return list;
   }
 
-  componentDidMount = e => {};
-
   render() {
-    return (
-      <div>
+    return <div>
         <div className="list">
+          <div className="list__title">
+            <h2 >My Shopping List</h2>
+          </div>
+          <Divider/>
           <div className="list__list">{this.createShoppingList()}</div>
         </div>
-      </div>
-    );
+      </div>;
   }
 }
 
@@ -87,7 +85,8 @@ const mapStateToProps = state => ({
 });
 
 ShoppingList.propTypes = {
-  listItems: PropTypes.object
+  listItems: PropTypes.object,
+  markItem: PropTypes.func
 };
 const mapDispatchToProps = dispatch => ({
   getList: () => dispatch(getAllShoppingList()),

@@ -4,19 +4,20 @@
  *
  */
 import PropTypes from 'prop-types';
-import { Card, Modal, Tabs } from 'antd';
+import { Modal } from 'antd';
 import React from 'react';
 import './RecipeCard.css';
-const { Meta } = Card;
-
+import recipePlaceHolder from '../../assets/food.jpg';
 // import styled from 'styled-components';
 
 const styles = {
   card: { width: 155, borderRadius: 15 },
   img: {
-    height: 130,
-    borderRadius: '15px ',
-    objectFit: 'cover'
+    height: 75,
+    width: 105,
+    borderRadius: '5px ',
+    objectFit: 'none',
+    filter: 'grayscale()'
   },
   modalImg: {
     objectFit: 'cover',
@@ -53,32 +54,30 @@ class RecipeCard extends React.Component {
   render() {
     return (
       <div className="recipe_card">
-        <Card
-          hoverable
-          onClick={this.showModal}
-          style={styles.card}
-          cover={
+        <div className="recipe_card--main" onClick={this.showModal}>
+          <div className="recipe_card--info">
+            <h2>{this.props.name}</h2>
+          </div>
+          <div className="recipe_card--image">
             <img
               alt={this.props.name}
-              src={this.props.imageUrl}
+              src={this.props.imageUrl ? this.props.imageUrl : recipePlaceHolder}
               style={styles.img}
             />
-          }
-        >
-          <Meta title={this.props.name} />
-        </Card>
+          </div>
+        </div>
+
         <Modal
           title={this.props.name}
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-              <img
-                alt={this.props.name}
-                src={this.props.imageUrl}
-                style={styles.modalImg}
-              />
-          
+          <img
+            alt={this.props.name}
+            src={this.props.imageUrl}
+            style={styles.modalImg}
+          />
         </Modal>
       </div>
     );
