@@ -54,7 +54,7 @@ class GlobalRecipes extends React.Component {
         </div>
 
           <div className="cards">
-            {this.props.globalRecipes.map((el, i) => (
+            {this.props.globalRecipes.map((el, i) => (             
               <GlobalCard
                 key={i}
                 id={el.RecipeID}

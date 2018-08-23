@@ -44,7 +44,7 @@ export default store => next => action => {
   fetch(
     `${
       action.globalApiQuery
-        ? action.type == 'GLOBAL_RECIPES_GET_ALL'
+        ? action.type === 'GLOBAL_RECIPES_GET_ALL'
           ? BIG_OVEN_SEARCH_URL
           : BIG_OVEN_RECIPE_URL
         : BASE_URL
@@ -57,6 +57,9 @@ export default store => next => action => {
   )
     .then(response => response.json())
     .then(data => {
+      if (data.errors) {
+        throw (data.errors)
+      }
       if (action.schema) {
         store.dispatch({
           ...action,
@@ -64,14 +67,6 @@ export default store => next => action => {
           api: undefined,
           ...normalize(data, action.schema)
         });
-      } else if (action.type === 'LOGIN') {
-        store.dispatch({
-          ...action,
-          type: `${action.type}_SUCCESS`,
-          api: undefined,
-          data
-        });
-        history.push('/');
       } else {
         store.dispatch({
           ...action,
@@ -79,6 +74,9 @@ export default store => next => action => {
           api: undefined,
           data
         });
+        if (action.type === 'LOGIN') {
+          history.push('/');
+        } 
       }
     })
     .catch(error => {

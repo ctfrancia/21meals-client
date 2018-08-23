@@ -14,7 +14,7 @@ class TopBar extends React.Component {
 logout = async () => {
   await this.props.logout()
   history.push('/')
-} 
+}
 
   menu() {
     return (

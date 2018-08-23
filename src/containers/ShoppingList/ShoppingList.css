@@ -1,7 +1,12 @@
 .list {
   height: 100vh;
   overflow: scroll;
-  background-color: #fafafa;
+  background-color: #fff;
+}
+
+.ant-list-bordered {
+  border-radius: 0;
+  border: 0;
 }
 
 .list__image {
@@ -12,12 +17,24 @@
   align-items: flex-end;
 }
 
+.ant-checkbox {
+  background-color: #f3f2ea
+}
+
+.list__title h2 {
+  font-weight: bold;
+  font-size: 1.3rem;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
 .list__list {
-  padding-top: 3.4rem;
   padding-bottom: 2.5rem;
   overflow: scroll;
 }
+
 .list__list--header {
+  color: #e69b76;
   display: flex;
   align-items: center;
 }
@@ -25,8 +42,8 @@
 .list__list--header img {
   max-width: 25px;
   margin-right: 10px;
-  
 }
+
 .list__image--title h2 {
   font-size: 1.8rem;
   font-weight: 200;
@@ -40,5 +57,5 @@
 
 .list__list .ant-list-header {
   font-weight: bold;
-  background-color: #fafafa
+  background-color: #fff
 }

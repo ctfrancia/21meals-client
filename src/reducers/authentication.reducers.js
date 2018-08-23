@@ -1,4 +1,6 @@
 import { usersConstants } from '../constants/users.constants';
+import { history } from '../helpers/history';
+
 let user = JSON.parse(localStorage.getItem('user'));
 const defaultState = user ? {
   logging_in: false,
@@ -31,6 +33,7 @@ export default (state = defaultState, action) => {
     
     case usersConstants.LOGOUT:
       localStorage.removeItem('user');
+      history.push('/');
       return {
         ...state,
         logging_in: false,

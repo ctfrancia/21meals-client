@@ -1,11 +1,16 @@
+.recipes__view {
+  background-color: #fff;
+  height: 100%;
+}
+
 .cards {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 4.5rem;
+  margin-top: 1rem;
   justify-content: space-evenly;
   align-items: flex-start;
   align-content: flex-start;
-  height: 100vh;
+  height: 100%;
   margin-bottom: 3rem;
 }
 
@@ -16,6 +21,9 @@
   justify-content: center;
 }
 
-.ant-layout {
-  /* background: #f3f2ea; */
+.cards__addNew {
+  width: 100vw;
+  display: flex;
+  justify-content: center
 }
+

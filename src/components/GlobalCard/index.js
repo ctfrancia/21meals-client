@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Card, Modal, Tabs, Input, Form, Select, InputNumber, Icon, Button } from 'antd';
+import { Card, Modal, Tabs, Input, Form, Select, InputNumber, Button } from 'antd';
 import { getOneRecipe, removeIngredientFromGlobal, postRecipe } from '../../actions/recipes.actions';
 import { postIngredient } from '../../actions/ingredients.actions';
 
@@ -69,6 +69,7 @@ class GlobalCard extends Component {
   componentDidMount() {}
 
   showModal = id => {
+    
     this.showRecipe(id);
     this.setState({
       ...this.state,
