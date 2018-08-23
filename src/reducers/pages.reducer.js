@@ -1,11 +1,12 @@
 import { ingredientsConstants } from '../constants/ingredients.constants';
 import { plansConstants } from '../constants/plans.constants';
 import { recipesConstants } from '../constants/recipes.constants';
-import { message } from 'antd';
 import { shoppingListConstants } from '../constants/shoppingList.constants';
+import { measuresConstants } from '../constants/measures.constants';
 
 const defaultState = {
   ingredientsTypeIndex: [],
+  measuresIndex: [],
   recipesIndex: [],
   globalRecipes: [],
   globalRecipe: { Ingredients: [] },
@@ -24,10 +25,7 @@ const defaultState = {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case ingredientsConstants.INGREDIENTS_GET_ALL_REQUEST:
-      return {
-        ...state,
-        loadingIngredients: true
-      };
+      return { ...state, loadingIngredients: true };
 
     case ingredientsConstants.INGREDIENTS_GET_ALL_SUCCESS:
       return {
@@ -36,16 +34,12 @@ export default (state = defaultState, action) => {
         loadingIngredients: false
       };
     case ingredientsConstants.TYPES_GET_ALL_SUCCESS:
-      return {
-        ...state,
-        ingredientsTypeIndex: action.result,
-      };
+      return { ...state, ingredientsTypeIndex: action.result };
+    case measuresConstants.MEASURES_GET_ALL_SUCCESS:
+      return { ...state, measuresIndex: action.result };
 
     case plansConstants.PLANS_GET_ALL_REQUEST:
-      return {
-        ...state,
-        loadingPlans: true
-      };
+      return { ...state, loadingPlans: true };
 
     case plansConstants.PLANS_GET_ALL_SUCCESS:
       return {
@@ -54,13 +48,12 @@ export default (state = defaultState, action) => {
         plansIndex: action.result,
         plansByDay: Object.values(action.entities.meals_plan).reduce(
           (acc, el) => {
-            if (!acc[el.weekday]) acc[el.weekday] = [0,0,0];
+            if (!acc[el.weekday]) acc[el.weekday] = [0, 0, 0];
             if (el.meal_type === 'dinner') {
               acc[el.weekday][2] = el;
             }
             if (el.meal_type === 'lunch') {
               acc[el.weekday][1] = el;
-              
             }
             if (el.meal_type === 'breakfast') {
               acc[el.weekday][0] = el;
@@ -91,7 +84,6 @@ export default (state = defaultState, action) => {
             }
             if (el.meal_type === 'lunch') {
               acc[el.weekday][1] = el;
-
             }
             if (el.meal_type === 'breakfast') {
               acc[el.weekday][0] = el;
@@ -99,15 +91,11 @@ export default (state = defaultState, action) => {
             return acc;
           },
           {}
-        ),
-        
+        )
       };
 
     case recipesConstants.RECIPES_GET_ALL_REQUEST:
-      return {
-        ...state,
-        loadingRecipes: true
-      };
+      return { ...state, loadingRecipes: true };
 
     case recipesConstants.RECIPES_GET_ALL_SUCCESS:
       return {
@@ -117,11 +105,7 @@ export default (state = defaultState, action) => {
         showNotification: action.result.length === 0
       };
     case recipesConstants.RECIPES_POST_NEW_REQUEST:
-      return {
-        ...state,
-        success: false,
-        postingRecipe: true
-      };
+      return { ...state, success: false, postingRecipe: true };
     case recipesConstants.RECIPES_POST_NEW_SUCCESS:
       return {
         ...state,
@@ -137,25 +121,11 @@ export default (state = defaultState, action) => {
         postingRecipe: false
       };
     case ingredientsConstants.INGREDIENTS_POST_NEW_REQUEST:
-      return {
-        ...state,
-        success: false,
-        postingIngredient: true
-      };
+      return { ...state, success: false, postingIngredient: true };
     case ingredientsConstants.INGREDIENTS_POST_NEW_SUCCESS:
-      message.success('Your Ingredient was added to the database!');
-      return {
-        ...state,
-        success: true,
-        postingIngredient: false
-      };
+      return { ...state, success: true, postingIngredient: false };
     case recipesConstants.INGREDIENTS_POST_NEW_FAILURE:
-      message.error('Oh no! Something went wrong!');
-      return {
-        ...state,
-        success: false,
-        postingIngredient: false
-      };
+      return { ...state, success: false, postingIngredient: false };
     case shoppingListConstants.SHOPPING_LIST_GET_ALL_SUCCESS:
       return {
         ...state,
@@ -176,10 +146,7 @@ export default (state = defaultState, action) => {
       };
 
     case recipesConstants.GLOBAL_RECIPES_GET_ALL_REQUEST:
-      return {
-        ...state,
-        loadingGlobalRecipes: true
-      };
+      return { ...state, loadingGlobalRecipes: true };
 
     case recipesConstants.GLOBAL_RECIPES_GET_ALL_SUCCESS:
       return {
@@ -189,10 +156,7 @@ export default (state = defaultState, action) => {
       };
 
     case recipesConstants.GLOBAL_RECIPES_GET_ONE_REQUEST:
-      return {
-        ...state,
-        loadingOneGlobalRecipe: true
-      };
+      return { ...state, loadingOneGlobalRecipe: true };
 
     case recipesConstants.GLOBAL_RECIPES_GET_ONE_SUCCESS:
       return {
@@ -201,18 +165,18 @@ export default (state = defaultState, action) => {
         loadingOneGlobalRecipe: false
       };
     case 'CHANGE_PAGE_INDEX':
-      return {
-        ...state,
-        pageIndex: action.pageIndex
-      };
+      return { ...state, pageIndex: action.pageIndex };
 
     case 'REMOVE_INGREDIENT_FROM_RECIPE':
       return {
         ...state,
         globalRecipe: {
           ...state.globalRecipe,
-          Ingredients: removeIngredient(state.globalRecipe.Ingredients, action.IngredientID),
-        },
+          Ingredients: removeIngredient(
+            state.globalRecipe.Ingredients,
+            action.IngredientID
+          )
+        }
       };
     default:
       return state;
@@ -225,7 +189,7 @@ const removeIngredient = (ingredientsArr, IngredientID) => {
     if (newArr[i].IngredientID === IngredientID) {
       newArr.splice(i, 1);
       break;
-    } 
+    }
   }
   return newArr;
-}
+};

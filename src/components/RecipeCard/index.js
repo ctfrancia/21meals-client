@@ -16,8 +16,7 @@ const styles = {
     height: 75,
     width: 105,
     borderRadius: '5px ',
-    objectFit: 'none',
-    filter: 'grayscale()'
+    objectFit: 'cover',
   },
   modalImg: {
     objectFit: 'cover',
