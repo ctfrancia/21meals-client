@@ -14,10 +14,13 @@
 
 .accept {
   width: 40vw;
-  background-color: #95de64;
 }
 
 .decline {
   width: 40vw;
-  background-color: #ff7875;
+}
+
+.globalAmounts {
+  display: flex;
+  justify-content: space-between;
 }
