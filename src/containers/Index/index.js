@@ -5,7 +5,6 @@ import SwipeableViews from 'react-swipeable-views';
 import ShoppingList from '../ShoppingList';
 import Planning from '../Planning';
 import Recipes from '../Recipes/Recipes';
-import GlobalRecipes from '../GlobalRecipes';
 import BottomBar from '../../components/BottomBar';
 import { changePageView } from '../../actions/page.actions';
 class Index extends Component {
@@ -27,7 +26,6 @@ class Index extends Component {
             onSwitchingoverflow: 'hidden'
           }}
         >
-          <GlobalRecipes />
           <Recipes />
           <Planning />
           <ShoppingList />
