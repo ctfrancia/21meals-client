@@ -42,11 +42,7 @@ Follow the steps on [21Meals - server](https://github.com/isadorabk/21meals-serv
    $ npm install
    ```
 
-4. #### Set up your config file
-
-   Set up your **.env** file following the structure of the **.env.example** file
-
-5. ### Start the server:
+3. #### Start the server:
 
 ```  
  $ npm start
