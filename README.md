@@ -42,7 +42,7 @@ Follow the steps on [21Meals - server](https://github.com/isadorabk/21meals-serv
    $ npm install
    ```
 
-3. #### Start the server:
+3. #### Start
 
 ```  
  $ npm start
